@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "version": "2.0.0",
+    "created": "2026-02-28",
+    "energy_tech_integrated": true,
+    "total_variants_generated": 0,
+    "variants_ready_for_production": 0
+  },
+  "seed_product": {
+    "name": "Alexandria Energy Node",
+    "description": "Computational work quantification and energy sealing system",
+    "base_price": 1000,
+    "base_features": [
+      "Energy tracking",
+      "Energon ledger management",
+      "Mining integration",
+      "Validator support",
+      "Real-time monitoring"
+    ],
+    "market_segments": [
+      "enterprise",
+      "research",
+      "mining",
+      "energy-tech",
+      "crypto",
+      "renewable"
+    ]
+  },
+  "variant_templates": [
+    {
+      "segment": "enterprise",
+      "description": "High-capacity enterprise energy management",
+      "features_added": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring",
+        "API integration"
+      ],
+      "price_multiplier": 3.5
+    },
+    {
+      "segment": "mining",
+      "description": "Monero mining optimization and tracking",
+      "features_added": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring",
+        "Revenue tracking"
+      ],
+      "price_multiplier": 2.0
+    },
+    {
+      "segment": "research",
+      "description": "Academic and research energy measurement",
+      "features_added": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support",
+        "Open data API"
+      ],
+      "price_multiplier": 1.5
+    },
+    {
+      "segment": "renewable",
+      "description": "Renewable energy grid integration",
+      "features_added": [
+        "Solar/wind integration",
+        "Grid balancing",
+        "Carbon tracking",
+        "Sustainability reports"
+      ],
+      "price_multiplier": 2.5
+    }
+  ],
+  "generated_variants": [],
+  "integration_config": {
+    "filmmaker_enabled": true,
+    "json_mcp_blower_enabled": true,
+    "adam_orchestration_enabled": true,
+    "energon_ledger_tracking": true,
+    "export_format": "csv"
+  }
+}
