@@ -1,0 +1,80 @@
+{
+  "version": "2.0.0",
+  "timestamp": "2026-02-28T22:44:15.561111Z",
+  "ecosystem": "Alexandria Energy-Tech",
+  "systems": {
+    "ADAM": {
+      "role": "Multi-agent orchestration hub",
+      "path": "ADAM/",
+      "status": "production",
+      "agents": 101,
+      "capabilities": [
+        "Agent orchestration",
+        "Digital twin management",
+        "Energy ledger tracking",
+        "Security (Zangetsu)",
+        "Hot-Rod gamification"
+      ]
+    },
+    "Product-Spawner": {
+      "role": "Variant generation",
+      "path": "product-spawner/",
+      "status": "production",
+      "capacity": 100,
+      "capabilities": [
+        "100+ variant generation",
+        "Market targeting",
+        "Energy cost tracking",
+        "Price optimization"
+      ]
+    },
+    "JSON-MCP-Blower": {
+      "role": "Exponential agent multiplication",
+      "path": "json-mcp-blower/",
+      "status": "production",
+      "growth_rate": 2.0,
+      "initial_agents": 3,
+      "max_iterations": 10,
+      "capabilities": [
+        "Exponential generation (3 \u2192 3,072)",
+        "Real-time schema monitoring",
+        "Agent specialization",
+        "Energy-aware deployment"
+      ]
+    },
+    "Second-Me": {
+      "role": "AI self-training",
+      "path": "Second-Me/",
+      "status": "production",
+      "layers": [
+        "L0 (Raw)",
+        "L1 (Memory)",
+        "L2 (Models)"
+      ],
+      "models": 4,
+      "capabilities": [
+        "Digital twin training",
+        "Expertise extraction",
+        "LoRA fine-tuning",
+        "Personality modeling"
+      ]
+    }
+  },
+  "energy_tech": {
+    "sealed_kwh": 6466312553.796443,
+    "mining_active": true,
+    "validators": [
+      "aker",
+      "kheper"
+    ],
+    "ledger_size_mb": 2.1,
+    "backup_enabled": true
+  },
+  "integration_points": [
+    "Product-Spawner \u2192 JSON-MCP-Blower: Variant\u2192Agent",
+    "JSON-MCP-Blower \u2192 ADAM: MCPs\u2192Orchestration",
+    "ADAM \u2192 Second-Me: Performance\u2192Training",
+    "All systems \u2192 Energon Ledger: Work\u2192Energy",
+    "All systems \u2192 Zangetsu: Operations\u2192Security"
+  ]
+}
