@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "version": "3.0.0",
+    "created": "2026-02-28",
+    "description": "Master MCP schema for exponential agent generation",
+    "last_update": "2026-02-28T17:40:00Z",
+    "energy_tech_integrated": true
+  },
+  "fractal_config": {
+    "growth_rate": 2.0,
+    "initial_generation": 3,
+    "max_iterations": 10,
+    "generation_strategy": "exponential",
+    "description": "3 initial → 3,072 agents over 10 generations"
+  },
+  "mcp_registry": {
+    "version": "1.0.0",
+    "total_agents": 0,
+    "roles": {
+      "architect": {
+        "count": 26,
+        "description": "System design and meta-level optimization",
+        "specializations": [
+          "Infrastructure design",
+          "Scalability planning",
+          "Energy optimization",
+          "Consensus mechanisms",
+          "Validator networks"
+        ]
+      },
+      "developer": {
+        "count": 25,
+        "description": "Code generation and rapid implementation",
+        "specializations": [
+          "MCP implementation",
+          "Protocol development",
+          "Integration coding",
+          "Script automation",
+          "Real-time sync"
+        ]
+      },
+      "analyst": {
+        "count": 25,
+        "description": "Problem decomposition and pattern recognition",
+        "specializations": [
+          "Energy analysis",
+          "Performance bottleneck detection",
+          "Data correlation",
+          "Trend analysis",
+          "Optimization strategies"
+        ]
+      },
+      "collaborator": {
+        "count": 25,
+        "description": "Communication and team coordination",
+        "specializations": [
+          "Documentation",
+          "Team communication",
+          "Status reporting",
+          "Cross-system coordination",
+          "Stakeholder updates"
+        ]
+      }
+    }
+  },
+  "agent_specializations": [
+    {
+      "id": "energy_sealer",
+      "name": "Energon Sealer",
+      "role": "architect",
+      "purpose": "Seal computational energy into ledger batches",
+      "tools": ["energon_ledger", "batch_validator", "crypto_signer"],
+      "energy_cost_kwh": 0.5
+    },
+    {
+      "id": "mining_orchestrator",
+      "name": "Mining Orchestrator",
+      "role": "developer",
+      "purpose": "Manage XMRig mining pools and optimization",
+      "tools": ["xmrig_control", "pool_monitor", "hash_tracking"],
+      "energy_cost_kwh": 0.3
+    },
+    {
+      "id": "product_generator",
+      "name": "Product Variant Generator",
+      "role": "developer",
+      "purpose": "Generate market-targeted product variants",
+      "tools": ["claude_api", "market_analyzer", "pricing_engine"],
+      "energy_cost_kwh": 0.7
+    },
+    {
+      "id": "performance_analyst",
+      "name": "Performance Analyst",
+      "role": "analyst",
+      "purpose": "Analyze system performance and optimize",
+      "tools": ["metrics_collector", "trend_analyzer", "optimization_engine"],
+      "energy_cost_kwh": 0.4
+    },
+    {
+      "id": "validator_guardian",
+      "name": "Validator Guardian",
+      "role": "architect",
+      "purpose": "Manage consensus validators (aker, kheper, etc.)",
+      "tools": ["validator_registry", "trust_scorer", "incident_responder"],
+      "energy_cost_kwh": 0.6
+    }
+  ],
+  "deployment_config": {
+    "target_systems": [
+      "ADAM",
+      "Filmmaker",
+      "Product-Spawner",
+      "Second-Me",
+      "Energy-Tech"
+    ],
+    "monitoring": {
+      "enabled": true,
+      "frequency_seconds": 30,
+      "metrics_tracked": [
+        "generation_rate",
+        "agent_activation",
+        "energy_consumption",
+        "validator_participation",
+        "error_rate"
+      ]
+    },
+    "resilience": {
+      "backup_frequency": "hourly",
+      "checksum_verification": true,
+      "auto_recovery": true
+    }
+  },
+  "generation_status": {
+    "current_generation": 0,
+    "agents_generated": 0,
+    "total_energy_cost_kwh": 0,
+    "estimated_completion": "2026-03-01T00:00:00Z",
+    "last_sync": "2026-02-28T17:40:00Z"
+  }
+}

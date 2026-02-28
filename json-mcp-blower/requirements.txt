@@ -1,0 +1,8 @@
+# JSON-MCP-Blower Dependencies
+watchdog>=3.0.0  # File monitoring for real-time schema sync
+anthropic>=0.25.0  # Claude API for agent deployment
+pydantic>=2.0.0  # Data validation
+
+# Optional: for enhanced features
+python-dotenv>=1.0.0  # Environment variables
+tqdm>=4.65.0  # Progress bars
