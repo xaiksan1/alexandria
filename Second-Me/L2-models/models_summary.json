@@ -1,0 +1,12 @@
+{
+  "total_models": 4,
+  "models": [
+    "architect",
+    "developer",
+    "analyst",
+    "collaborator"
+  ],
+  "base_model": "claude-3-5-sonnet",
+  "total_training_examples": 20000,
+  "created_at": "2026-03-01T17:34:47.350982Z"
+}

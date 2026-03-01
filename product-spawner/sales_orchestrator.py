@@ -6,25 +6,31 @@ Integrated with Alexandria energy-tech ecosystem.
 """
 
 import json
+import json5
 import sys
 import os
 from pathlib import Path
 from datetime import datetime
 
 try:
-    from anthropic import Anthropic
+    import google.generativeai as genai
 except ImportError:
-    print("❌ Missing: pip install anthropic")
+    print("❌ Missing: pip install google-generativeai")
     sys.exit(1)
 
 
 class ProductSpawner:
-    """Generate product variants using Claude API."""
+    """Generate product variants using Gemini API."""
 
     def __init__(self, registry_path: str = "product_registry.json"):
         self.registry_path = Path(registry_path)
         self.registry = self._load_registry()
-        self.client = Anthropic()
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            print("❌ Missing: export GEMINI_API_KEY=...")
+            sys.exit(1)
+        genai.configure(api_key=api_key)
+        self.model = genai.GenerativeModel("gemini-2.0-flash")
         self.variants = []
 
     def _load_registry(self) -> dict:
@@ -72,30 +78,49 @@ Format as JSON array. Ensure variants are truly different and address real marke
 Focus on energy-tech, computational work quantification, and carbon tracking."""
 
         try:
-            response = self.client.messages.create(
-                model="claude-3-5-sonnet-20241022",
-                max_tokens=4096,
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
+            response = self.model.generate_content(
+                prompt,
+                generation_config=genai.types.GenerationConfig(
+                    max_output_tokens=8000,
+                    temperature=0.7,
+                )
             )
 
             # Parse response
-            response_text = response.content[0].text
+            response_text = response.text
 
-            # Extract JSON from response
+            # Extract JSON from response (handle markdown blocks + incomplete JSON)
             try:
-                # Try to find JSON array
-                start = response_text.find('[')
-                end = response_text.rfind(']') + 1
-                if start >= 0 and end > start:
-                    variants_json = response_text[start:end]
-                    variants = json.loads(variants_json)
+                # Try markdown code blocks first
+                if "```json" in response_text:
+                    start = response_text.find("```json") + 7
+                    end = response_text.find("```", start)
+                    variants_json = response_text[start:end].strip()
+                elif "```" in response_text:
+                    start = response_text.find("```") + 3
+                    end = response_text.find("```", start)
+                    variants_json = response_text[start:end].strip()
                 else:
-                    print("⚠️  No JSON array found in response")
+                    # Try to find raw JSON array
+                    start = response_text.find('[')
+                    end = response_text.rfind(']') + 1
+                    variants_json = response_text[start:end]
+
+                if variants_json:
+                    # Clean incomplete JSON - find last complete object
+                    if not variants_json.rstrip().endswith(']'):
+                        # Find last complete }, then add ]
+                        last_brace = variants_json.rfind('}')
+                        if last_brace > 0:
+                            variants_json = variants_json[:last_brace+1] + ']'
+
+                    variants = json5.loads(variants_json)
+                else:
+                    print("⚠️  No JSON found in response")
                     variants = []
-            except json.JSONDecodeError as e:
+            except (json.JSONDecodeError, ValueError) as e:
                 print(f"⚠️  JSON parse error: {e}")
+                print(f"Response length: {len(response_text)} chars")
                 variants = []
 
             self.variants = variants

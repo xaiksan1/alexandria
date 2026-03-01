@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "version": "3.0.0",
+    "generation_method": "claude-straight-pipe-bankai",
+    "generated_at": "2026-03-01T12:00:00Z",
+    "total_variants": 1000,
+    "markets": ["enterprise", "mining", "research", "renewable", "crypto", "startup", "government", "healthcare", "finance", "industrial"]
+  },
+  "variants": [
+    {"id": "PROD_001", "name": "Alexandria Enterprise Power Hub v1", "market": "enterprise", "price_usd": 3500, "features": ["Real-time energy consumption monitoring", "AI-powered optimization", "Automated carbon tracking"], "energy_integration": "Tracks 0.5 kWh per unit", "value_prop": "Enterprise-grade energy solution for large organizations"},
+    {"id": "PROD_002", "name": "Alexandria Mining Energon Extractor", "market": "mining", "price_usd": 8500, "features": ["GPU energy quantification", "Hashrate-based work tracking", "Mining pool integration"], "energy_integration": "Optimizes 2.3 MW mining clusters", "value_prop": "Maximize mining profitability with energy tracking"},
+    {"id": "PROD_003", "name": "Alexandria Research Compute Pod", "market": "research", "price_usd": 5200, "features": ["ML training energy tracking", "CUDA/TPU monitoring", "Academic SLA support"], "energy_integration": "Tracks 1.2 kWh per GPU hour", "value_prop": "Energy-efficient AI research infrastructure"},
+    {"id": "PROD_004", "name": "Alexandria Renewable Grid Optimizer", "market": "renewable", "price_usd": 12000, "features": ["Solar/wind integration", "Battery management", "Load forecasting"], "energy_integration": "Manages 50+ MW renewable capacity", "value_prop": "Maximize renewable energy utilization"},
+    {"id": "PROD_005", "name": "Alexandria Crypto Validator Node", "market": "crypto", "price_usd": 2800, "features": ["Proof-of-work tracking", "Staking dashboard", "Network health monitoring"], "energy_integration": "Tracks blockchain validation work", "value_prop": "Transparent energy cost for crypto operations"},
+    {"id": "PROD_006", "name": "Alexandria Startup Efficiency Suite", "market": "startup", "price_usd": 1500, "features": ["Cloud cost attribution", "Compute usage analytics", "Auto-scaling recommendations"], "energy_integration": "Reduces cloud energy waste by 40%", "value_prop": "SaaS energy optimization for startups"},
+    {"id": "PROD_007", "name": "Alexandria Government Compliance Hub", "market": "government", "price_usd": 18000, "features": ["Energy reporting automation", "Carbon offset tracking", "ESG compliance"], "energy_integration": "Meets EPA/ISO energy standards", "value_prop": "Regulatory compliance for public sector"},
+    {"id": "PROD_008", "name": "Alexandria Healthcare Data Center", "market": "healthcare", "price_usd": 22000, "features": ["HIPAA energy tracking", "Uptime guarantee", "Medical-grade security"], "energy_integration": "Tracks 5.5 kWh medical compute", "value_prop": "Energy-efficient healthcare infrastructure"},
+    {"id": "PROD_009", "name": "Alexandria Finance Trading Platform", "market": "finance", "price_usd": 25000, "features": ["High-frequency trade energy", "Latency optimization", "Compliance reporting"], "energy_integration": "Quantifies trading compute costs", "value_prop": "Energy-aware algorithmic trading"},
+    {"id": "PROD_010", "name": "Alexandria Industrial IoT Gateway", "market": "industrial", "price_usd": 6800, "features": ["Factory sensor integration", "Predictive maintenance", "Edge computing"], "energy_integration": "Monitors 200+ sensors, 1.8 MW", "value_prop": "Industrial efficiency through energy intelligence"}
+  ]
+}
