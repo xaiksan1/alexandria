@@ -1,0 +1,11 @@
+{
+  "swarm_id": "alexandria_swarm_001",
+  "deployment_time": "2026-03-01T12:17:40Z",
+  "agent_count": 3115,
+  "generations": 10,
+  "growth_rate": 2.0,
+  "connected_orchestrator": "ADAM",
+  "orchestrator_port": 5000,
+  "energy_source": "energon_turbine",
+  "status": "ACTIVE"
+}
