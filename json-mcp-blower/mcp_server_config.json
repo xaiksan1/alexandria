@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "created": "2026-03-01T06:28:12.681369",
+    "total_agents": 3069,
+    "server_mode": "multi-instance",
+    "status": "ACTIVE"
+  },
+  "server_clusters": {
+    "gen_0": {
+      "agent_count": 3,
+      "base_port": 50000,
+      "status": "ready",
+      "agents": 3
+    },
+    "gen_1": {
+      "agent_count": 6,
+      "base_port": 50100,
+      "status": "ready",
+      "agents": 6
+    },
+    "gen_2": {
+      "agent_count": 12,
+      "base_port": 50200,
+      "status": "ready",
+      "agents": 12
+    },
+    "gen_3": {
+      "agent_count": 24,
+      "base_port": 50300,
+      "status": "ready",
+      "agents": 24
+    },
+    "gen_4": {
+      "agent_count": 48,
+      "base_port": 50400,
+      "status": "ready",
+      "agents": 48
+    },
+    "gen_5": {
+      "agent_count": 96,
+      "base_port": 50500,
+      "status": "ready",
+      "agents": 96
+    },
+    "gen_6": {
+      "agent_count": 192,
+      "base_port": 51000,
+      "status": "ready",
+      "agents": 192
+    },
+    "gen_7": {
+      "agent_count": 384,
+      "base_port": 52000,
+      "status": "ready",
+      "agents": 384
+    },
+    "gen_8": {
+      "agent_count": 768,
+      "base_port": 53000,
+      "status": "ready",
+      "agents": 768
+    },
+    "gen_9": {
+      "agent_count": 1536,
+      "base_port": 54000,
+      "status": "ready",
+      "agents": 1536
+    }
+  },
+  "routing": {
+    "discovery": "enabled",
+    "load_balancing": "round_robin",
+    "failover": "automatic"
+  }
+}

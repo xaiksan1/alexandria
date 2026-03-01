@@ -1,0 +1,21 @@
+{
+  "id": "agent_f765531c",
+  "specialization_id": "performance_analyst",
+  "name": "Performance Analyst",
+  "role": "analyst",
+  "purpose": "Analyze system performance and optimize",
+  "generation": 9,
+  "created_at": "2026-03-01T06:27:52.059457Z",
+  "status": "initialized",
+  "tools": [
+    "metrics_collector",
+    "trend_analyzer",
+    "optimization_engine"
+  ],
+  "energy_cost_kwh": 0.4,
+  "metrics": {
+    "tasks_completed": 0,
+    "success_rate": 0.0,
+    "average_response_time_ms": 0
+  }
+}

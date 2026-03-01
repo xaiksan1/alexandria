@@ -3,8 +3,10 @@
     "version": "2.0.0",
     "created": "2026-02-28",
     "energy_tech_integrated": true,
-    "total_variants_generated": 0,
-    "variants_ready_for_production": 0
+    "total_variants_generated": 103,
+    "variants_ready_for_production": 103,
+    "generation_timestamp": "2026-03-01T06:37:05.872037",
+    "generation_mode": "DEMO"
   },
   "seed_product": {
     "name": "Alexandria Energy Node",
@@ -72,7 +74,2267 @@
       "price_multiplier": 2.5
     }
   ],
-  "generated_variants": [],
+  "generated_variants": [
+    {
+      "id": "PRODUCT_001",
+      "name": "Alexandria Enterprise Suite v1",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA"
+      ],
+      "price_usd": 3500,
+      "energy_integration": "Tracks 0.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 1,
+      "generation_time": "2026-03-01T06:37:05.870141"
+    },
+    {
+      "id": "PRODUCT_002",
+      "name": "Alexandria Enterprise Suite v2",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring"
+      ],
+      "price_usd": 3550,
+      "energy_integration": "Tracks 0.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 2,
+      "generation_time": "2026-03-01T06:37:05.870202"
+    },
+    {
+      "id": "PRODUCT_003",
+      "name": "Alexandria Enterprise Suite v3",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring",
+        "API integration"
+      ],
+      "price_usd": 3600,
+      "energy_integration": "Tracks 0.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 3,
+      "generation_time": "2026-03-01T06:37:05.870219"
+    },
+    {
+      "id": "PRODUCT_004",
+      "name": "Alexandria Enterprise Suite v4",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA"
+      ],
+      "price_usd": 3650,
+      "energy_integration": "Tracks 0.8 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 4,
+      "generation_time": "2026-03-01T06:37:05.870237"
+    },
+    {
+      "id": "PRODUCT_005",
+      "name": "Alexandria Enterprise Suite v5",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring"
+      ],
+      "price_usd": 3700,
+      "energy_integration": "Tracks 0.9 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 5,
+      "generation_time": "2026-03-01T06:37:05.870249"
+    },
+    {
+      "id": "PRODUCT_006",
+      "name": "Alexandria Enterprise Suite v6",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring",
+        "API integration"
+      ],
+      "price_usd": 3750,
+      "energy_integration": "Tracks 1.0 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 6,
+      "generation_time": "2026-03-01T06:37:05.870262"
+    },
+    {
+      "id": "PRODUCT_007",
+      "name": "Alexandria Enterprise Suite v7",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA"
+      ],
+      "price_usd": 3800,
+      "energy_integration": "Tracks 1.1 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 7,
+      "generation_time": "2026-03-01T06:37:05.870278"
+    },
+    {
+      "id": "PRODUCT_008",
+      "name": "Alexandria Enterprise Suite v8",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring"
+      ],
+      "price_usd": 3850,
+      "energy_integration": "Tracks 1.2 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 8,
+      "generation_time": "2026-03-01T06:37:05.870294"
+    },
+    {
+      "id": "PRODUCT_009",
+      "name": "Alexandria Enterprise Suite v9",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring",
+        "API integration"
+      ],
+      "price_usd": 3900,
+      "energy_integration": "Tracks 1.3 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 9,
+      "generation_time": "2026-03-01T06:37:05.870310"
+    },
+    {
+      "id": "PRODUCT_010",
+      "name": "Alexandria Enterprise Suite v10",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA"
+      ],
+      "price_usd": 3950,
+      "energy_integration": "Tracks 1.4 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 10,
+      "generation_time": "2026-03-01T06:37:05.870323"
+    },
+    {
+      "id": "PRODUCT_011",
+      "name": "Alexandria Enterprise Suite v11",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring"
+      ],
+      "price_usd": 4000,
+      "energy_integration": "Tracks 1.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 11,
+      "generation_time": "2026-03-01T06:37:05.870335"
+    },
+    {
+      "id": "PRODUCT_012",
+      "name": "Alexandria Enterprise Suite v12",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA",
+        "24/7 monitoring",
+        "API integration"
+      ],
+      "price_usd": 4050,
+      "energy_integration": "Tracks 1.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 12,
+      "generation_time": "2026-03-01T06:37:05.870347"
+    },
+    {
+      "id": "PRODUCT_013",
+      "name": "Alexandria Enterprise Suite v13",
+      "market": "enterprise",
+      "description": "Energy tracking and computational work quantification for enterprise sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Multi-cluster support",
+        "Enterprise SLA"
+      ],
+      "price_usd": 4100,
+      "energy_integration": "Tracks 1.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for enterprise organizations",
+      "market_segment": "enterprise",
+      "variant_number": 13,
+      "generation_time": "2026-03-01T06:37:05.870359"
+    },
+    {
+      "id": "PRODUCT_014",
+      "name": "Alexandria Mining Suite v14",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management"
+      ],
+      "price_usd": 2000,
+      "energy_integration": "Tracks 0.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 1,
+      "generation_time": "2026-03-01T06:37:05.870373"
+    },
+    {
+      "id": "PRODUCT_015",
+      "name": "Alexandria Mining Suite v15",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring"
+      ],
+      "price_usd": 2050,
+      "energy_integration": "Tracks 0.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 2,
+      "generation_time": "2026-03-01T06:37:05.870384"
+    },
+    {
+      "id": "PRODUCT_016",
+      "name": "Alexandria Mining Suite v16",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring",
+        "Revenue tracking"
+      ],
+      "price_usd": 2100,
+      "energy_integration": "Tracks 0.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 3,
+      "generation_time": "2026-03-01T06:37:05.870400"
+    },
+    {
+      "id": "PRODUCT_017",
+      "name": "Alexandria Mining Suite v17",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management"
+      ],
+      "price_usd": 2150,
+      "energy_integration": "Tracks 0.8 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 4,
+      "generation_time": "2026-03-01T06:37:05.870416"
+    },
+    {
+      "id": "PRODUCT_018",
+      "name": "Alexandria Mining Suite v18",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring"
+      ],
+      "price_usd": 2200,
+      "energy_integration": "Tracks 0.9 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 5,
+      "generation_time": "2026-03-01T06:37:05.870428"
+    },
+    {
+      "id": "PRODUCT_019",
+      "name": "Alexandria Mining Suite v19",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring",
+        "Revenue tracking"
+      ],
+      "price_usd": 2250,
+      "energy_integration": "Tracks 1.0 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 6,
+      "generation_time": "2026-03-01T06:37:05.870440"
+    },
+    {
+      "id": "PRODUCT_020",
+      "name": "Alexandria Mining Suite v20",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management"
+      ],
+      "price_usd": 2300,
+      "energy_integration": "Tracks 1.1 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 7,
+      "generation_time": "2026-03-01T06:37:05.870451"
+    },
+    {
+      "id": "PRODUCT_021",
+      "name": "Alexandria Mining Suite v21",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring"
+      ],
+      "price_usd": 2350,
+      "energy_integration": "Tracks 1.2 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 8,
+      "generation_time": "2026-03-01T06:37:05.870468"
+    },
+    {
+      "id": "PRODUCT_022",
+      "name": "Alexandria Mining Suite v22",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring",
+        "Revenue tracking"
+      ],
+      "price_usd": 2400,
+      "energy_integration": "Tracks 1.3 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 9,
+      "generation_time": "2026-03-01T06:37:05.870484"
+    },
+    {
+      "id": "PRODUCT_023",
+      "name": "Alexandria Mining Suite v23",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management"
+      ],
+      "price_usd": 2450,
+      "energy_integration": "Tracks 1.4 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 10,
+      "generation_time": "2026-03-01T06:37:05.870496"
+    },
+    {
+      "id": "PRODUCT_024",
+      "name": "Alexandria Mining Suite v24",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring"
+      ],
+      "price_usd": 2500,
+      "energy_integration": "Tracks 1.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 11,
+      "generation_time": "2026-03-01T06:37:05.870508"
+    },
+    {
+      "id": "PRODUCT_025",
+      "name": "Alexandria Mining Suite v25",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management",
+        "Rig monitoring",
+        "Revenue tracking"
+      ],
+      "price_usd": 2550,
+      "energy_integration": "Tracks 1.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 12,
+      "generation_time": "2026-03-01T06:37:05.870519"
+    },
+    {
+      "id": "PRODUCT_026",
+      "name": "Alexandria Mining Suite v26",
+      "market": "mining",
+      "description": "Energy tracking and computational work quantification for mining sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "XMRig integration",
+        "Pool management"
+      ],
+      "price_usd": 2600,
+      "energy_integration": "Tracks 1.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for mining organizations",
+      "market_segment": "mining",
+      "variant_number": 13,
+      "generation_time": "2026-03-01T06:37:05.870531"
+    },
+    {
+      "id": "PRODUCT_027",
+      "name": "Alexandria Research Suite v27",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready"
+      ],
+      "price_usd": 1500,
+      "energy_integration": "Tracks 0.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 1,
+      "generation_time": "2026-03-01T06:37:05.870548"
+    },
+    {
+      "id": "PRODUCT_028",
+      "name": "Alexandria Research Suite v28",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support"
+      ],
+      "price_usd": 1550,
+      "energy_integration": "Tracks 0.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 2,
+      "generation_time": "2026-03-01T06:37:05.870560"
+    },
+    {
+      "id": "PRODUCT_029",
+      "name": "Alexandria Research Suite v29",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support",
+        "Open data API"
+      ],
+      "price_usd": 1600,
+      "energy_integration": "Tracks 0.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 3,
+      "generation_time": "2026-03-01T06:37:05.870572"
+    },
+    {
+      "id": "PRODUCT_030",
+      "name": "Alexandria Research Suite v30",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready"
+      ],
+      "price_usd": 1650,
+      "energy_integration": "Tracks 0.8 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 4,
+      "generation_time": "2026-03-01T06:37:05.870587"
+    },
+    {
+      "id": "PRODUCT_031",
+      "name": "Alexandria Research Suite v31",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support"
+      ],
+      "price_usd": 1700,
+      "energy_integration": "Tracks 0.9 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 5,
+      "generation_time": "2026-03-01T06:37:05.870599"
+    },
+    {
+      "id": "PRODUCT_032",
+      "name": "Alexandria Research Suite v32",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support",
+        "Open data API"
+      ],
+      "price_usd": 1750,
+      "energy_integration": "Tracks 1.0 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 6,
+      "generation_time": "2026-03-01T06:37:05.870611"
+    },
+    {
+      "id": "PRODUCT_033",
+      "name": "Alexandria Research Suite v33",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready"
+      ],
+      "price_usd": 1800,
+      "energy_integration": "Tracks 1.1 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 7,
+      "generation_time": "2026-03-01T06:37:05.870623"
+    },
+    {
+      "id": "PRODUCT_034",
+      "name": "Alexandria Research Suite v34",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support"
+      ],
+      "price_usd": 1850,
+      "energy_integration": "Tracks 1.2 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 8,
+      "generation_time": "2026-03-01T06:37:05.870635"
+    },
+    {
+      "id": "PRODUCT_035",
+      "name": "Alexandria Research Suite v35",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support",
+        "Open data API"
+      ],
+      "price_usd": 1900,
+      "energy_integration": "Tracks 1.3 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 9,
+      "generation_time": "2026-03-01T06:37:05.870650"
+    },
+    {
+      "id": "PRODUCT_036",
+      "name": "Alexandria Research Suite v36",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready"
+      ],
+      "price_usd": 1950,
+      "energy_integration": "Tracks 1.4 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 10,
+      "generation_time": "2026-03-01T06:37:05.870662"
+    },
+    {
+      "id": "PRODUCT_037",
+      "name": "Alexandria Research Suite v37",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support"
+      ],
+      "price_usd": 2000,
+      "energy_integration": "Tracks 1.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 11,
+      "generation_time": "2026-03-01T06:37:05.870680"
+    },
+    {
+      "id": "PRODUCT_038",
+      "name": "Alexandria Research Suite v38",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready",
+        "Citation support",
+        "Open data API"
+      ],
+      "price_usd": 2050,
+      "energy_integration": "Tracks 1.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 12,
+      "generation_time": "2026-03-01T06:37:05.870692"
+    },
+    {
+      "id": "PRODUCT_039",
+      "name": "Alexandria Research Suite v39",
+      "market": "research",
+      "description": "Energy tracking and computational work quantification for research sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Data export formats",
+        "Peer review ready"
+      ],
+      "price_usd": 2100,
+      "energy_integration": "Tracks 1.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for research organizations",
+      "market_segment": "research",
+      "variant_number": 13,
+      "generation_time": "2026-03-01T06:37:05.870703"
+    },
+    {
+      "id": "PRODUCT_040",
+      "name": "Alexandria Renewable Suite v40",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration"
+      ],
+      "price_usd": 2500,
+      "energy_integration": "Tracks 0.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 1,
+      "generation_time": "2026-03-01T06:37:05.870716"
+    },
+    {
+      "id": "PRODUCT_041",
+      "name": "Alexandria Renewable Suite v41",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration",
+        "Grid balancing"
+      ],
+      "price_usd": 2550,
+      "energy_integration": "Tracks 0.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 2,
+      "generation_time": "2026-03-01T06:37:05.870731"
+    },
+    {
+      "id": "PRODUCT_042",
+      "name": "Alexandria Renewable Suite v42",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration",
+        "Grid balancing",
+        "Carbon tracking"
+      ],
+      "price_usd": 2600,
+      "energy_integration": "Tracks 0.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 3,
+      "generation_time": "2026-03-01T06:37:05.870743"
+    },
+    {
+      "id": "PRODUCT_043",
+      "name": "Alexandria Renewable Suite v43",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration"
+      ],
+      "price_usd": 2650,
+      "energy_integration": "Tracks 0.8 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 4,
+      "generation_time": "2026-03-01T06:37:05.870755"
+    },
+    {
+      "id": "PRODUCT_044",
+      "name": "Alexandria Renewable Suite v44",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration",
+        "Grid balancing"
+      ],
+      "price_usd": 2700,
+      "energy_integration": "Tracks 0.9 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 5,
+      "generation_time": "2026-03-01T06:37:05.870773"
+    },
+    {
+      "id": "PRODUCT_045",
+      "name": "Alexandria Renewable Suite v45",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration",
+        "Grid balancing",
+        "Carbon tracking"
+      ],
+      "price_usd": 2750,
+      "energy_integration": "Tracks 1.0 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 6,
+      "generation_time": "2026-03-01T06:37:05.870785"
+    },
+    {
+      "id": "PRODUCT_046",
+      "name": "Alexandria Renewable Suite v46",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration"
+      ],
+      "price_usd": 2800,
+      "energy_integration": "Tracks 1.1 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 7,
+      "generation_time": "2026-03-01T06:37:05.870797"
+    },
+    {
+      "id": "PRODUCT_047",
+      "name": "Alexandria Renewable Suite v47",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration",
+        "Grid balancing"
+      ],
+      "price_usd": 2850,
+      "energy_integration": "Tracks 1.2 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 8,
+      "generation_time": "2026-03-01T06:37:05.870822"
+    },
+    {
+      "id": "PRODUCT_048",
+      "name": "Alexandria Renewable Suite v48",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration",
+        "Grid balancing",
+        "Carbon tracking"
+      ],
+      "price_usd": 2900,
+      "energy_integration": "Tracks 1.3 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 9,
+      "generation_time": "2026-03-01T06:37:05.870837"
+    },
+    {
+      "id": "PRODUCT_049",
+      "name": "Alexandria Renewable Suite v49",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration"
+      ],
+      "price_usd": 2950,
+      "energy_integration": "Tracks 1.4 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 10,
+      "generation_time": "2026-03-01T06:37:05.870849"
+    },
+    {
+      "id": "PRODUCT_050",
+      "name": "Alexandria Renewable Suite v50",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration",
+        "Grid balancing"
+      ],
+      "price_usd": 3000,
+      "energy_integration": "Tracks 1.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 11,
+      "generation_time": "2026-03-01T06:37:05.870861"
+    },
+    {
+      "id": "PRODUCT_051",
+      "name": "Alexandria Renewable Suite v51",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration",
+        "Grid balancing",
+        "Carbon tracking"
+      ],
+      "price_usd": 3050,
+      "energy_integration": "Tracks 1.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 12,
+      "generation_time": "2026-03-01T06:37:05.870872"
+    },
+    {
+      "id": "PRODUCT_052",
+      "name": "Alexandria Renewable Suite v52",
+      "market": "renewable",
+      "description": "Energy tracking and computational work quantification for renewable sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Solar integration",
+        "Wind integration"
+      ],
+      "price_usd": 3100,
+      "energy_integration": "Tracks 1.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for renewable organizations",
+      "market_segment": "renewable",
+      "variant_number": 13,
+      "generation_time": "2026-03-01T06:37:05.870887"
+    },
+    {
+      "id": "PRODUCT_053",
+      "name": "Alexandria Crypto Suite v53",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts"
+      ],
+      "price_usd": 2800,
+      "energy_integration": "Tracks 0.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 1,
+      "generation_time": "2026-03-01T06:37:05.870900"
+    },
+    {
+      "id": "PRODUCT_054",
+      "name": "Alexandria Crypto Suite v54",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts",
+        "Wallet integration"
+      ],
+      "price_usd": 2850,
+      "energy_integration": "Tracks 0.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 2,
+      "generation_time": "2026-03-01T06:37:05.871350"
+    },
+    {
+      "id": "PRODUCT_055",
+      "name": "Alexandria Crypto Suite v55",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts",
+        "Wallet integration",
+        "Exchange APIs"
+      ],
+      "price_usd": 2900,
+      "energy_integration": "Tracks 0.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 3,
+      "generation_time": "2026-03-01T06:37:05.871368"
+    },
+    {
+      "id": "PRODUCT_056",
+      "name": "Alexandria Crypto Suite v56",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts"
+      ],
+      "price_usd": 2950,
+      "energy_integration": "Tracks 0.8 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 4,
+      "generation_time": "2026-03-01T06:37:05.871381"
+    },
+    {
+      "id": "PRODUCT_057",
+      "name": "Alexandria Crypto Suite v57",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts",
+        "Wallet integration"
+      ],
+      "price_usd": 3000,
+      "energy_integration": "Tracks 0.9 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 5,
+      "generation_time": "2026-03-01T06:37:05.871399"
+    },
+    {
+      "id": "PRODUCT_058",
+      "name": "Alexandria Crypto Suite v58",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts",
+        "Wallet integration",
+        "Exchange APIs"
+      ],
+      "price_usd": 3050,
+      "energy_integration": "Tracks 1.0 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 6,
+      "generation_time": "2026-03-01T06:37:05.871411"
+    },
+    {
+      "id": "PRODUCT_059",
+      "name": "Alexandria Crypto Suite v59",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts"
+      ],
+      "price_usd": 3100,
+      "energy_integration": "Tracks 1.1 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 7,
+      "generation_time": "2026-03-01T06:37:05.871423"
+    },
+    {
+      "id": "PRODUCT_060",
+      "name": "Alexandria Crypto Suite v60",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts",
+        "Wallet integration"
+      ],
+      "price_usd": 3150,
+      "energy_integration": "Tracks 1.2 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 8,
+      "generation_time": "2026-03-01T06:37:05.871438"
+    },
+    {
+      "id": "PRODUCT_061",
+      "name": "Alexandria Crypto Suite v61",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts",
+        "Wallet integration",
+        "Exchange APIs"
+      ],
+      "price_usd": 3200,
+      "energy_integration": "Tracks 1.3 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 9,
+      "generation_time": "2026-03-01T06:37:05.871453"
+    },
+    {
+      "id": "PRODUCT_062",
+      "name": "Alexandria Crypto Suite v62",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts"
+      ],
+      "price_usd": 3250,
+      "energy_integration": "Tracks 1.4 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 10,
+      "generation_time": "2026-03-01T06:37:05.871465"
+    },
+    {
+      "id": "PRODUCT_063",
+      "name": "Alexandria Crypto Suite v63",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts",
+        "Wallet integration"
+      ],
+      "price_usd": 3300,
+      "energy_integration": "Tracks 1.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 11,
+      "generation_time": "2026-03-01T06:37:05.871477"
+    },
+    {
+      "id": "PRODUCT_064",
+      "name": "Alexandria Crypto Suite v64",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts",
+        "Wallet integration",
+        "Exchange APIs"
+      ],
+      "price_usd": 3350,
+      "energy_integration": "Tracks 1.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 12,
+      "generation_time": "2026-03-01T06:37:05.871489"
+    },
+    {
+      "id": "PRODUCT_065",
+      "name": "Alexandria Crypto Suite v65",
+      "market": "crypto",
+      "description": "Energy tracking and computational work quantification for crypto sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Blockchain integration",
+        "Smart contracts"
+      ],
+      "price_usd": 3400,
+      "energy_integration": "Tracks 1.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for crypto organizations",
+      "market_segment": "crypto",
+      "variant_number": 13,
+      "generation_time": "2026-03-01T06:37:05.871500"
+    },
+    {
+      "id": "PRODUCT_066",
+      "name": "Alexandria Startup Suite v66",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization"
+      ],
+      "price_usd": 1200,
+      "energy_integration": "Tracks 0.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 1,
+      "generation_time": "2026-03-01T06:37:05.871513"
+    },
+    {
+      "id": "PRODUCT_067",
+      "name": "Alexandria Startup Suite v67",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization",
+        "Performance analytics"
+      ],
+      "price_usd": 1250,
+      "energy_integration": "Tracks 0.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 2,
+      "generation_time": "2026-03-01T06:37:05.871528"
+    },
+    {
+      "id": "PRODUCT_068",
+      "name": "Alexandria Startup Suite v68",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization",
+        "Performance analytics",
+        "Growth tracking"
+      ],
+      "price_usd": 1300,
+      "energy_integration": "Tracks 0.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 3,
+      "generation_time": "2026-03-01T06:37:05.871540"
+    },
+    {
+      "id": "PRODUCT_069",
+      "name": "Alexandria Startup Suite v69",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization"
+      ],
+      "price_usd": 1350,
+      "energy_integration": "Tracks 0.8 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 4,
+      "generation_time": "2026-03-01T06:37:05.871551"
+    },
+    {
+      "id": "PRODUCT_070",
+      "name": "Alexandria Startup Suite v70",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization",
+        "Performance analytics"
+      ],
+      "price_usd": 1400,
+      "energy_integration": "Tracks 0.9 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 5,
+      "generation_time": "2026-03-01T06:37:05.871562"
+    },
+    {
+      "id": "PRODUCT_071",
+      "name": "Alexandria Startup Suite v71",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization",
+        "Performance analytics",
+        "Growth tracking"
+      ],
+      "price_usd": 1450,
+      "energy_integration": "Tracks 1.0 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 6,
+      "generation_time": "2026-03-01T06:37:05.871573"
+    },
+    {
+      "id": "PRODUCT_072",
+      "name": "Alexandria Startup Suite v72",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization"
+      ],
+      "price_usd": 1500,
+      "energy_integration": "Tracks 1.1 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 7,
+      "generation_time": "2026-03-01T06:37:05.871585"
+    },
+    {
+      "id": "PRODUCT_073",
+      "name": "Alexandria Startup Suite v73",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization",
+        "Performance analytics"
+      ],
+      "price_usd": 1550,
+      "energy_integration": "Tracks 1.2 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 8,
+      "generation_time": "2026-03-01T06:37:05.871600"
+    },
+    {
+      "id": "PRODUCT_074",
+      "name": "Alexandria Startup Suite v74",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization",
+        "Performance analytics",
+        "Growth tracking"
+      ],
+      "price_usd": 1600,
+      "energy_integration": "Tracks 1.3 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 9,
+      "generation_time": "2026-03-01T06:37:05.871612"
+    },
+    {
+      "id": "PRODUCT_075",
+      "name": "Alexandria Startup Suite v75",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization"
+      ],
+      "price_usd": 1650,
+      "energy_integration": "Tracks 1.4 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 10,
+      "generation_time": "2026-03-01T06:37:05.871623"
+    },
+    {
+      "id": "PRODUCT_076",
+      "name": "Alexandria Startup Suite v76",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization",
+        "Performance analytics"
+      ],
+      "price_usd": 1700,
+      "energy_integration": "Tracks 1.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 11,
+      "generation_time": "2026-03-01T06:37:05.871635"
+    },
+    {
+      "id": "PRODUCT_077",
+      "name": "Alexandria Startup Suite v77",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization",
+        "Performance analytics",
+        "Growth tracking"
+      ],
+      "price_usd": 1750,
+      "energy_integration": "Tracks 1.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 12,
+      "generation_time": "2026-03-01T06:37:05.871650"
+    },
+    {
+      "id": "PRODUCT_078",
+      "name": "Alexandria Startup Suite v78",
+      "market": "startup",
+      "description": "Energy tracking and computational work quantification for startup sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Scalable infrastructure",
+        "Cost optimization"
+      ],
+      "price_usd": 1800,
+      "energy_integration": "Tracks 1.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for startup organizations",
+      "market_segment": "startup",
+      "variant_number": 13,
+      "generation_time": "2026-03-01T06:37:05.871662"
+    },
+    {
+      "id": "PRODUCT_079",
+      "name": "Alexandria Government Suite v79",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails"
+      ],
+      "price_usd": 4000,
+      "energy_integration": "Tracks 0.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 1,
+      "generation_time": "2026-03-01T06:37:05.871675"
+    },
+    {
+      "id": "PRODUCT_080",
+      "name": "Alexandria Government Suite v80",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails",
+        "Security hardened"
+      ],
+      "price_usd": 4050,
+      "energy_integration": "Tracks 0.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 2,
+      "generation_time": "2026-03-01T06:37:05.871690"
+    },
+    {
+      "id": "PRODUCT_081",
+      "name": "Alexandria Government Suite v81",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails",
+        "Security hardened",
+        "Data sovereignty"
+      ],
+      "price_usd": 4100,
+      "energy_integration": "Tracks 0.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 3,
+      "generation_time": "2026-03-01T06:37:05.871704"
+    },
+    {
+      "id": "PRODUCT_082",
+      "name": "Alexandria Government Suite v82",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails"
+      ],
+      "price_usd": 4150,
+      "energy_integration": "Tracks 0.8 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 4,
+      "generation_time": "2026-03-01T06:37:05.871715"
+    },
+    {
+      "id": "PRODUCT_083",
+      "name": "Alexandria Government Suite v83",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails",
+        "Security hardened"
+      ],
+      "price_usd": 4200,
+      "energy_integration": "Tracks 0.9 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 5,
+      "generation_time": "2026-03-01T06:37:05.871727"
+    },
+    {
+      "id": "PRODUCT_084",
+      "name": "Alexandria Government Suite v84",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails",
+        "Security hardened",
+        "Data sovereignty"
+      ],
+      "price_usd": 4250,
+      "energy_integration": "Tracks 1.0 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 6,
+      "generation_time": "2026-03-01T06:37:05.871738"
+    },
+    {
+      "id": "PRODUCT_085",
+      "name": "Alexandria Government Suite v85",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails"
+      ],
+      "price_usd": 4300,
+      "energy_integration": "Tracks 1.1 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 7,
+      "generation_time": "2026-03-01T06:37:05.871753"
+    },
+    {
+      "id": "PRODUCT_086",
+      "name": "Alexandria Government Suite v86",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails",
+        "Security hardened"
+      ],
+      "price_usd": 4350,
+      "energy_integration": "Tracks 1.2 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 8,
+      "generation_time": "2026-03-01T06:37:05.871773"
+    },
+    {
+      "id": "PRODUCT_087",
+      "name": "Alexandria Government Suite v87",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails",
+        "Security hardened",
+        "Data sovereignty"
+      ],
+      "price_usd": 4400,
+      "energy_integration": "Tracks 1.3 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 9,
+      "generation_time": "2026-03-01T06:37:05.871791"
+    },
+    {
+      "id": "PRODUCT_088",
+      "name": "Alexandria Government Suite v88",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails"
+      ],
+      "price_usd": 4450,
+      "energy_integration": "Tracks 1.4 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 10,
+      "generation_time": "2026-03-01T06:37:05.871803"
+    },
+    {
+      "id": "PRODUCT_089",
+      "name": "Alexandria Government Suite v89",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails",
+        "Security hardened"
+      ],
+      "price_usd": 4500,
+      "energy_integration": "Tracks 1.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 11,
+      "generation_time": "2026-03-01T06:37:05.871814"
+    },
+    {
+      "id": "PRODUCT_090",
+      "name": "Alexandria Government Suite v90",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails",
+        "Security hardened",
+        "Data sovereignty"
+      ],
+      "price_usd": 4550,
+      "energy_integration": "Tracks 1.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 12,
+      "generation_time": "2026-03-01T06:37:05.871826"
+    },
+    {
+      "id": "PRODUCT_091",
+      "name": "Alexandria Government Suite v91",
+      "market": "government",
+      "description": "Energy tracking and computational work quantification for government sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Compliance reporting",
+        "Audit trails"
+      ],
+      "price_usd": 4600,
+      "energy_integration": "Tracks 1.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for government organizations",
+      "market_segment": "government",
+      "variant_number": 13,
+      "generation_time": "2026-03-01T06:37:05.871837"
+    },
+    {
+      "id": "PRODUCT_092",
+      "name": "Alexandria Nonprofit Suite v92",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics"
+      ],
+      "price_usd": 800,
+      "energy_integration": "Tracks 0.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 1,
+      "generation_time": "2026-03-01T06:37:05.871849"
+    },
+    {
+      "id": "PRODUCT_093",
+      "name": "Alexandria Nonprofit Suite v93",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics",
+        "Donor dashboards"
+      ],
+      "price_usd": 850,
+      "energy_integration": "Tracks 0.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 2,
+      "generation_time": "2026-03-01T06:37:05.871866"
+    },
+    {
+      "id": "PRODUCT_094",
+      "name": "Alexandria Nonprofit Suite v94",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics",
+        "Donor dashboards",
+        "Transparency reporting"
+      ],
+      "price_usd": 900,
+      "energy_integration": "Tracks 0.7 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 3,
+      "generation_time": "2026-03-01T06:37:05.871879"
+    },
+    {
+      "id": "PRODUCT_095",
+      "name": "Alexandria Nonprofit Suite v95",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics"
+      ],
+      "price_usd": 950,
+      "energy_integration": "Tracks 0.8 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 4,
+      "generation_time": "2026-03-01T06:37:05.871890"
+    },
+    {
+      "id": "PRODUCT_096",
+      "name": "Alexandria Nonprofit Suite v96",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics",
+        "Donor dashboards"
+      ],
+      "price_usd": 1000,
+      "energy_integration": "Tracks 0.9 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 5,
+      "generation_time": "2026-03-01T06:37:05.871902"
+    },
+    {
+      "id": "PRODUCT_097",
+      "name": "Alexandria Nonprofit Suite v97",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics",
+        "Donor dashboards",
+        "Transparency reporting"
+      ],
+      "price_usd": 1050,
+      "energy_integration": "Tracks 1.0 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 6,
+      "generation_time": "2026-03-01T06:37:05.871916"
+    },
+    {
+      "id": "PRODUCT_098",
+      "name": "Alexandria Nonprofit Suite v98",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics"
+      ],
+      "price_usd": 1100,
+      "energy_integration": "Tracks 1.1 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 7,
+      "generation_time": "2026-03-01T06:37:05.871932"
+    },
+    {
+      "id": "PRODUCT_099",
+      "name": "Alexandria Nonprofit Suite v99",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics",
+        "Donor dashboards"
+      ],
+      "price_usd": 1150,
+      "energy_integration": "Tracks 1.2 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 8,
+      "generation_time": "2026-03-01T06:37:05.871943"
+    },
+    {
+      "id": "PRODUCT_100",
+      "name": "Alexandria Nonprofit Suite v100",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics",
+        "Donor dashboards",
+        "Transparency reporting"
+      ],
+      "price_usd": 1200,
+      "energy_integration": "Tracks 1.3 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 9,
+      "generation_time": "2026-03-01T06:37:05.871955"
+    },
+    {
+      "id": "PRODUCT_101",
+      "name": "Alexandria Nonprofit Suite v101",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics"
+      ],
+      "price_usd": 1250,
+      "energy_integration": "Tracks 1.4 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 10,
+      "generation_time": "2026-03-01T06:37:05.871972"
+    },
+    {
+      "id": "PRODUCT_102",
+      "name": "Alexandria Nonprofit Suite v102",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics",
+        "Donor dashboards"
+      ],
+      "price_usd": 1300,
+      "energy_integration": "Tracks 1.5 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 11,
+      "generation_time": "2026-03-01T06:37:05.871984"
+    },
+    {
+      "id": "PRODUCT_103",
+      "name": "Alexandria Nonprofit Suite v103",
+      "market": "nonprofit",
+      "description": "Energy tracking and computational work quantification for nonprofit sector",
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration"
+      ],
+      "market_specific_features": [
+        "Grant tracking",
+        "Impact metrics",
+        "Donor dashboards",
+        "Transparency reporting"
+      ],
+      "price_usd": 1350,
+      "energy_integration": "Tracks 1.6 kWh per unit",
+      "value_proposition": "Purpose-built energy solution for nonprofit organizations",
+      "market_segment": "nonprofit",
+      "variant_number": 12,
+      "generation_time": "2026-03-01T06:37:05.871995"
+    }
+  ],
   "integration_config": {
     "filmmaker_enabled": true,
     "json_mcp_blower_enabled": true,

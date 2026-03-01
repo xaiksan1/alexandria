@@ -11,11 +11,11 @@
     "initial_generation": 3,
     "max_iterations": 10,
     "generation_strategy": "exponential",
-    "description": "3 initial → 3,072 agents over 10 generations"
+    "description": "3 initial \u2192 3,072 agents over 10 generations"
   },
   "mcp_registry": {
     "version": "1.0.0",
-    "total_agents": 0,
+    "total_agents": 93,
     "roles": {
       "architect": {
         "count": 26,
@@ -69,7 +69,11 @@
       "name": "Energon Sealer",
       "role": "architect",
       "purpose": "Seal computational energy into ledger batches",
-      "tools": ["energon_ledger", "batch_validator", "crypto_signer"],
+      "tools": [
+        "energon_ledger",
+        "batch_validator",
+        "crypto_signer"
+      ],
       "energy_cost_kwh": 0.5
     },
     {
@@ -77,7 +81,11 @@
       "name": "Mining Orchestrator",
       "role": "developer",
       "purpose": "Manage XMRig mining pools and optimization",
-      "tools": ["xmrig_control", "pool_monitor", "hash_tracking"],
+      "tools": [
+        "xmrig_control",
+        "pool_monitor",
+        "hash_tracking"
+      ],
       "energy_cost_kwh": 0.3
     },
     {
@@ -85,7 +93,11 @@
       "name": "Product Variant Generator",
       "role": "developer",
       "purpose": "Generate market-targeted product variants",
-      "tools": ["claude_api", "market_analyzer", "pricing_engine"],
+      "tools": [
+        "claude_api",
+        "market_analyzer",
+        "pricing_engine"
+      ],
       "energy_cost_kwh": 0.7
     },
     {
@@ -93,7 +105,11 @@
       "name": "Performance Analyst",
       "role": "analyst",
       "purpose": "Analyze system performance and optimize",
-      "tools": ["metrics_collector", "trend_analyzer", "optimization_engine"],
+      "tools": [
+        "metrics_collector",
+        "trend_analyzer",
+        "optimization_engine"
+      ],
       "energy_cost_kwh": 0.4
     },
     {
@@ -101,7 +117,11 @@
       "name": "Validator Guardian",
       "role": "architect",
       "purpose": "Manage consensus validators (aker, kheper, etc.)",
-      "tools": ["validator_registry", "trust_scorer", "incident_responder"],
+      "tools": [
+        "validator_registry",
+        "trust_scorer",
+        "incident_responder"
+      ],
       "energy_cost_kwh": 0.6
     }
   ],
@@ -131,9 +151,9 @@
     }
   },
   "generation_status": {
-    "current_generation": 0,
-    "agents_generated": 0,
-    "total_energy_cost_kwh": 0,
+    "current_generation": 4,
+    "agents_generated": 93,
+    "total_energy_cost_kwh": 46.2,
     "estimated_completion": "2026-03-01T00:00:00Z",
     "last_sync": "2026-02-28T17:40:00Z"
   }

@@ -1,0 +1,227 @@
+{
+  "metadata": {
+    "created": "2026-03-01T06:33:06.572003",
+    "version": "1.0.0",
+    "name": "Product-Spawner \u2192 MCP Integration",
+    "status": "ACTIVE"
+  },
+  "product_spawner": {
+    "location": "/home/ichigo/alexandria/product-spawner",
+    "seed_product": {
+      "name": "Alexandria Energy Node",
+      "description": "Computational work quantification and energy sealing system",
+      "base_price": 1000,
+      "base_features": [
+        "Energy tracking",
+        "Energon ledger management",
+        "Mining integration",
+        "Validator support",
+        "Real-time monitoring"
+      ],
+      "market_segments": [
+        "enterprise",
+        "research",
+        "mining",
+        "energy-tech",
+        "crypto",
+        "renewable"
+      ]
+    },
+    "variant_templates": [
+      {
+        "segment": "enterprise",
+        "description": "High-capacity enterprise energy management",
+        "features_added": [
+          "Multi-cluster support",
+          "Enterprise SLA",
+          "24/7 monitoring",
+          "API integration"
+        ],
+        "price_multiplier": 3.5
+      },
+      {
+        "segment": "mining",
+        "description": "Monero mining optimization and tracking",
+        "features_added": [
+          "XMRig integration",
+          "Pool management",
+          "Rig monitoring",
+          "Revenue tracking"
+        ],
+        "price_multiplier": 2.0
+      },
+      {
+        "segment": "research",
+        "description": "Academic and research energy measurement",
+        "features_added": [
+          "Data export formats",
+          "Peer review ready",
+          "Citation support",
+          "Open data API"
+        ],
+        "price_multiplier": 1.5
+      },
+      {
+        "segment": "renewable",
+        "description": "Renewable energy grid integration",
+        "features_added": [
+          "Solar/wind integration",
+          "Grid balancing",
+          "Carbon tracking",
+          "Sustainability reports"
+        ],
+        "price_multiplier": 2.5
+      }
+    ],
+    "integration_enabled": true
+  },
+  "mcp_network": {
+    "total_agents": 3069,
+    "generation_count": 10,
+    "port_range_start": 50000,
+    "port_range_end": 55535,
+    "service_discovery": "enabled",
+    "load_balancing": "round_robin"
+  },
+  "product_distribution_strategy": {
+    "strategy": "EXPONENTIAL_SCALING",
+    "description": "Distribute variants across generations proportional to agent count",
+    "allocation_model": "tier_based"
+  },
+  "distribution_plan": {
+    "gen_0": {
+      "agents": 3,
+      "product_variants_assigned": 1,
+      "port_start": 50000,
+      "production_nodes": 3,
+      "status": "READY"
+    },
+    "gen_1": {
+      "agents": 6,
+      "product_variants_assigned": 1,
+      "port_start": 51000,
+      "production_nodes": 6,
+      "status": "READY"
+    },
+    "gen_2": {
+      "agents": 12,
+      "product_variants_assigned": 1,
+      "port_start": 52000,
+      "production_nodes": 10,
+      "status": "READY"
+    },
+    "gen_3": {
+      "agents": 24,
+      "product_variants_assigned": 1,
+      "port_start": 53000,
+      "production_nodes": 10,
+      "status": "READY"
+    },
+    "gen_4": {
+      "agents": 48,
+      "product_variants_assigned": 1,
+      "port_start": 54000,
+      "production_nodes": 10,
+      "status": "READY"
+    },
+    "gen_5": {
+      "agents": 96,
+      "product_variants_assigned": 3,
+      "port_start": 55000,
+      "production_nodes": 10,
+      "status": "READY"
+    },
+    "gen_6": {
+      "agents": 192,
+      "product_variants_assigned": 6,
+      "port_start": 51000,
+      "production_nodes": 10,
+      "status": "READY"
+    },
+    "gen_7": {
+      "agents": 384,
+      "product_variants_assigned": 12,
+      "port_start": 52000,
+      "production_nodes": 10,
+      "status": "READY"
+    },
+    "gen_8": {
+      "agents": 768,
+      "product_variants_assigned": 25,
+      "port_start": 53000,
+      "production_nodes": 10,
+      "status": "READY"
+    },
+    "gen_9": {
+      "agents": 1536,
+      "product_variants_assigned": 50,
+      "port_start": 54000,
+      "production_nodes": 10,
+      "status": "READY"
+    }
+  },
+  "workflow": {
+    "step_1": "Generate 100+ product variants (Claude API)",
+    "step_2": "Distribute variants to agent clusters by generation",
+    "step_3": "Assign production pipelines (Filmmaker for rendering)",
+    "step_4": "Track energy usage (energon ledger)",
+    "step_5": "Monitor sales/adoption (DR.D acquisition)",
+    "step_6": "Feedback loop to Product-Spawner for iteration"
+  },
+  "workflow_steps": [
+    {
+      "step": 1,
+      "name": "Generate Product Variants",
+      "component": "Product-Spawner (Claude API)",
+      "input": "Seed product + variant templates",
+      "output": "100+ distinct product variants",
+      "duration_est": "5-10 minutes",
+      "status": "READY"
+    },
+    {
+      "step": 2,
+      "name": "Distribute to Agent Network",
+      "component": "MCP Agent Clusters",
+      "input": "Generated product variants",
+      "output": "Variants distributed to Gen 0-9",
+      "duration_est": "Immediate",
+      "status": "READY"
+    },
+    {
+      "step": 3,
+      "name": "Render Assets (3D, images)",
+      "component": "Filmmaker + MCP Agents",
+      "input": "Product specifications",
+      "output": "3D renders, marketing assets",
+      "duration_est": "15-60 minutes (parallel)",
+      "status": "READY"
+    },
+    {
+      "step": 4,
+      "name": "Track Energy Usage",
+      "component": "Energon Ledger + Energy Tracking",
+      "input": "Agent compute time",
+      "output": "kWh cost per variant",
+      "duration_est": "Real-time",
+      "status": "READY"
+    },
+    {
+      "step": 5,
+      "name": "Market & Acquisition",
+      "component": "DR.D Acquisition Engine",
+      "input": "Product variants",
+      "output": "Leads, pitches, deals",
+      "duration_est": "Continuous",
+      "status": "READY"
+    },
+    {
+      "step": 6,
+      "name": "Feedback & Optimization",
+      "component": "Analytics + Second-Me",
+      "input": "Performance metrics",
+      "output": "Optimized variant specs",
+      "duration_est": "Daily",
+      "status": "READY"
+    }
+  ]
+}

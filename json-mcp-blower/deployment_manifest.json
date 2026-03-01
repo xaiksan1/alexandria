@@ -1,0 +1,22 @@
+{
+  "deployment_id": "alexandria_gen0_5",
+  "timestamp": "2026-02-28T17:50:00Z",
+  "deployment_type": "exponential_swarm",
+  "total_agents": 114,
+  "generations": 5,
+  "agents_by_role": {
+    "developer": 48,
+    "architect": 46,
+    "analyst": 20
+  },
+  "agents_by_generation": {
+    "4": 48,
+    "3": 24,
+    "2": 24,
+    "1": 12,
+    "0": 6
+  },
+  "total_energy_cost_kwh": 46.2,
+  "deployment_target": "ADAM",
+  "status": "ready_for_deployment"
+}
