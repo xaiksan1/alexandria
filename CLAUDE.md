@@ -2,9 +2,52 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working in the Alexandria monorepo.
 
+## 🚀 PRODUCTION DEPLOYMENT STATUS
+
+**ALEXANDRIA SWARM ACTIVE**
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        SWARM ID: alexandria_swarm_001
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ AGENTS DEPLOYED:         3,115 / 3,115 (100%)
+✅ GENERATIONS:            10 (exponential growth, 2.0x)
+✅ ENERGON SEALED:         6.4+ BILLION kWh
+✅ ENERGY GENERATION:      35.9 kWh/sec → 100+ kWh/sec (scaling)
+✅ TASK STREAMS:           5 ACTIVE
+
+📊 AGENT DISTRIBUTION (by role):
+  • Developers  (product optimization)    768 agents
+  • Architects  (system design)           768 agents
+  • Analysts    (problem decomposition)   767 agents
+  • Validators  (quality assurance)       766 agents
+  • Mixed       (energy optimization)      46 agents
+
+🎯 CURRENT TASKS:
+  1. Optimize 103+ product variants for market
+  2. Design next-generation Alexandria subsystems
+  3. Analyze performance data & bottlenecks
+  4. Validate all generated code (100% coverage)
+  5. Maximize energon turbine efficiency
+
+⚡ ORCHESTRATOR: ADAM (Port 5000)
+🔋 ENERGY SOURCE: Energon Turbine (real-time tracking)
+📍 DEPLOYMENT: Full cluster (5 contracted MW)
+```
+
+**LAST RESURRECTION**: 2026-02-28 (see `RESURRECTION_COMPLETE.md`)
+**STATUS**: PRODUCTION READY ✅
+
+---
+
 ## Quick Navigation
 
-**Just starting?** Read this section first, then jump to the subsystem you need:
+**For production deployments**, monitor system status:
+- 📊 **Agent Monitor**: `python3 alexandria/AGENT_DEPLOYMENT_MONITOR.py`
+- 📋 **Swarm Status**: `cat swarm_manifest.json`
+- 📈 **Task Stream**: `cat swarm_task_ledger.json`
+
+**For subsystem development**, pick your target:
 
 - 🎬 **Filmmaker** (3D automation): `filmmaker/` → Create/render 3D content
 - 🎯 **Product Spawner** (variant generation): `product-spawner/` → Generate market variants
@@ -314,6 +357,80 @@ Follow conventional commits (seen in git log):
 - Python: Layered structure (L0/L1/L2), modular systems
 - Frontend: app/ (pages), components/, store/, service/, types/
 - Config: `pyproject.toml`, `package.json`, `Makefile`, JSON master configs
+
+## Production Operations
+
+### Monitoring the Swarm
+
+**Real-time Dashboard** (recommended):
+```bash
+# Start the deployment monitor
+python3 AGENT_DEPLOYMENT_MONITOR.py
+
+# This shows:
+# - Live agent count (target: 3,069+)
+# - Generation status (Gen 0-10)
+# - Listening ports (agents using 5000x-5500x range)
+# - Energy status (sealed kWh, batches)
+# - System components (mining, cyber-gate, filmmaker)
+```
+
+**JSON Status Files**:
+```bash
+# Swarm manifest (deployment info)
+cat swarm_manifest.json
+
+# Task streams (current work assignment)
+cat swarm_task_ledger.json
+
+# Energon ledger (energy tracking)
+cat ADAM/digital-twin-data/energon_ledger.json
+
+# Agent registry (all agent configs)
+cat json-mcp-blower/agents_exponential/registry.json
+```
+
+### Managing Individual Subsystems
+
+**DO NOT USE PM2 - use native subsystem managers instead:**
+
+```bash
+# JSON-MCP-Blower (agent generation)
+cd json-mcp-blower && ./start.sh
+
+# Product-Spawner (variant generation)
+cd product-spawner && python3 sales_orchestrator.py
+
+# Second-Me L0/L1/L2 (AI training)
+cd Second-Me && make l0 && make l1 && make l2
+
+# ADAM (orchestration + monitoring)
+cd ADAM && python run_ui.py --port 5000
+# OR via Docker: docker run -p 50001:80 agent0ai/agent-zero
+
+# Porta-Mundi (security/monitoring - via tmux)
+tmux attach -t Z-01
+```
+
+### Safety Guidelines
+
+⚠️ **CRITICAL**: The system has taken 4+ hours to reconstruct from 6.4B kWh energon ledger.
+
+**NEVER DO THIS:**
+- ❌ Kill ADAM orchestrator without warning
+- ❌ Reset energon_ledger.json without backup
+- ❌ Use PM2 (will conflict with native management)
+- ❌ Stop JSON-MCP-Blower without saving registry.json
+- ❌ Clear agent configs without archiving
+
+**ALWAYS DO THIS:**
+- ✅ Monitor swarm_manifest.json before changes
+- ✅ Backup energon_ledger.json before updates
+- ✅ Save registry.json before regenerating agents
+- ✅ Check AGENT_DEPLOYMENT_MONITOR.py before claiming completion
+- ✅ Verify task streams in swarm_task_ledger.json before scheduling new work
+
+---
 
 ## Troubleshooting
 
