@@ -68,9 +68,11 @@ Products missing the `active` key are treated as inactive (skipped, no warning n
 - Returns parsed JSON response dict on 200
 - On non-200 or `httpx.RequestError`: logs error, returns `{"error": "<detail>"}`
 
-**`run(registry_path: str, bid_url: str) -> None`**
+**`run(registry_path: str, bid_url: str, summary_path: str) -> None`**
 - Main entry point (called by souffle via `python3 scripts/run_campaign.py`)
+- All three params default to module-level constants (`REGISTRY_PATH`, `BID_URL`, `SUMMARY_PATH`)
 - `bid_url` defaults to `os.environ.get("BID_ENGINE_URL", "http://localhost:3045")`
+- `summary_path` defaults to `campaign_run_summary.json` at project root; overridable in tests via `tmp_path`
 - Opens one `httpx.Client` session for all calls
 - Calls `load_registry(registry_path)`
 - Extracts unique verticals from active products
