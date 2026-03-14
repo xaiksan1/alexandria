@@ -22,6 +22,12 @@ REGISTRY_PATH = os.path.join(_ROOT, "product_registry.json")
 SUMMARY_PATH  = os.path.join(_ROOT, "campaign_run_summary.json")
 BID_URL       = os.environ.get("BID_ENGINE_URL", "http://localhost:3045")
 
+# Bid payload constants — sentinel values for campaign-runner identity
+COHORTE_ID   = "campaign-runner"
+GEO_REGION   = "QC-CA"
+DEVICE_CLASS = "desktop"
+BID_V        = 1.0          # minimum valid value per Field(gt=0.0)
+
 
 @dataclass
 class RunSummary:
@@ -61,10 +67,10 @@ def bid_for(session: httpx.Client, vertical: str, name: str, bid_url: str) -> di
     """
     payload = {
         "vertical": vertical,
-        "cohorte_id": "campaign-runner",
-        "geo_region": "QC-CA",
-        "device_class": "desktop",
-        "V": 1.0,
+        "cohorte_id": COHORTE_ID,
+        "geo_region": GEO_REGION,
+        "device_class": DEVICE_CLASS,
+        "V": BID_V,
     }
     try:
         resp = session.post(f"{bid_url}/bid", json=payload)
@@ -96,7 +102,7 @@ def run(
     verticals_called = 0
     products_called = 0
 
-    with httpx.Client() as session:
+    with httpx.Client(timeout=10.0) as session:
         # Pass 1: one bid per unique vertical
         for vertical in verticals:
             result = bid_for(session, vertical, vertical, bid_url)
@@ -105,6 +111,8 @@ def run(
                 errors.append(result["error"])
             elif result.get("sponsor") is not None:
                 bids_won += 1
+                # prospective only — confirmed revenue handled by flush_revenue.py
+                # via cortex-v3 after payment_confirmed=TRUE in bid_history (CLAUDE.md rule 5)
                 prospective_revenue_usd += result.get("bid_amount", 0.0)
 
         # Pass 2: one bid per active product
