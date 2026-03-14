@@ -5,3 +5,4 @@ pending_revenue.json.tmp
 __pycache__/
 *.pyc
 .pytest_cache/
+wormhole_endpoints.json
