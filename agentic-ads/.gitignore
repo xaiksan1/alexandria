@@ -1,0 +1,7 @@
+# Runtime outputs
+campaign_run_summary.json
+campaign_run_summary.json.tmp
+pending_revenue.json.tmp
+__pycache__/
+*.pyc
+.pytest_cache/

@@ -1,0 +1,9 @@
+{
+  "products": [
+    {
+      "name": "bitcoin-tracker-pro",
+      "vertical": "crypto",
+      "active": true
+    }
+  ]
+}
