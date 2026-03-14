@@ -1,0 +1,9 @@
+{
+  "name": "agentic_ads_campaign",
+  "description": "Trigger autonomous ad campaigns for Alexandria products every hour",
+  "trigger": "timer:3600s",
+  "interval_s": 3600,
+  "action": "python3 /home/ichigo/alexandria/agentic-ads/scripts/run_campaign.py",
+  "relay_to": ["revenue_sync"],
+  "_note": "NO file_trigger — avoids flood when Product-Spawner generates 100+ variants"
+}
