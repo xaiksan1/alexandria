@@ -4,7 +4,6 @@ import os
 import pytest
 from unittest.mock import MagicMock, patch, call
 
-# run_campaign doesn't exist yet — these imports will fail (that's the point)
 from run_campaign import load_registry, bid_for, run, RunSummary
 
 
@@ -170,3 +169,77 @@ def test_run_skips_product_missing_vertical(tmp_path):
     assert data["products_called"] == 0
     assert len(data["errors"]) == 1
     assert "missing vertical" in data["errors"][0]
+
+
+# ── Test 9: run calls GWS announce_campaign + log_deal_update on win ──────────
+
+def test_run_calls_gws_on_won_bid(tmp_path):
+    registry = tmp_path / "product_registry.json"
+    registry.write_text(json.dumps({
+        "products": [{"name": "btc-tracker", "vertical": "crypto", "active": True}]
+    }))
+    summary_path = str(tmp_path / "campaign_run_summary.json")
+
+    won_resp = _make_resp(200, {
+        "bid_id": "bid-42", "vertical": "crypto",
+        "bid_amount": 0.10, "sponsor": {"name": "CoinEx"},
+        "w1": 1.0, "w2": 1.0,
+    })
+    mock_session = MagicMock()
+    mock_session.post.side_effect = [won_resp, won_resp]
+    mock_session.__enter__ = MagicMock(return_value=mock_session)
+    mock_session.__exit__ = MagicMock(return_value=False)
+
+    mock_gws = MagicMock()
+
+    with (
+        patch("run_campaign.httpx.Client", return_value=mock_session),
+        patch("run_campaign.GWSExecutor", return_value=mock_gws),
+    ):
+        run(registry_path=str(registry),
+            bid_url="http://localhost:3045",
+            summary_path=summary_path)
+
+    # announce_campaign called once per unique vertical
+    announce_calls = [
+        c for c in mock_gws.execute.call_args_list
+        if c.args[0] == "announce_campaign"
+    ]
+    assert len(announce_calls) == 1
+    assert announce_calls[0].args[1]["vertical"] == "crypto"
+
+    # log_deal_update called once per won bid (2 wins: 1 vertical + 1 product)
+    log_calls = [
+        c for c in mock_gws.execute.call_args_list
+        if c.args[0] == "log_deal_update"
+    ]
+    assert len(log_calls) == 2
+    for lc in log_calls:
+        ctx = lc.args[1]
+        assert ctx["vertical"] == "crypto"
+        assert ctx["status"] == "won"
+
+
+# ── Test 10: run continues when GWSConfigError raised (non-blocking) ──────────
+
+def test_run_continues_on_gws_config_error(tmp_path):
+    from run_campaign import GWSConfigError
+    registry = tmp_path / "product_registry.json"
+    registry.write_text(json.dumps({"products": []}))
+    summary_path = str(tmp_path / "campaign_run_summary.json")
+
+    mock_session = MagicMock()
+    mock_session.__enter__ = MagicMock(return_value=mock_session)
+    mock_session.__exit__ = MagicMock(return_value=False)
+
+    with (
+        patch("run_campaign.httpx.Client", return_value=mock_session),
+        patch("run_campaign.GWSExecutor", side_effect=GWSConfigError("no creds")),
+    ):
+        # Must not raise
+        run(registry_path=str(registry),
+            bid_url="http://localhost:3045",
+            summary_path=summary_path)
+
+    # Summary still written despite GWS failure
+    assert os.path.exists(summary_path)
