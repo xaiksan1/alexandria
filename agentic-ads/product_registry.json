@@ -4,6 +4,21 @@
       "name": "bitcoin-tracker-pro",
       "vertical": "crypto",
       "active": true
+    },
+    {
+      "name": "aws-optimizer",
+      "vertical": "cloud",
+      "active": true
+    },
+    {
+      "name": "montreal-condo-finder",
+      "vertical": "immo",
+      "active": true
+    },
+    {
+      "name": "ai-stack-advisor",
+      "vertical": "ia-tools",
+      "active": true
     }
   ]
 }
