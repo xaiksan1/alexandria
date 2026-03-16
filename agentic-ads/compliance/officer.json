@@ -1,0 +1,10 @@
+{
+  "role": "Privacy Officer",
+  "organization": "Alexandria / Agentic-Ads",
+  "jurisdiction": "Québec, Canada",
+  "law": "Loi 25 (Act respecting the protection of personal information in the private sector)",
+  "contact_method": "Internal — see ADAM/SELF/identity.json for operator contact",
+  "data_processing_register": "compliance/privacy.md",
+  "last_updated": "2026-03-12",
+  "review_cycle_days": 365
+}

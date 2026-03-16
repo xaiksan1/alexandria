@@ -1,0 +1,14 @@
+{
+  "recipe": "log_deal_update",
+  "description": "Log a confirmed deal to Google Sheets revenue tracker",
+  "steps": [
+    {
+      "tool": "gws-sheets-append",
+      "params": {
+        "spreadsheet_id": "{REVENUE_SHEET_ID}",
+        "range": "Sheet1!A:F",
+        "values": ["{date}", "{vertical}", "{bid_id}", "{kwh_earned}", "{sponsor}", "{status}"]
+      }
+    }
+  ]
+}

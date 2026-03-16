@@ -1,0 +1,13 @@
+{
+  "recipe": "announce_campaign",
+  "description": "Announce a new Agentic-Ads campaign via Google Chat",
+  "steps": [
+    {
+      "tool": "gws-chat-send",
+      "params": {
+        "space": "agentic-ads-ops",
+        "message": "New campaign started: {campaign_name} | vertical={vertical} | budget={budget_kwh} EGN"
+      }
+    }
+  ]
+}
