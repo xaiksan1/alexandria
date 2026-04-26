@@ -37,7 +37,7 @@
       "url": "https://www.ledger.com",
       "affiliate_url": "https://shop.ledger.com/?r=agentic",
       "bid_floor_usd": 2.5,
-      "wallet": "0xc46b7f43099fe6028dba118d589e0281886429d7",
+      "wallet": "0xfad4b71b9d92cb0e9c7a586c01af10bddfb699e2",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -59,7 +59,7 @@
       "url": "https://www.kraken.com",
       "affiliate_url": "https://www.kraken.com/redirect?url=pro&ref=agentic",
       "bid_floor_usd": 5.0,
-      "wallet": "0x212f86c586bcc3ec8c803956421ac1fb5a2391b4",
+      "wallet": "0x53e8ebbfc459fa22d7b42110ed7ca811649c7199",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -79,7 +79,7 @@
       "url": "https://www.coingecko.com/en/api",
       "affiliate_url": "https://www.coingecko.com/en/api/pricing?ref=agentic",
       "bid_floor_usd": 1.0,
-      "wallet": "0x78c3f04bd571c5080e218bcfa7efdc06e23f7c53",
+      "wallet": "0x59dac225913b1b47c728f0e280f13c5099de5937",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -119,7 +119,7 @@
       "url": "https://fly.io",
       "affiliate_url": "https://fly.io/?ref=agentic",
       "bid_floor_usd": 3.0,
-      "wallet": "0x8cfc76225d113fb778ef139ee7034a45b5702d43",
+      "wallet": "0x08ff740dd609d452bd466d4d65d1a91fa3b0f140",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -140,7 +140,7 @@
       "url": "https://vercel.com",
       "affiliate_url": "https://vercel.com/signup?ref=agentic",
       "bid_floor_usd": 4.0,
-      "wallet": "0x27373706773972473ab6c9ac562dfa8c13ea81dd",
+      "wallet": "0x91b4db3406f4f01427d833902daea35d3f7f13dd",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -161,7 +161,7 @@
       "url": "https://www.digitalocean.com",
       "affiliate_url": "https://www.digitalocean.com/?refcode=agentic",
       "bid_floor_usd": 2.0,
-      "wallet": "0x837d487c351fc38aee93f5936c81e743723e5cc5",
+      "wallet": "0xc95a178ad4f48780d939310d1f4d58ac9a3b0b7c",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -200,7 +200,7 @@
       "url": "https://duproprio.com",
       "affiliate_url": "https://duproprio.com?ref=agentic",
       "bid_floor_usd": 8.0,
-      "wallet": "0x543de40525205eb26b328a0c26346fd8c3801f47",
+      "wallet": "0x1cc58b60e3b982b0ed6a504f19bd658fad8490d4",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -219,7 +219,7 @@
       "url": "https://royallepage.ca",
       "affiliate_url": "https://royallepage.ca?ref=agentic",
       "bid_floor_usd": 15.0,
-      "wallet": "0x03d417c23c0e04b3a0c8baa67c6c6b7c1f15e309",
+      "wallet": "0x2b811e6a0d16040e8032d72fa8ce1c6ca66f2e87",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -238,7 +238,7 @@
       "url": "https://www.multi-prets.com",
       "affiliate_url": "https://www.multi-prets.com?ref=agentic",
       "bid_floor_usd": 20.0,
-      "wallet": "0x43b9ad922e88414f89c1f821dbd96c99cb7a207d",
+      "wallet": "0xb3ca77b08462444cfb65cf1adf5efd0e1adb50fb",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -277,7 +277,7 @@
       "url": "https://huggingface.co",
       "affiliate_url": "https://huggingface.co/pricing?ref=agentic",
       "bid_floor_usd": 3.0,
-      "wallet": "0xe16bf9ae995827549080cba09c6592ca23ca58c8",
+      "wallet": "0x739f67ce582b49505ace4152774427391776ca63",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -298,7 +298,7 @@
       "url": "https://www.together.ai",
       "affiliate_url": "https://api.together.xyz?ref=agentic",
       "bid_floor_usd": 2.0,
-      "wallet": "0x12fda2973bc3d974a1abc87a4e8da0ec08499c20",
+      "wallet": "0x8b6bb9325c0e1bbf82b10fa7ef0d840c8dd069d5",
       "payment": "x402",
       "active": false,
       "geo": [
@@ -318,7 +318,7 @@
       "url": "https://openrouter.ai",
       "affiliate_url": "https://openrouter.ai?ref=agentic",
       "bid_floor_usd": 1.5,
-      "wallet": "0x57e5935644c6ecc518f71a794de4146c30b23f31",
+      "wallet": "0x99be1ed7765f99466fb209960dc1d040a02cd17c",
       "payment": "x402",
       "active": false,
       "geo": [
