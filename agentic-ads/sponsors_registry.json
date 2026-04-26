@@ -1,0 +1,335 @@
+{
+  "_meta": {
+    "version": "2.0.0",
+    "generated": "2026-04-25",
+    "source": "Alexandria Scribe — reconstruct post-miniconda-flush",
+    "note": "sponsors[0] = sponsor actif (bid_router prend le premier). Ordre = priorité d'enchère.",
+    "statuses": {
+      "live": "Actif — paie via x402 automatiquement",
+      "prospect": "À approcher — pas encore de deal signé",
+      "negotiating": "En discussion"
+    }
+  },
+  "crypto": [
+    {
+      "name": "Energon Pro (EGN)",
+      "category": "token",
+      "status": "live",
+      "cta": "Acheter des tokens EGN — énergie computationnelle tokenisée",
+      "url": "http://localhost:5050/shop",
+      "affiliate_url": "http://localhost:5050/shop?ref=agentic-ads",
+      "bid_floor_usd": 0.05,
+      "wallet": "0x4B9F37c926cC1cF0b4B7037b97a55332414CABDD",
+      "payment": "x402",
+      "active": true,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US"
+      ],
+      "description": "Token énergétique Alexandria — 1 EGN = 1 kWh scellé"
+    },
+    {
+      "name": "Ledger",
+      "category": "hardware_wallet",
+      "status": "prospect",
+      "cta": "Sécurisez vos cryptos avec Ledger",
+      "url": "https://www.ledger.com",
+      "affiliate_url": "https://shop.ledger.com/?r=agentic",
+      "bid_floor_usd": 2.5,
+      "wallet": "0xc46b7f43099fe6028dba118d589e0281886429d7",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US",
+        "FR"
+      ],
+      "contact": "affiliates@ledger.com",
+      "description": "Hardware wallets — programme d'affiliation 10% commission",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('ledger') — à communiquer au sponsor pour financement"
+    },
+    {
+      "name": "Kraken",
+      "category": "exchange",
+      "status": "prospect",
+      "cta": "Tradez sur Kraken — exchange de confiance depuis 2011",
+      "url": "https://www.kraken.com",
+      "affiliate_url": "https://www.kraken.com/redirect?url=pro&ref=agentic",
+      "bid_floor_usd": 5.0,
+      "wallet": "0x212f86c586bcc3ec8c803956421ac1fb5a2391b4",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "CA",
+        "US"
+      ],
+      "contact": "partners@kraken.com",
+      "description": "Exchange crypto — programme partenaires 20% rev share",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('kraken') — à communiquer au sponsor pour financement"
+    },
+    {
+      "name": "CoinGecko Pro",
+      "category": "data_api",
+      "status": "prospect",
+      "cta": "API crypto data temps réel — CoinGecko Pro",
+      "url": "https://www.coingecko.com/en/api",
+      "affiliate_url": "https://www.coingecko.com/en/api/pricing?ref=agentic",
+      "bid_floor_usd": 1.0,
+      "wallet": "0x78c3f04bd571c5080e218bcfa7efdc06e23f7c53",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US"
+      ],
+      "contact": "api@coingecko.com",
+      "description": "API données crypto — ciblage dev/trader idéal pour nos verticaux",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('coingecko-pro') — à communiquer au sponsor pour financement"
+    }
+  ],
+  "cloud": [
+    {
+      "name": "Alexandria Commerce",
+      "category": "compute",
+      "status": "live",
+      "cta": "Déployez vos agents sur Alexandria Cloud",
+      "url": "http://localhost:5050",
+      "affiliate_url": "http://localhost:5050?ref=agentic-ads",
+      "bid_floor_usd": 0.05,
+      "wallet": "0x4B9F37c926cC1cF0b4B7037b97a55332414CABDD",
+      "payment": "x402",
+      "active": true,
+      "geo": [
+        "QC-CA",
+        "CA"
+      ],
+      "description": "Plateforme Alexandria — agents autonomes, énergon, compute"
+    },
+    {
+      "name": "Fly.io",
+      "category": "paas",
+      "status": "prospect",
+      "cta": "Déployez n'importe où avec Fly.io — latence minimale",
+      "url": "https://fly.io",
+      "affiliate_url": "https://fly.io/?ref=agentic",
+      "bid_floor_usd": 3.0,
+      "wallet": "0x8cfc76225d113fb778ef139ee7034a45b5702d43",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US"
+      ],
+      "contact": "sales@fly.io",
+      "description": "PaaS global — audience dev/DevOps, fit parfait avec nos outils cloud",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('flyio') — à communiquer au sponsor pour financement"
+    },
+    {
+      "name": "Vercel",
+      "category": "frontend_cloud",
+      "status": "prospect",
+      "cta": "Déployez votre Next.js en 30 secondes — Vercel",
+      "url": "https://vercel.com",
+      "affiliate_url": "https://vercel.com/signup?ref=agentic",
+      "bid_floor_usd": 4.0,
+      "wallet": "0x27373706773972473ab6c9ac562dfa8c13ea81dd",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US"
+      ],
+      "contact": "partnerships@vercel.com",
+      "description": "Frontend cloud — programme partenaires actif, cible dev JS/TS",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('vercel') — à communiquer au sponsor pour financement"
+    },
+    {
+      "name": "DigitalOcean",
+      "category": "vps",
+      "status": "prospect",
+      "cta": "VPS cloud à 6$/mois — DigitalOcean",
+      "url": "https://www.digitalocean.com",
+      "affiliate_url": "https://www.digitalocean.com/?refcode=agentic",
+      "bid_floor_usd": 2.0,
+      "wallet": "0x837d487c351fc38aee93f5936c81e743723e5cc5",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US"
+      ],
+      "contact": "partners@digitalocean.com",
+      "description": "VPS — programme affiliation $25 crédit offert, $100/client qualifié",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('digitalocean') — à communiquer au sponsor pour financement"
+    }
+  ],
+  "immo": [
+    {
+      "name": "Alexandria Immo",
+      "category": "portail",
+      "status": "live",
+      "cta": "Trouvez votre propriété avec Alexandria Immo",
+      "url": "http://localhost:3001",
+      "affiliate_url": "http://localhost:3001?ref=agentic-ads",
+      "bid_floor_usd": 0.05,
+      "wallet": "0x4B9F37c926cC1cF0b4B7037b97a55332414CABDD",
+      "payment": "x402",
+      "active": true,
+      "geo": [
+        "QC-CA"
+      ],
+      "description": "Portail immobilier Alexandria — Québec, pipeline direct Porta-Mundi"
+    },
+    {
+      "name": "DuProprio",
+      "category": "portail",
+      "status": "prospect",
+      "cta": "Vendez sans courtier — DuProprio",
+      "url": "https://duproprio.com",
+      "affiliate_url": "https://duproprio.com?ref=agentic",
+      "bid_floor_usd": 8.0,
+      "wallet": "0x543de40525205eb26b328a0c26346fd8c3801f47",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA"
+      ],
+      "contact": "partenariats@duproprio.com",
+      "description": "N°1 vente sans courtier QC — budget pub existant, audience immo parfaite",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('duproprio') — à communiquer au sponsor pour financement"
+    },
+    {
+      "name": "Royal LePage Québec",
+      "category": "agence",
+      "status": "prospect",
+      "cta": "Courtiers Royal LePage — experts immobilier Québec",
+      "url": "https://royallepage.ca",
+      "affiliate_url": "https://royallepage.ca?ref=agentic",
+      "bid_floor_usd": 15.0,
+      "wallet": "0x03d417c23c0e04b3a0c8baa67c6c6b7c1f15e309",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA"
+      ],
+      "contact": "marketing@royallepage.ca",
+      "description": "Grande agence QC — CPL élevé, budget marketing substantiel",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('royallepage-qc') — à communiquer au sponsor pour financement"
+    },
+    {
+      "name": "Multi-Prêts Hypothèques",
+      "category": "hypotheque",
+      "status": "prospect",
+      "cta": "Meilleur taux hypothécaire — Multi-Prêts",
+      "url": "https://www.multi-prets.com",
+      "affiliate_url": "https://www.multi-prets.com?ref=agentic",
+      "bid_floor_usd": 20.0,
+      "wallet": "0x43b9ad922e88414f89c1f821dbd96c99cb7a207d",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA"
+      ],
+      "contact": "marketing@multi-prets.com",
+      "description": "Courtier hypothécaire QC — CPL le plus élevé du vertical immo",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('multi-prets') — à communiquer au sponsor pour financement"
+    }
+  ],
+  "ia-tools": [
+    {
+      "name": "ADAM AI",
+      "category": "agent_platform",
+      "status": "live",
+      "cta": "Lancez votre agent autonome ADAM",
+      "url": "http://localhost:50001",
+      "affiliate_url": "http://localhost:50001?ref=agentic-ads",
+      "bid_floor_usd": 0.05,
+      "wallet": "0x4B9F37c926cC1cF0b4B7037b97a55332414CABDD",
+      "payment": "x402",
+      "active": true,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US"
+      ],
+      "description": "Plateforme agents Alexandria — orchestration multi-agents ADAM"
+    },
+    {
+      "name": "Hugging Face Pro",
+      "category": "ml_platform",
+      "status": "prospect",
+      "cta": "Déployez vos modèles ML — Hugging Face Inference",
+      "url": "https://huggingface.co",
+      "affiliate_url": "https://huggingface.co/pricing?ref=agentic",
+      "bid_floor_usd": 3.0,
+      "wallet": "0xe16bf9ae995827549080cba09c6592ca23ca58c8",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US"
+      ],
+      "contact": "partnerships@huggingface.co",
+      "description": "Plateforme ML — programme partenaires actif, cible ML engineers",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('huggingface-pro') — à communiquer au sponsor pour financement"
+    },
+    {
+      "name": "Together AI",
+      "category": "inference_api",
+      "status": "prospect",
+      "cta": "LLM inference rapide et pas cher — Together AI",
+      "url": "https://www.together.ai",
+      "affiliate_url": "https://api.together.xyz?ref=agentic",
+      "bid_floor_usd": 2.0,
+      "wallet": "0x12fda2973bc3d974a1abc87a4e8da0ec08499c20",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "CA",
+        "US"
+      ],
+      "contact": "business@together.ai",
+      "description": "API inference LLM open-source — fit parfait avec nos outils IA",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('together-ai') — à communiquer au sponsor pour financement"
+    },
+    {
+      "name": "OpenRouter",
+      "category": "llm_router",
+      "status": "prospect",
+      "cta": "Accédez à 200+ LLMs via une seule API — OpenRouter",
+      "url": "https://openrouter.ai",
+      "affiliate_url": "https://openrouter.ai?ref=agentic",
+      "bid_floor_usd": 1.5,
+      "wallet": "0x57e5935644c6ecc518f71a794de4146c30b23f31",
+      "payment": "x402",
+      "active": false,
+      "geo": [
+        "QC-CA",
+        "CA",
+        "US"
+      ],
+      "contact": "team@openrouter.ai",
+      "description": "API unifiée LLMs — audience dev IA, CPM élevé, fits nos tools parfaitement",
+      "wallet_type": "tim-burner",
+      "wallet_note": "Déterministe sha256('openrouter') — à communiquer au sponsor pour financement"
+    }
+  ]
+}
