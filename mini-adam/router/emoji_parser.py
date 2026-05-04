@@ -46,9 +46,12 @@ def parse_emoji(emoji_str: str, commands_path: Path) -> ParsedCommand:
     commands = _load_commands(commands_path)
     if emoji_str in commands:
         entry = commands[emoji_str]
+        action = entry.get("action")
+        if action is None:
+            raise ValueError(f"Command {emoji_str!r} missing required 'action' field")
         return ParsedCommand(
             system_action=None,
-            custom_action=entry["action"],
+            custom_action=action,
             emoji_key=emoji_str,
             model=entry.get("model", "claude-sonnet-4-6"),
             timeout=entry.get("timeout", 30),

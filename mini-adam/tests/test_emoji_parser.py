@@ -61,3 +61,18 @@ def test_missing_commands_file_treats_as_empty(tmp_path):
     f = tmp_path / "nonexistent.json"
     with pytest.raises(ValueError, match="Unknown emoji"):
         parse_emoji("❓", f)
+
+
+def test_system_emoji_payload_extracted(tmp_path):
+    """Test that system emoji payload is correctly extracted (startswith behavior)."""
+    f = _cmd_file(tmp_path, {})
+    result = parse_emoji("🤖 run this task", f)
+    assert result["system_action"] == "spawn"
+    assert result["payload"] == "run this task"
+
+
+def test_system_emoji_key_set(tmp_path):
+    """Test that emoji_key is correctly set for system emoji."""
+    f = _cmd_file(tmp_path, {})
+    result = parse_emoji("🤖", f)
+    assert result["emoji_key"] == "🤖"
