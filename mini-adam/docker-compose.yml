@@ -1,0 +1,34 @@
+version: "3.9"
+
+networks:
+  mini-adam-net:
+    driver: bridge
+    name: mini-adam-net
+
+services:
+  runner:
+    build: .
+    command: python3 runner/main.py
+    ports:
+      - "4001:4001"
+    env_file: .env
+    environment:
+      PORT: "4001"
+    networks:
+      - mini-adam-net
+    volumes:
+      - ./data:/app/data
+
+  router:
+    build: .
+    command: python3 router/main.py
+    ports:
+      - "4000:4000"
+    env_file: .env
+    environment:
+      PORT: "4000"
+      RUNNER_URL: "http://runner:4001"
+    networks:
+      - mini-adam-net
+    depends_on:
+      - runner
