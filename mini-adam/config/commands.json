@@ -1,0 +1,5 @@
+{
+  "⚙️🎬": { "action": "render",  "model": "claude-sonnet-4-6", "timeout": 300 },
+  "✨🚀": { "action": "deploy",  "model": "claude-sonnet-4-6", "timeout": 60  },
+  "🧠📖": { "action": "analyze", "model": "claude-sonnet-4-6", "timeout": 120 }
+}
