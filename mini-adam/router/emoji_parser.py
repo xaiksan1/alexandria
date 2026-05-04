@@ -37,7 +37,7 @@ def parse_emoji(emoji_str: str, commands_path: Path) -> ParsedCommand:
                 system_action=action,
                 custom_action=None,
                 emoji_key=emoji,
-                model="claude-sonnet-4-6",
+                model="gemini-2.0-flash",
                 timeout=30,
                 payload=emoji_str[len(emoji):].strip(),
             )
@@ -53,7 +53,7 @@ def parse_emoji(emoji_str: str, commands_path: Path) -> ParsedCommand:
             system_action=None,
             custom_action=action,
             emoji_key=emoji_str,
-            model=entry.get("model", "claude-sonnet-4-6"),
+            model=entry.get("model", "gemini-2.0-flash"),
             timeout=entry.get("timeout", 30),
             payload="",
         )
