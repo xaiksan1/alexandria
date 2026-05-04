@@ -12,16 +12,16 @@ async def isolated_db(tmp_path):
     await init_db()
 
 
-def _mock_anthropic(text: str):
-    mock_msg = MagicMock()
-    mock_msg.content = [MagicMock(text=text)]
-    mock_instance = AsyncMock()
-    mock_instance.messages.create = AsyncMock(return_value=mock_msg)
-    return patch("runner.agent_spawner.anthropic.AsyncAnthropic", return_value=mock_instance)
+def _mock_gemini(text: str):
+    mock_response = MagicMock()
+    mock_response.text = text
+    mock_client = MagicMock()
+    mock_client.aio.models.generate_content = AsyncMock(return_value=mock_response)
+    return patch("runner.agent_spawner.genai.Client", return_value=mock_client)
 
 
 async def test_short_task_returns_result_immediately():
-    with _mock_anthropic("short result"):
+    with _mock_gemini("short result"):
         agent_id, result = await spawn_agent("analyze", "hello", "claude-sonnet-4-6", timeout=3)
     assert result == "short result"
     row = await get_agent(agent_id)
@@ -29,7 +29,7 @@ async def test_short_task_returns_result_immediately():
 
 
 async def test_long_task_returns_none_immediately():
-    with _mock_anthropic("long result"):
+    with _mock_gemini("long result"):
         agent_id, result = await spawn_agent("render", "big job", "claude-sonnet-4-6", timeout=10)
         assert result is None  # caller must poll
         # sleep inside the mock context so the background task can run with the mock still active
@@ -39,8 +39,8 @@ async def test_long_task_returns_none_immediately():
 
 
 async def test_agent_error_sets_error_status():
-    mock_instance = AsyncMock()
-    mock_instance.messages.create = AsyncMock(side_effect=RuntimeError("API down"))
-    with patch("runner.agent_spawner.anthropic.AsyncAnthropic", return_value=mock_instance):
+    mock_instance = MagicMock()
+    mock_instance.aio.models.generate_content = AsyncMock(side_effect=RuntimeError("API down"))
+    with patch("runner.agent_spawner.genai.Client", return_value=mock_instance):
         with pytest.raises(RuntimeError):
-            await spawn_agent("analyze", "oops", "claude-sonnet-4-6", timeout=3)
+            await spawn_agent("analyze", "oops", "gemini-2.0-flash", timeout=3)

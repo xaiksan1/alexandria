@@ -17,17 +17,17 @@ def token():
     return sign_token("pending", "spawn")
 
 
-def _mock_anthropic(text: str):
-    mock_msg = MagicMock()
-    mock_msg.content = [MagicMock(text=text)]
-    mock_instance = AsyncMock()
-    mock_instance.messages.create = AsyncMock(return_value=mock_msg)
-    return patch("runner.agent_spawner.anthropic.AsyncAnthropic", return_value=mock_instance)
+def _mock_gemini(text: str):
+    mock_response = MagicMock()
+    mock_response.text = text
+    mock_client = MagicMock()
+    mock_client.aio.models.generate_content = AsyncMock(return_value=mock_response)
+    return patch("runner.agent_spawner.genai.Client", return_value=mock_client)
 
 
 async def test_spawn_short_task_returns_done(token):
     from runner.main import app
-    with _mock_anthropic("mocked result"):
+    with _mock_gemini("mocked result"):
         async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
             resp = await ac.post(
                 "/spawn",
@@ -68,7 +68,7 @@ async def test_state_unknown_agent_returns_404():
 
 async def test_state_known_agent_returns_data(token):
     from runner.main import app
-    with _mock_anthropic("ok"):
+    with _mock_gemini("ok"):
         async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
             spawn_resp = await ac.post(
                 "/spawn",
