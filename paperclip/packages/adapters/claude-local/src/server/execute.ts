@@ -82,6 +82,7 @@ interface ClaudeRuntimeConfig {
   timeoutSec: number;
   graceSec: number;
   extraArgs: string[];
+  billingType: "api" | "subscription";
 }
 
 function buildLoginResult(input: {
@@ -131,12 +132,13 @@ function resolveAzothConfig(config: Record<string, unknown>): {
  * When ANTHROPIC_API_KEY is set in the agent's env config, route through AZOTH instead
  * of billing Anthropic directly. If AZOTH is not configured, strip the key so Claude
  * falls back to subscription (OAuth) auth — never forward a raw API key unmanaged.
+ * Returns true when routing was applied (billing must be treated as "subscription").
  */
 function applyAzothRouting(
   env: Record<string, string>,
   azoth: { baseUrl: string | null; apiKey: string | null },
-): void {
-  if (!hasNonEmptyEnvValue(env, "ANTHROPIC_API_KEY")) return;
+): boolean {
+  if (!hasNonEmptyEnvValue(env, "ANTHROPIC_API_KEY")) return false;
 
   // Remove the direct key regardless — it will be replaced or dropped.
   delete env.ANTHROPIC_API_KEY;
@@ -149,6 +151,7 @@ function applyAzothRouting(
     }
   }
   // If no AZOTH configured, key is gone → Claude uses OAuth subscription billing.
+  return true;
 }
 
 async function buildClaudeRuntimeConfig(input: ClaudeExecutionInput): Promise<ClaudeRuntimeConfig> {
@@ -243,8 +246,12 @@ async function buildClaudeRuntimeConfig(input: ClaudeExecutionInput): Promise<Cl
     if (typeof value === "string") env[key] = value;
   }
 
+  // Billing type must be resolved before AZOTH mutates the env (it replaces the real key).
+  const billingTypeBeforeAzoth = resolveClaudeBillingType(env);
   // Route Anthropic API calls through AZOTH instead of billing directly.
-  applyAzothRouting(env, resolveAzothConfig(config));
+  // AZOTH routes to a free proxy — treat as subscription so no cost events are created.
+  const azothApplied = applyAzothRouting(env, resolveAzothConfig(config));
+  const billingType = azothApplied ? "subscription" : billingTypeBeforeAzoth;
 
   if (!hasExplicitApiKey && authToken) {
     env.PAPERCLIP_API_KEY = authToken;
@@ -271,6 +278,7 @@ async function buildClaudeRuntimeConfig(input: ClaudeExecutionInput): Promise<Cl
     timeoutSec,
     graceSec,
     extraArgs,
+    billingType,
   };
 }
 
@@ -349,7 +357,7 @@ export async function execute(ctx: AdapterExecutionContext): Promise<AdapterExec
     graceSec,
     extraArgs,
   } = runtimeConfig;
-  const billingType = resolveClaudeBillingType(env);
+  const billingType = runtimeConfig.billingType;
   const skillsDir = await buildSkillsDir();
 
   // When instructionsFilePath is configured, create a combined temp file that

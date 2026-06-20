@@ -1667,7 +1667,11 @@ export function heartbeatService(db: Db) {
       await writeSkippedRequest("heartbeat.wakeOnDemand.disabled");
       return null;
     }
-    if (agent.budgetMonthlyCents > 0 && agent.spentMonthlyCents >= agent.budgetMonthlyCents) {
+    // budgetMonthlyCents = 0 → strict zero (any spending blocks); > 0 → cap; < 0 → unlimited.
+    const budgetExceeded =
+      (agent.budgetMonthlyCents === 0 && agent.spentMonthlyCents > 0) ||
+      (agent.budgetMonthlyCents > 0 && agent.spentMonthlyCents >= agent.budgetMonthlyCents);
+    if (budgetExceeded) {
       await writeSkippedRequest("budget_exceeded");
       return null;
     }
