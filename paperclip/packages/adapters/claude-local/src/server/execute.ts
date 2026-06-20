@@ -32,6 +32,11 @@ const PAPERCLIP_SKILLS_CANDIDATES = [
   path.resolve(__moduleDir, "../../skills"),         // published: <pkg>/dist/server/ -> <pkg>/skills/
   path.resolve(__moduleDir, "../../../../../skills"), // dev: src/server/ -> repo root/skills/
 ];
+const PAPERCLIP_FORGE_MCP_CANDIDATES = [
+  path.resolve(__moduleDir, "forge-mcp.json"),         // published: <pkg>/dist/server/
+  path.resolve(__moduleDir, "../forge-mcp.json"),      // dev: src/server/ -> src/
+  path.resolve(__moduleDir, "../../../../packages/adapters/claude-local/src/server/forge-mcp.json"),
+];
 
 async function resolvePaperclipSkillsDir(): Promise<string | null> {
   for (const candidate of PAPERCLIP_SKILLS_CANDIDATES) {
@@ -41,15 +46,49 @@ async function resolvePaperclipSkillsDir(): Promise<string | null> {
   return null;
 }
 
+async function resolveForgeMcpConfigPath(): Promise<string | null> {
+  // Honour explicit env override first.
+  const envPath = process.env.PAPERCLIP_FORGE_MCP_CONFIG?.trim();
+  if (envPath) {
+    const exists = await fs.stat(envPath).then(() => true).catch(() => false);
+    if (exists) return envPath;
+  }
+  for (const candidate of PAPERCLIP_FORGE_MCP_CANDIDATES) {
+    const exists = await fs.stat(candidate).then(() => true).catch(() => false);
+    if (exists) return candidate;
+  }
+  return null;
+}
+
 /**
  * Create a tmpdir with `.claude/skills/` containing symlinks to skills from
  * the repo's `skills/` directory, so `--add-dir` makes Claude Code discover
  * them as proper registered skills.
+ * Also writes `.claude/settings.json` with FORGE MCP servers so agents inherit
+ * browser + tool access without relying solely on the global ~/.claude.json.
  */
 async function buildSkillsDir(): Promise<string> {
   const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "paperclip-skills-"));
-  const target = path.join(tmp, ".claude", "skills");
+  const claudeDir = path.join(tmp, ".claude");
+  const target = path.join(claudeDir, "skills");
   await fs.mkdir(target, { recursive: true });
+
+  // Inject FORGE MCP servers into a project-level settings.json.
+  const forgeMcpPath = await resolveForgeMcpConfigPath();
+  if (forgeMcpPath) {
+    try {
+      const forgeMcp = JSON.parse(await fs.readFile(forgeMcpPath, "utf-8"));
+      const settings = { mcpServers: forgeMcp.mcpServers ?? {} };
+      await fs.writeFile(
+        path.join(claudeDir, "settings.json"),
+        JSON.stringify(settings, null, 2),
+        "utf-8",
+      );
+    } catch {
+      // Non-fatal: agents fall back to ~/.claude.json which also has the servers.
+    }
+  }
+
   const skillsDir = await resolvePaperclipSkillsDir();
   if (!skillsDir) return tmp;
   const entries = await fs.readdir(skillsDir, { withFileTypes: true });
