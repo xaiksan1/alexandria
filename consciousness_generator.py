@@ -1,0 +1,1 @@
+/home/ichigo/alexandria/ADAM/consciousness_generator.py
