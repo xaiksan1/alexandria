@@ -258,6 +258,37 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;
 /* ── Bug Bounty Hunter panel ── */
 .bb-panel{flex:1;display:none;flex-direction:column;overflow:hidden;padding:10px 14px}
 .bb-panel.visible{display:flex}
+/* CIA */
+.cia-panel{flex:1;display:none;flex-direction:column;overflow:hidden;padding:10px 14px;gap:6px}
+.cia-panel.visible{display:flex}
+.cia-header{display:flex;align-items:center;gap:10px;flex-shrink:0;border-bottom:1px solid var(--cd);padding-bottom:6px}
+.cia-title{color:var(--c);font-size:13px;font-weight:700;letter-spacing:3px}
+.cia-sub{color:#64748b;font-size:8px;letter-spacing:2px;flex:1}
+.cia-threat{font-size:9px;letter-spacing:2px;color:var(--r);padding:2px 8px;border:1px solid var(--r);border-radius:3px}
+.cia-threat.high{color:#f97316;border-color:#f97316}
+.cia-threat.medium{color:#f59e0b;border-color:#f59e0b}
+.cia-threat.low{color:var(--g);border-color:var(--g)}
+.cia-actions{display:flex;gap:5px;flex-shrink:0}
+.cia-btn{flex:1;padding:5px 4px;font-family:"Share Tech Mono",monospace;font-size:8px;
+  letter-spacing:1px;border:1px solid var(--cd);background:transparent;color:var(--c);cursor:pointer}
+.cia-btn:hover{background:rgba(61,240,255,.08);border-color:var(--c)}
+.cia-stop{border-color:var(--r);color:var(--r)}
+.cia-stop:hover{background:rgba(255,34,68,.1)}
+.cia-status{font-size:8px;letter-spacing:2px;color:var(--cd);flex-shrink:0}
+.cia-status.running{color:var(--c);animation:blink 1s ease-in-out infinite}
+.cia-status.error{color:var(--r)}
+.cia-ticker{font-size:8px;color:#f59e0b;letter-spacing:1px;flex-shrink:0;min-height:12px}
+.cia-grid{display:flex;gap:6px;flex:1;min-height:0;overflow:hidden}
+.cia-col{flex:1;display:flex;flex-direction:column;border:1px solid #1e293b;overflow:hidden}
+.cia-col-title{font-size:8px;letter-spacing:2px;color:var(--cd);padding:4px 6px;
+  background:#020a0f;border-bottom:1px solid #1e293b;flex-shrink:0}
+.cia-col-body{flex:1;overflow-y:auto;font-size:8px;line-height:1.7;color:rgba(61,240,255,.7);
+  padding:6px;white-space:pre-wrap}
+.cia-col-body .cve-id{color:var(--c);font-weight:700}
+.cia-col-body .score{color:var(--r)}
+.cia-col-body .threat-name{color:#f97316}
+.cia-output{flex:0 0 80px;overflow-y:auto;font-size:8px;line-height:1.6;
+  color:rgba(61,240,255,.5);border-top:1px solid #1e293b;padding:6px}
 .bb-target-row{margin-bottom:8px}
 .bb-input{width:100%;background:rgba(0,255,65,.04);border:1px solid rgba(0,255,65,.25);
   border-radius:2px;color:var(--g);font-family:"Share Tech Mono",monospace;font-size:11px;
@@ -404,6 +435,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;
     <button class="sec-tab active" id="tabModules">MODULES</button>
     <button class="sec-tab" id="tabFeed">LIVE FEED<span class="ph-badge hidden" id="phBadge">0</span></button>
     <button class="sec-tab" id="tabBounty">BOUNTY</button>
+    <button class="sec-tab" id="tabCia">C.I.A.</button>
   </div>
   <!-- modules view -->
   <div class="sec-body" id="secBody">
@@ -445,6 +477,38 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;
     <div class="bb-status" id="bbStatus">READY</div>
     <div class="bb-output" id="bbOutput"></div>
   </div>
+</div>
+
+<!-- CIA — Cybersecurity Intelligence Agentic Panel -->
+<div class="cia-panel" id="ciaPanel">
+  <div class="cia-header">
+    <span class="cia-title">C.I.A.</span>
+    <span class="cia-sub" id="ciaSub">CYBERSECURITY INTELLIGENCE AGENTIC</span>
+    <span class="cia-threat" id="ciaThreat">THREAT: --</span>
+  </div>
+  <div class="cia-actions">
+    <button class="cia-btn" id="ciaRefresh" onclick="ciaRefresh()">REFRESH INTEL</button>
+    <button class="cia-btn" id="ciaReport"  onclick="ciaReport()">PUBLISH REPORT</button>
+    <button class="cia-btn" id="ciaRules"   onclick="ciaRules()">RULES BRIEF</button>
+    <button class="cia-btn cia-stop hidden" id="ciaStop" onclick="ciaAbort()">■ STOP</button>
+  </div>
+  <div class="cia-status" id="ciaStatus">STANDBY — CLICK REFRESH INTEL TO START</div>
+  <div class="cia-ticker" id="ciaTicker"></div>
+  <div class="cia-grid">
+    <div class="cia-col" id="ciaThreats">
+      <div class="cia-col-title">TOP THREATS</div>
+      <div class="cia-col-body" id="ciaThreatsBody">--</div>
+    </div>
+    <div class="cia-col" id="ciaCves">
+      <div class="cia-col-title">CRITICAL CVEs</div>
+      <div class="cia-col-body" id="ciaCvesBody">--</div>
+    </div>
+    <div class="cia-col" id="ciaFeed">
+      <div class="cia-col-title">LIVE FEED</div>
+      <div class="cia-col-body" id="ciaFeedBody">--</div>
+    </div>
+  </div>
+  <div class="cia-output" id="ciaOutput"></div>
 </div>
 
 <!-- GhostDesk Desktop Panel -->
@@ -892,6 +956,17 @@ const phList=document.getElementById('phList');
 const tabModules=document.getElementById('tabModules');
 const tabFeed=document.getElementById('tabFeed');
 const tabBounty=document.getElementById('tabBounty');
+const tabCia=document.getElementById('tabCia');
+const ciaPanel=document.getElementById('ciaPanel');
+const ciaStatus=document.getElementById('ciaStatus');
+const ciaThreat=document.getElementById('ciaThreat');
+const ciaTicker=document.getElementById('ciaTicker');
+const ciaThreatsBody=document.getElementById('ciaThreatsBody');
+const ciaCvesBody=document.getElementById('ciaCvesBody');
+const ciaFeedBody=document.getElementById('ciaFeedBody');
+const ciaOutput=document.getElementById('ciaOutput');
+const ciaStopBtn=document.getElementById('ciaStop');
+let ciaCtrl=null;
 const bbPanel=document.getElementById('bbPanel');
 const bbStatus=document.getElementById('bbStatus');
 const bbOutput=document.getElementById('bbOutput');
@@ -908,7 +983,11 @@ function phSetTab(tab){
   const onModules=tab==='modules';
   tabFeed.classList.toggle('active',onFeed);
   tabModules.classList.toggle('active',onModules);
+  const onCia=tab==='cia';
   tabBounty.classList.toggle('active',onBounty);
+  tabCia.classList.toggle('active',onCia);
+  ciaPanel.classList.toggle('visible',onCia);
+  if(!onCia&&ciaCtrl){ciaCtrl.abort();ciaCtrl=null;}
   secBody.style.display=onModules?'':'none';
   secFlux.style.display=onModules?'':'none';
   startAllBtn.style.display=onModules?'':'none';
@@ -1033,12 +1112,110 @@ function stopPhoenixFeed(){
   phConn.className='ph-conn dead';phConn.textContent='● OFFLINE';
 }
 
+// ── CIA — Cybersecurity Intelligence Agentic ──
+const THREAT_COLORS={CRITICAL:'#ef4444',HIGH:'#f97316',MEDIUM:'#f59e0b',LOW:'#22c55e'};
+
+function ciaThreatBadge(level){
+  const c=THREAT_COLORS[level]||'#6b7280';
+  ciaThreat.textContent='THREAT: '+(level||'--');
+  ciaThreat.style.color=c; ciaThreat.style.borderColor=c;
+}
+
+function ciaLog(msg){ciaOutput.textContent+=msg+'\n';ciaOutput.scrollTop=9999;}
+
+function ciaStream(endpoint,onData,onDone){
+  if(ciaCtrl){ciaCtrl.abort();}
+  ciaCtrl=new AbortController();
+  ciaStopBtn.classList.remove('hidden');
+  fetch(endpoint,{method:'POST',signal:ciaCtrl.signal})
+    .then(async r=>{
+      const reader=r.body.getReader();const dec=new TextDecoder();
+      let buf='';
+      while(true){
+        const{done,value}=await reader.read();if(done)break;
+        buf+=dec.decode(value,{stream:true});
+        const lines=buf.split('\n');buf=lines.pop();
+        for(const line of lines){
+          if(!line.startsWith('data:'))continue;
+          const raw=line.slice(5).trim();
+          if(raw==='[DONE]'){if(onDone)onDone();break;}
+          try{onData(JSON.parse(raw));}catch{}
+        }
+      }
+    })
+    .catch(e=>{if(e.name!=='AbortError'){ciaStatus.textContent='ERROR: '+e.message;ciaStatus.className='cia-status error';}})
+    .finally(()=>{ciaCtrl=null;ciaStopBtn.classList.add('hidden');});
+}
+
+function ciaRefresh(){
+  ciaStatus.textContent='COLLECTING FEEDS...';ciaStatus.className='cia-status running';
+  ciaTicker.textContent='';ciaThreatsBody.textContent='';ciaCvesBody.textContent='';ciaFeedBody.textContent='';ciaOutput.textContent='';
+  ciaStream('/v1/cia/threats',
+    d=>{
+      if(d.step==='collecting')ciaTicker.textContent='⬡ Fetching CVEs · SANS · Exploit-DB · HackerNews...';
+      if(d.step==='feeds_done'){const c=d.counts;ciaLog('NVD:'+c.nvd_cves+' KEV:'+c.cisa_kev+' SANS:'+c.sans_isc+' EDB:'+c.exploit_db+' HN:'+c.hackernews);}
+      if(d.step==='analyzing'){ciaTicker.textContent='⬡ CIA Agent analyzing threats via Bifrost...';ciaStatus.textContent='ANALYZING...';}
+      if(d.step==='complete'){
+        const a=d.analysis;
+        ciaThreatBadge(a.threat_level);
+        ciaStatus.textContent='INTEL UPDATED // '+new Date().toLocaleTimeString();ciaStatus.className='cia-status';
+        ciaTicker.textContent=a.summary||'';
+        // Threats column
+        ciaThreatsBody.innerHTML=(a.top_threats||[]).map(t=>`<span class="threat-name">${t.id||''}</span> [${t.severity||'?'}]\n${(t.description||'').slice(0,120)}\n→ ${t.action||''}\n`).join('\n');
+        // CVEs column
+        const intel=d.intel||{};
+        const nvd=(intel.sources?.nvd_cves?.items||[]).slice(0,8);
+        const kev=(intel.sources?.cisa_kev?.items||[]).slice(0,5);
+        ciaCvesBody.innerHTML=nvd.map(c=>`<span class="cve-id">${c.id}</span> <span class="score">[${c.score||'?'}]</span>\n${(c.description||'').slice(0,100)}\n`).join('\n')
+          +'─ CISA KEV ─\n'+kev.map(k=>`${k.id} — ${k.vendor||''} ${k.product||''}`).join('\n');
+        // Feed column
+        const sans=(intel.sources?.sans_isc?.items||[]).slice(0,4);
+        const hn=(intel.sources?.hackernews?.items||[]).slice(0,4);
+        ciaFeedBody.textContent='── SANS ISC ──\n'+sans.map(s=>s.title).join('\n')+'\n\n── HACKER NEWS ──\n'+hn.map(h=>h.title+' ('+h.points+'pt)').join('\n');
+      }
+      if(d.step==='error'){ciaStatus.textContent='ERROR: '+d.error;ciaStatus.className='cia-status error';}
+    },
+    ()=>{ciaLog('Feed refresh complete.');}
+  );
+}
+
+function ciaReport(){
+  ciaStatus.textContent='BUILDING REPORT...';ciaStatus.className='cia-status running';
+  ciaStream('/v1/cia/report',
+    d=>{
+      const msgs={collecting:'Collecting feeds...',analyzing:'Analyzing threats...',building_report:'Building HTML report...',publishing:'Publishing via Pagecast...'};
+      if(msgs[d.step])ciaLog(msgs[d.step]);
+      if(d.step==='done'){
+        const r=d.result||{};
+        if(r.url){ciaTicker.textContent='PUBLISHED: '+r.url;ciaLog('✓ '+r.url);}
+        else if(r.local_path){ciaTicker.textContent='SAVED: '+r.local_path;ciaLog('Local: '+r.local_path);}
+        else if(r.error){ciaLog('Publish error: '+r.error);}
+        ciaStatus.textContent='REPORT DONE';ciaStatus.className='cia-status';
+      }
+    },
+    ()=>{}
+  );
+}
+
+async function ciaRules(){
+  ciaStatus.textContent='GENERATING RULES BRIEF...';ciaStatus.className='cia-status running';
+  try{
+    const r=await fetch('/v1/cia/rules-brief');
+    const d=await r.json();
+    ciaOutput.textContent=d.brief||'No brief generated.';
+    ciaStatus.textContent='RULES BRIEF READY';ciaStatus.className='cia-status';
+  }catch(e){ciaStatus.textContent='ERROR: '+e.message;ciaStatus.className='cia-status error';}
+}
+
+function ciaAbort(){if(ciaCtrl){ciaCtrl.abort();ciaCtrl=null;}ciaStatus.textContent='ABORTED';ciaStatus.className='cia-status';}
+
 tabModules.addEventListener('click',()=>phSetTab('modules'));
 tabFeed.addEventListener('click',()=>{
   phSetTab('feed');
   if(secOpen&&!phSse)startPhoenixFeed();
 });
 tabBounty.addEventListener('click',()=>phSetTab('bounty'));
+tabCia.addEventListener('click',()=>phSetTab('cia'));
 
 // ── GhostDesk Desktop Panel ──
 const deskPanel=document.getElementById('deskPanel');

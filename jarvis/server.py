@@ -14,6 +14,10 @@ from pathlib import Path
 app = FastAPI()
 HERE = Path(__file__).parent
 
+# CIA — Cybersecurity Intelligence Agentic
+from cia.router import router as cia_router
+app.include_router(cia_router)
+
 # Provider chain: on 429/529/timeout, rotate to next without waiting.
 # Each entry is independent — Bifrost for the first two, direct call for opencode.
 PROVIDERS = [
