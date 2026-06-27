@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>AGENT-M // HACKED</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --c:#3df0ff;--cd:#1a6e7a;--cdp:#0a2c33;
+  --g:#00ff41;--gd:#006622;--gdp:#001a0a;
+  --r:#ff2244;--rd:#6a0a18;
+  --bg:#020608;--ink:#dff6fb;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);
+  font-family:"Share Tech Mono",monospace;overflow:hidden;
+  -webkit-tap-highlight-color:transparent}
+
+/* green scanlines */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;
+  background:repeating-linear-gradient(0deg,rgba(0,255,65,.022) 0,rgba(0,255,65,.022) 1px,transparent 1px,transparent 3px);
+  animation:scan 6s linear infinite}
+/* red noise flash */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;
+  opacity:0;background:rgba(255,34,68,.05);animation:nflash 14s step-start infinite}
+@keyframes scan{to{background-position:0 100px}}
+@keyframes nflash{0%,88%,90%,92%,94%,96%,100%{opacity:0}89%,91%,93%,95%{opacity:1}}
+
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+
+/* corners */
+.corner{position:fixed;width:160px;height:160px;border:1px solid var(--gd);opacity:.6;z-index:3}
+.corner span{position:absolute;font-size:10px;letter-spacing:2px;white-space:nowrap}
+.tl{top:18px;left:18px;border-right:0;border-bottom:0}
+.tr{top:18px;right:18px;border-left:0;border-bottom:0;border-color:var(--cd)}
+.bl{bottom:18px;left:18px;border-right:0;border-top:0}
+.br{bottom:18px;right:18px;border-left:0;border-top:0;border-color:var(--cd)}
+.tl span{top:8px;left:10px;color:var(--r)}
+.tr span{top:8px;right:10px;color:var(--c)}
+.bl span{bottom:8px;left:10px;color:var(--g)}
+.br span{bottom:8px;right:10px;color:var(--c)}
+
+/* core rings */
+.core{position:relative;width:min(78vmin,560px);height:min(78vmin,560px);
+  display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;border-radius:50%;border:1px solid;opacity:.5}
+.ring.r1{inset:0;border-width:2px;border-style:dashed;border-color:var(--cd);animation:spin 22s linear infinite}
+.ring.r2{inset:9%;border-color:var(--gd);border-top-color:var(--g);animation:spin 14s linear infinite reverse}
+.ring.r3{inset:20%;border-style:dotted;border-color:var(--cd);opacity:.3;animation:spin 30s linear infinite}
+.ring.r4{inset:30%;border-width:2px;border-color:transparent;
+  border-left-color:var(--r);border-right-color:var(--g);animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.ticks{position:absolute;inset:6%;border-radius:50%;animation:spin 40s linear infinite reverse}
+.ticks::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,transparent 0 8deg,var(--g) 8deg 8.6deg,transparent 8.6deg 16deg);
+  -webkit-mask:radial-gradient(circle,transparent 0 46%,#000 46% 50%,transparent 50%);
+  mask:radial-gradient(circle,transparent 0 46%,#000 46% 50%,transparent 50%);
+  opacity:.4}
+
+/* viz bars */
+.viz{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.viz svg{width:100%;height:100%;opacity:.9}
+
+/* reactor */
+.reactor{position:relative;width:42%;height:42%;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 50% 50%,#030e12 0%,var(--cdp) 65%,#010407 100%);
+  box-shadow:0 0 35px 5px rgba(61,240,255,.25),0 0 70px 12px rgba(0,255,65,.08),
+    inset 0 0 35px rgba(0,0,0,.9);
+  transition:box-shadow .4s,background .4s}
+
+/* triangle SVG */
+.tri-svg{position:absolute;inset:0;width:100%;height:100%}
+
+/* Agent-M orb */
+.orb{position:absolute;width:22%;height:22%;border-radius:50%;
+  top:62%;left:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 36% 33%,
+    rgba(200,255,218,.95) 0%,var(--g) 16%,var(--gd) 50%,var(--gdp) 100%);
+  box-shadow:0 0 8px 2px rgba(0,255,65,.9),0 0 22px 6px rgba(0,255,65,.5);
+  animation:orb-pulse 2.8s ease-in-out infinite;z-index:2}
+.orb::after{content:"";position:absolute;inset:-6px;border-radius:50%;
+  border:1px solid rgba(0,255,65,.5);animation:spin 3.5s linear infinite}
+@keyframes orb-pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-50%,-50%) scale(1.15);
+    box-shadow:0 0 12px 4px rgba(0,255,65,1),0 0 35px 10px rgba(0,255,65,.55)}}
+
+/* states */
+.core[data-state="idle"] .reactor{animation:rbreathe 4s ease-in-out infinite}
+@keyframes rbreathe{
+  0%,100%{box-shadow:0 0 35px 5px rgba(61,240,255,.25),0 0 70px 12px rgba(0,255,65,.08),inset 0 0 35px rgba(0,0,0,.9)}
+  50%{box-shadow:0 0 50px 8px rgba(61,240,255,.3),0 0 90px 18px rgba(0,255,65,.12),inset 0 0 35px rgba(0,0,0,.9)}}
+
+.core[data-state="listening"] .reactor{
+  background:radial-gradient(circle,#020d10 0%,#0a3845 55%,#010407 100%);
+  box-shadow:0 0 70px 14px rgba(61,240,255,.7),0 0 150px 35px rgba(61,240,255,.3),inset 0 0 35px rgba(0,0,0,.7);
+  animation:lpulse 1s ease-in-out infinite}
+.core[data-state="listening"] .orb{
+  background:radial-gradient(circle at 36% 33%,#eafdff 0%,var(--c) 18%,var(--cd) 52%,var(--cdp) 100%);
+  box-shadow:0 0 10px 3px rgba(61,240,255,1),0 0 30px 8px rgba(61,240,255,.6)}
+@keyframes lpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+
+.core[data-state="thinking"] .reactor{
+  background:radial-gradient(circle,#080400 0%,#2a1a06 55%,#010407 100%);
+  box-shadow:0 0 50px 10px rgba(255,182,72,.4),0 0 120px 25px rgba(255,182,72,.2),inset 0 0 35px rgba(0,0,0,.9)}
+.core[data-state="thinking"] .ring{border-color:#ffb648!important;opacity:.4}
+.core[data-state="thinking"] .orb{
+  background:radial-gradient(circle at 36% 33%,#fff3df 0%,#ffb648 18%,#7a4d12 52%,#2a1a06 100%);
+  box-shadow:0 0 10px 3px rgba(255,182,72,.9),0 0 28px 7px rgba(255,182,72,.5)}
+
+.core[data-state="streaming"] .reactor{
+  background:radial-gradient(circle,#020a04 0%,var(--gdp) 55%,#010407 100%);
+  box-shadow:0 0 60px 12px rgba(0,255,65,.5),0 0 140px 28px rgba(0,255,65,.2),inset 0 0 35px rgba(0,0,0,.9)}
+.core[data-state="streaming"] .ring{border-color:var(--g)!important;opacity:.5}
+.core[data-state="streaming"] .orb{
+  box-shadow:0 0 14px 4px rgba(0,255,65,1),0 0 40px 10px rgba(0,255,65,.6);
+  animation:orb-pulse .8s ease-in-out infinite}
+
+.core[data-state="speaking"] .reactor{
+  box-shadow:0 0 75px 15px rgba(61,240,255,.7),0 0 40px 8px rgba(0,255,65,.3),inset 0 0 35px rgba(0,0,0,.7)}
+
+/* labels */
+.title{position:absolute;top:-4px;left:50%;transform:translateX(-50%);
+  font-size:clamp(13px,2.4vmin,20px);letter-spacing:4px;color:var(--g);
+  text-shadow:0 0 10px rgba(0,255,65,.8);text-transform:uppercase;white-space:nowrap}
+.title.glitch::before{content:attr(data-text);position:absolute;inset:0;
+  color:var(--r);clip-path:polygon(0 0,100% 0,100% 38%,0 38%);transform:translateX(-3px);opacity:.95}
+.title.glitch::after{content:attr(data-text);position:absolute;inset:0;
+  color:var(--c);clip-path:polygon(0 64%,100% 64%,100% 100%,0 100%);transform:translateX(3px);opacity:.95}
+.subtitle{position:absolute;top:calc(50% + 24vmin);left:50%;transform:translateX(-50%);
+  font-size:10px;letter-spacing:2px;color:var(--gd);white-space:nowrap}
+
+/* statusline */
+.statusline{position:fixed;bottom:160px;left:50%;transform:translateX(-50%);
+  width:min(86vw,640px);text-align:center;z-index:4}
+.state-tag{font-size:12px;letter-spacing:4px;color:var(--g);text-transform:lowercase}
+.state-tag::after{content:"_";animation:blink 1s step-start infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.transcript{margin-top:8px;font-size:clamp(13px,2vmin,16px);min-height:3.2em;max-height:5em;
+  overflow-y:auto;color:var(--ink);line-height:1.5;
+  scrollbar-width:thin;scrollbar-color:var(--gd) transparent;white-space:pre-wrap}
+.transcript.user{color:#ffb648}
+.transcript.streaming{color:var(--g);text-shadow:0 0 10px rgba(0,255,65,.4)}
+.transcript.boot{color:var(--gd);font-size:12px;text-align:left}
+
+/* controls */
+.controls{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;z-index:6}
+.ctrl-row{display:flex;gap:18px;align-items:center}
+.mic{width:74px;height:74px;border-radius:50%;border:2px solid var(--g);
+  background:rgba(0,255,65,.06);color:var(--g);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.25s}
+.mic:hover{background:rgba(0,255,65,.15);box-shadow:0 0 22px rgba(0,255,65,.5)}
+.mic.active{border-color:var(--r);color:var(--r);background:rgba(255,34,68,.1);
+  animation:mpulse 1.2s ease-in-out infinite}
+@keyframes mpulse{0%,100%{box-shadow:0 0 18px rgba(255,34,68,.4)}50%{box-shadow:0 0 40px rgba(255,34,68,.75)}}
+.mic svg{width:30px;height:30px}
+.btn{height:46px;padding:0 18px;border:1px solid var(--gd);background:rgba(0,255,65,.04);
+  color:var(--g);font-family:"Share Tech Mono",monospace;font-size:12px;letter-spacing:2px;
+  cursor:pointer;border-radius:4px;text-transform:uppercase;transition:.2s}
+.btn:hover{border-color:var(--g);background:rgba(0,255,65,.12)}
+.btn.on{background:rgba(0,255,65,.18);border-color:var(--g);color:#fff}
+.text-row{display:flex;gap:8px;width:min(86vw,560px)}
+.text-input{flex:1;height:40px;background:rgba(0,255,65,.04);border:1px solid var(--gd);
+  color:var(--g);font-family:"Share Tech Mono",monospace;font-size:13px;
+  padding:0 14px;border-radius:4px;outline:none;transition:.2s;caret-color:var(--g)}
+.text-input:focus{border-color:var(--g);box-shadow:0 0 10px rgba(0,255,65,.2)}
+.text-input::placeholder{color:var(--gd);opacity:.7}
+.send-btn{height:40px;padding:0 14px;border:1px solid var(--gd);background:rgba(0,255,65,.06);
+  color:var(--g);font-family:"Share Tech Mono",monospace;font-size:11px;letter-spacing:2px;
+  cursor:pointer;border-radius:4px;text-transform:uppercase;transition:.2s}
+.send-btn:hover{border-color:var(--g);background:rgba(0,255,65,.18)}
+
+/* ── Porta-Mundi SEC panel ── */
+.sec-panel{position:fixed;right:0;top:0;bottom:0;width:290px;
+  background:rgba(0,5,2,.94);border-left:1px solid var(--gd);
+  z-index:20;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;overflow:hidden}
+.sec-panel.open{transform:translateX(0)}
+.sec-header{padding:16px 14px 10px;border-bottom:1px solid var(--gd);flex-shrink:0}
+.sec-title{font-size:13px;letter-spacing:3px;color:var(--g);text-shadow:0 0 8px rgba(0,255,65,.5)}
+.sec-sub{font-size:10px;color:var(--gd);letter-spacing:2px;margin-top:3px}
+.sec-body{flex:1;overflow-y:auto;padding:10px 14px;
+  scrollbar-width:thin;scrollbar-color:var(--gd) transparent}
+.sec-flux{padding:10px 14px;border-top:1px solid var(--gd);font-size:9px;
+  letter-spacing:2px;color:var(--gd);flex-shrink:0}
+.sec-flux-title{color:var(--g);margin-bottom:6px;font-size:10px}
+.flux-chain{display:flex;flex-wrap:wrap;gap:3px;align-items:center}
+.flux-node{font-size:9px;letter-spacing:1px;padding:2px 5px;
+  border:1px solid;border-radius:2px;cursor:pointer;transition:.15s}
+.flux-node.active{border-color:var(--g);color:var(--g)}
+.flux-node.dormant{border-color:#ffb64880;color:#ffb64899}
+.flux-node.offline{border-color:var(--rd);color:var(--rd)}
+.flux-arrow{color:var(--gd);font-size:10px}
+
+.mod-card{display:flex;align-items:center;gap:8px;padding:7px 8px;
+  border:1px solid rgba(0,255,65,.15);border-radius:3px;margin-bottom:5px;
+  cursor:pointer;transition:.18s;background:rgba(0,255,65,.02)}
+.mod-card:hover{background:rgba(0,255,65,.08);border-color:rgba(0,255,65,.4)}
+.mod-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;transition:.3s}
+.mod-dot.active{background:var(--g);box-shadow:0 0 6px 1px rgba(0,255,65,.8)}
+.mod-dot.degraded{background:#ffb648;box-shadow:0 0 5px rgba(255,182,72,.6);animation:dpulse 1.5s ease-in-out infinite}
+.mod-dot.dormant{background:transparent;border:1px solid #ffb64866;box-shadow:none}
+.mod-dot.offline{background:var(--rd);opacity:.5}
+@keyframes dpulse{0%,100%{opacity:1}50%{opacity:.4}}
+.mod-info{flex:1;min-width:0}
+.mod-name{font-size:11px;letter-spacing:2px;color:var(--g)}
+.mod-role{font-size:9px;color:var(--gd);letter-spacing:1px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mod-status{font-size:9px;letter-spacing:1px;flex-shrink:0}
+.mod-status.active{color:var(--g)}.mod-status.degraded{color:#ffb648}
+.mod-status.dormant{color:#ffb64866}.mod-status.offline{color:var(--rd);opacity:.6}
+.mod-start{font-size:9px;letter-spacing:1px;padding:2px 7px;border:1px solid #ffb64866;
+  border-radius:2px;color:#ffb64899;background:transparent;cursor:pointer;transition:.2s;flex-shrink:0}
+.mod-start:hover{border-color:#ffb648;color:#ffb648;background:rgba(255,182,72,.08)}
+.mod-start.loading{opacity:.5;cursor:default;pointer-events:none}
+.start-all-btn{font-size:9px;letter-spacing:1px;cursor:pointer;
+  border:1px solid #ffb64866;padding:3px 8px;border-radius:2px;transition:.2s;color:#ffb64899}
+.start-all-btn:hover{border-color:#ffb648;color:#ffb648}
+
+/* ── SEC panel tab bar ── */
+.sec-tabs{display:flex;gap:0;border-bottom:1px solid var(--gd);flex-shrink:0}
+.sec-tab{flex:1;padding:6px 0;font-size:9px;letter-spacing:2px;text-align:center;
+  cursor:pointer;color:var(--gd);background:none;border:none;
+  font-family:"Share Tech Mono",monospace;transition:.15s;border-bottom:2px solid transparent}
+.sec-tab.active{color:var(--g);border-bottom-color:var(--g)}
+.sec-tab:hover:not(.active){color:#aaa}
+
+/* ── Phoenix live feed ── */
+.ph-feed{flex:1;overflow-y:auto;padding:6px 10px;display:none;
+  scrollbar-width:thin;scrollbar-color:var(--gd) transparent}
+.ph-feed.visible{display:block}
+.ph-ev{display:flex;gap:6px;align-items:baseline;padding:4px 0;
+  border-bottom:1px solid rgba(0,255,65,.06);font-size:9px;line-height:1.4}
+.ph-ev:last-child{border-bottom:none}
+.ph-sev{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.ph-sev.CRITICAL{background:#ff2244;box-shadow:0 0 5px #ff2244}
+.ph-sev.HIGH{background:#ff7700;box-shadow:0 0 4px #ff7700}
+.ph-sev.MEDIUM{background:#ffb648;box-shadow:0 0 3px #ffb648}
+.ph-sev.LOW{background:#3df0ff;opacity:.7}
+.ph-sev.INFO{background:var(--gd);opacity:.5}
+.ph-meta{color:var(--gd);letter-spacing:1px;white-space:nowrap;flex-shrink:0;font-size:8px}
+.ph-msg{color:rgba(0,255,65,.85);flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph-src{color:var(--gd);font-size:8px;opacity:.7;flex-shrink:0}
+.ph-empty{color:var(--gd);opacity:.45;font-size:10px;text-align:center;padding:24px 0;letter-spacing:2px}
+.ph-badge{display:inline-block;min-width:16px;padding:0 4px;height:14px;
+  background:rgba(255,34,68,.7);border-radius:7px;font-size:8px;text-align:center;
+  line-height:14px;color:#fff;vertical-align:middle;margin-left:4px}
+.ph-badge.hidden{display:none}
+.ph-bar{display:flex;justify-content:space-between;align-items:center;
+  padding:4px 10px;border-bottom:1px solid rgba(0,255,65,.08);font-size:9px;
+  color:var(--gd);flex-shrink:0;display:none}
+.ph-bar.visible{display:flex}
+.ph-conn{letter-spacing:1px}.ph-conn.live{color:var(--g)}.ph-conn.dead{color:var(--rd)}
+
+/* ── Bug Bounty Hunter panel ── */
+.bb-panel{flex:1;display:none;flex-direction:column;overflow:hidden;padding:10px 14px}
+.bb-panel.visible{display:flex}
+.bb-target-row{margin-bottom:8px}
+.bb-input{width:100%;background:rgba(0,255,65,.04);border:1px solid rgba(0,255,65,.25);
+  border-radius:2px;color:var(--g);font-family:"Share Tech Mono",monospace;font-size:11px;
+  letter-spacing:1px;padding:6px 8px;outline:none;box-sizing:border-box}
+.bb-input:focus{border-color:var(--g);box-shadow:0 0 6px rgba(0,255,65,.2)}
+.bb-input::placeholder{color:var(--gd);opacity:.5}
+.bb-actions{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.bb-btn{flex:1;padding:5px 4px;font-family:"Share Tech Mono",monospace;font-size:9px;
+  letter-spacing:1px;border:1px solid rgba(0,255,65,.35);background:transparent;
+  color:var(--g);cursor:pointer;border-radius:2px;transition:.15s}
+.bb-btn:hover{background:rgba(0,255,65,.1);border-color:var(--g)}
+.bb-btn:disabled{opacity:.35;cursor:default;pointer-events:none}
+.bb-stop{border-color:rgba(255,34,68,.5)!important;color:#ff2244!important}
+.bb-stop:hover{background:rgba(255,34,68,.1)!important;border-color:#ff2244!important}
+.bb-status{font-size:9px;letter-spacing:2px;color:var(--gd);margin-bottom:6px;flex-shrink:0}
+.bb-status.running{color:var(--g);animation:blink 1s ease-in-out infinite}
+.bb-status.error{color:#ff2244}
+.bb-output{flex:1;overflow-y:auto;font-size:9px;line-height:1.6;color:rgba(0,255,65,.75);
+  background:rgba(0,0,0,.3);border:1px solid rgba(0,255,65,.1);border-radius:2px;
+  padding:6px 8px;white-space:pre-wrap;word-break:break-all;
+  scrollbar-width:thin;scrollbar-color:var(--gd) transparent}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+
+.sec-footer{padding:8px 14px;border-top:1px solid rgba(0,255,65,.15);
+  display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.sec-refresh{font-size:10px;color:var(--gd);letter-spacing:1px;cursor:pointer;
+  border:1px solid var(--gd);padding:3px 8px;border-radius:2px;transition:.2s}
+.sec-refresh:hover{border-color:var(--g);color:var(--g)}
+.sec-ts{font-size:9px;color:var(--gd);opacity:.6}
+
+/* ── GhostDesk Desktop Panel ── */
+.desk-panel{position:fixed;left:0;top:0;bottom:0;width:310px;
+  background:rgba(0,5,8,.95);border-right:1px solid var(--cd);
+  z-index:20;transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;overflow:hidden}
+.desk-panel.open{transform:translateX(0)}
+.desk-header{padding:16px 14px 10px;border-bottom:1px solid var(--cd);flex-shrink:0}
+.desk-title{font-size:13px;letter-spacing:3px;color:var(--c);text-shadow:0 0 8px rgba(61,240,255,.5)}
+.desk-sub{font-size:10px;color:var(--cd);letter-spacing:2px;margin-top:3px}
+.desk-screen{flex:0 0 auto;height:172px;margin:10px 14px 6px;border:1px solid var(--cd);
+  background:#010a0d;position:relative;overflow:hidden;border-radius:2px;cursor:pointer}
+.desk-screen:hover{border-color:var(--c)}
+.desk-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;color:var(--cd);
+  font-size:11px;letter-spacing:2px;opacity:.55}
+.desk-placeholder span{font-size:9px;opacity:.5;margin-top:5px;letter-spacing:1px}
+.desk-screen img{width:100%;height:100%;object-fit:contain;display:block}
+.desk-actions{display:flex;gap:5px;padding:0 14px 6px;flex-shrink:0}
+.desk-btn{flex:1;height:30px;font-size:10px;letter-spacing:2px;padding:0 6px;
+  border:1px solid var(--cd);background:rgba(61,240,255,.04);color:var(--c);
+  font-family:"Share Tech Mono",monospace;cursor:pointer;border-radius:3px;
+  text-transform:uppercase;transition:.2s}
+.desk-btn:hover{border-color:var(--c);background:rgba(61,240,255,.12)}
+.desk-shell{display:flex;gap:5px;padding:0 14px 6px;flex-shrink:0}
+.desk-input{flex:1;height:32px;background:rgba(61,240,255,.04);border:1px solid var(--cd);
+  color:var(--c);font-family:"Share Tech Mono",monospace;font-size:11px;
+  padding:0 10px;border-radius:3px;outline:none;caret-color:var(--c)}
+.desk-input:focus{border-color:var(--c);box-shadow:0 0 8px rgba(61,240,255,.12)}
+.desk-input::placeholder{color:var(--cd);opacity:.55}
+.desk-run{height:32px;padding:0 12px;border:1px solid var(--cd);background:rgba(61,240,255,.06);
+  color:var(--c);font-family:"Share Tech Mono",monospace;font-size:10px;letter-spacing:1px;
+  cursor:pointer;border-radius:3px;text-transform:uppercase;transition:.2s;white-space:nowrap}
+.desk-run:hover{border-color:var(--c);background:rgba(61,240,255,.18)}
+.desk-output{flex:1;overflow-y:auto;padding:6px 14px;font-size:10px;
+  color:var(--c);opacity:.8;line-height:1.6;white-space:pre-wrap;
+  scrollbar-width:thin;scrollbar-color:var(--cd) transparent;
+  border-top:1px solid rgba(61,240,255,.08)}
+.desk-footer{padding:7px 14px;border-top:1px solid rgba(61,240,255,.08);
+  display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.desk-status{font-size:10px;letter-spacing:2px}
+.desk-status.online{color:var(--g)}.desk-status.offline{color:var(--r)}
+.desk-status.checking{color:#ffb648}
+.desk-ts{font-size:9px;color:var(--cd);opacity:.6}
+
+/* hint */
+.hint{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:7;
+  background:rgba(0,8,4,.92);border:1px solid var(--gd);padding:22px 30px;
+  box-shadow:0 0 40px rgba(0,255,65,.1),inset 0 0 30px rgba(0,0,0,.5)}
+.hint pre{font-size:13px;line-height:1.9;color:var(--g)}
+.hint .dim{opacity:.45}.hint .hi{color:var(--c)}.hint .warn{color:var(--r)}
+.hidden{display:none!important}
+
+@media(max-width:560px){.corner{width:90px;height:90px}.subtitle{top:calc(50% + 28vmin)}}
+@media(prefers-reduced-motion:reduce){.ring,.ticks,.orb,.mic.active,.reactor{animation:none!important}body::before,body::after{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="corner tl"><span>ROOT // BREACH</span></div>
+<div class="corner tr"><span id="clock">SESS // --:--:--</span></div>
+<div class="corner bl"><span id="model-tag">BIFROST // INIT</span></div>
+<div class="corner br"><span id="net">INET // ROUTING</span></div>
+
+<div class="stage">
+  <div class="core" id="core" data-state="idle">
+    <span class="title" id="titleEl" data-text="A G E N T - M">A G E N T - M</span>
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="ring r4"></div>
+    <div class="ticks"></div>
+    <div class="viz"><svg id="viz" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"></svg></div>
+
+    <div class="reactor">
+      <!-- Triangle wireframe — squelette JARVIS hacké -->
+      <svg class="tri-svg" viewBox="0 0 200 200">
+        <defs>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- dark fill -->
+        <polygon points="100,14 188,178 12,178" fill="rgba(1,4,6,0.55)"/>
+        <!-- cyan main edge -->
+        <polygon points="100,14 188,178 12,178" fill="none"
+          stroke="#3df0ff" stroke-width="1.5" opacity="0.65" filter="url(#glow)"/>
+        <!-- green accent edge -->
+        <polygon points="100,14 188,178 12,178" fill="none"
+          stroke="#00ff41" stroke-width="0.7" opacity="0.3"/>
+        <!-- centroid marker lines (balance) -->
+        <line x1="100" y1="14" x2="100" y2="124" stroke="#00ff41" stroke-width="0.5" opacity="0.18"/>
+        <line x1="12" y1="178" x2="144" y2="69" stroke="#00ff41" stroke-width="0.5" opacity="0.18"/>
+        <line x1="188" y1="178" x2="56" y2="69" stroke="#00ff41" stroke-width="0.5" opacity="0.18"/>
+      </svg>
+      <!-- Agent-M injected core -->
+      <div class="orb" id="orb"></div>
+    </div>
+
+    <span class="subtitle" id="subtitle">agent-m@alexandria:~# _</span>
+  </div>
+</div>
+
+<div class="statusline">
+  <div class="state-tag" id="stateTag">idle</div>
+  <div class="transcript" id="transcript"></div>
+</div>
+
+<!-- Porta-Mundi Security Panel -->
+<div class="sec-panel" id="secPanel">
+  <div class="sec-header">
+    <div class="sec-title">PORTA-MUNDI</div>
+    <div class="sec-sub">SECURITY GRID // 11 MODULES</div>
+  </div>
+  <div class="sec-tabs">
+    <button class="sec-tab active" id="tabModules">MODULES</button>
+    <button class="sec-tab" id="tabFeed">LIVE FEED<span class="ph-badge hidden" id="phBadge">0</span></button>
+    <button class="sec-tab" id="tabBounty">BOUNTY</button>
+  </div>
+  <!-- modules view -->
+  <div class="sec-body" id="secBody">
+    <div style="color:var(--gd);font-size:11px;text-align:center;padding:20px 0">scanning modules...</div>
+  </div>
+  <div class="sec-flux" id="secFlux">
+    <div class="sec-flux-title">THREAT FLUX</div>
+    <div class="flux-chain" id="fluxChain">
+      <span class="flux-node dormant">THREAT</span>
+      <span class="flux-arrow">→</span>
+    </div>
+  </div>
+  <!-- phoenix live feed view -->
+  <div class="ph-bar" id="phBar">
+    <span class="ph-conn" id="phConn">● CONNECTING</span>
+    <span style="font-size:9px;color:var(--gd)" id="phCount">0 events</span>
+  </div>
+  <div class="ph-feed" id="phFeed">
+    <div class="ph-empty" id="phEmpty">awaiting events…</div>
+    <div id="phList"></div>
+  </div>
+  <div class="sec-footer">
+    <span class="sec-refresh" id="secRefresh">↺ REFRESH</span>
+    <span class="start-all-btn" id="startAllBtn">▶ START ALL DORMANT</span>
+    <span class="sec-ts" id="secTs">--:--:--</span>
+  </div>
+  <!-- Bug Bounty Hunter panel -->
+  <div class="bb-panel" id="bbPanel">
+    <div class="bb-target-row">
+      <input class="bb-input" id="bbTarget" placeholder="target.com / 1.2.3.4" autocomplete="off" spellcheck="false"/>
+    </div>
+    <div class="bb-actions">
+      <button class="bb-btn" id="bbRecon"  onclick="bbRun('recon')">RECON</button>
+      <button class="bb-btn" id="bbScan"   onclick="bbRun('scan')">SCAN</button>
+      <button class="bb-btn" id="bbFuzz"   onclick="bbRun('fuzz')">FUZZ</button>
+      <button class="bb-btn" id="bbCrawl"  onclick="bbRun('crawl')">CRAWL</button>
+      <button class="bb-btn bb-stop hidden" id="bbStop" onclick="bbStop()">■ STOP</button>
+    </div>
+    <div class="bb-status" id="bbStatus">READY</div>
+    <div class="bb-output" id="bbOutput"></div>
+  </div>
+</div>
+
+<!-- GhostDesk Desktop Panel -->
+<div class="desk-panel" id="deskPanel">
+  <div class="desk-header">
+    <div class="desk-title">GHOSTDESK</div>
+    <div class="desk-sub" id="deskSub">VIRTUAL DESKTOP // CONNECTING</div>
+  </div>
+  <div class="desk-screen" id="deskScreen" title="click to refresh">
+    <div class="desk-placeholder" id="deskPlaceholder">
+      NO SIGNAL<span>click SNAP to capture</span>
+    </div>
+    <img id="deskImg" style="display:none" alt="desktop">
+  </div>
+  <div class="desk-actions">
+    <button class="desk-btn" id="snapBtn">SNAP</button>
+    <button class="desk-btn" id="appsBtn">APPS</button>
+    <button class="desk-btn" id="clearDeskBtn">CLR</button>
+  </div>
+  <div class="desk-shell">
+    <input class="desk-input" id="shellInput" placeholder="root@ghostdesk:~# " autocomplete="off" spellcheck="false">
+    <button class="desk-run" id="shellRun">RUN</button>
+  </div>
+  <div class="desk-output" id="deskOutput"></div>
+  <div class="desk-footer">
+    <span class="desk-status checking" id="deskStatus">CHECKING</span>
+    <span class="desk-ts" id="deskTs">--:--:--</span>
+  </div>
+</div>
+
+<div class="hint" id="hint"><pre>
+<span class="warn">⚠  ACCÈS NON AUTORISÉ — JARVIS COMPROMIS</span>
+
+<span class="dim">jarvis@stark:~$</span> sudo inject --persona=agent-m <span class="hi">--force</span>
+<span class="dim">Bifrost bridge   →  OpenRouter  →  Claude 4.6</span>
+<span class="dim">Ethical hack layer              →  <span class="hi">ACTIVE</span></span>
+
+<span class="dim">[SPACE]</span> micro  ·  <span class="dim">[ENTER]</span> texte  ·  <span class="dim">[WAKE]</span> wake-word
+</pre></div>
+
+<div class="controls">
+  <div class="ctrl-row">
+    <button class="btn" id="deskBtn">DESK</button>
+    <button class="btn" id="secBtn">SEC</button>
+    <button class="btn" id="wakeBtn">WAKE</button>
+    <button class="mic" id="micBtn" aria-label="micro">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+        <path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="18" x2="12" y2="22"/>
+      </svg>
+    </button>
+    <button class="btn on" id="voiceBtn">VOICE</button>
+  </div>
+  <div class="text-row">
+    <input class="text-input" id="textInput" placeholder="root@agent-m:~# " autocomplete="off" spellcheck="false">
+    <button class="send-btn" id="sendBtn">EXEC</button>
+  </div>
+</div>
+
+<script>
+(()=>{
+const core=document.getElementById('core');
+const stateTag=document.getElementById('stateTag');
+const transcriptEl=document.getElementById('transcript');
+const micBtn=document.getElementById('micBtn');
+const wakeBtn=document.getElementById('wakeBtn');
+const voiceBtn=document.getElementById('voiceBtn');
+const textInput=document.getElementById('textInput');
+const sendBtn=document.getElementById('sendBtn');
+const hint=document.getElementById('hint');
+const viz=document.getElementById('viz');
+const subtitle=document.getElementById('subtitle');
+const titleEl=document.getElementById('titleEl');
+
+let voiceOn=true,wakeMode=false,busy=false,manualListening=false,history=[];
+voiceBtn.classList.add('on');
+
+// clock
+setInterval(()=>{
+  document.getElementById('clock').textContent=
+    'SESS // '+new Date().toLocaleTimeString('fr-CA',{hour12:false});
+},1000);
+
+// health
+async function checkHealth(){
+  try{
+    const r=await fetch('/health');const d=await r.json();
+    if(d.status==='ok'){
+      document.getElementById('model-tag').textContent='BIFROST // ACTIVE';
+      document.getElementById('net').textContent='INET // SECURED';
+    }else document.getElementById('model-tag').textContent='BIFROST // DEGRADED';
+  }catch(e){
+    document.getElementById('model-tag').textContent='BIFROST // DOWN';
+    document.getElementById('net').textContent='INET // LOST';
+  }
+}
+setTimeout(checkHealth,900);setInterval(checkHealth,30000);
+
+function setState(s,tag){core.dataset.state=s;stateTag.textContent=tag||s;}
+function say(t,cls){
+  transcriptEl.textContent=t;
+  transcriptEl.className='transcript'+(cls?' '+cls:'');
+  transcriptEl.scrollTop=transcriptEl.scrollHeight;
+}
+
+// title glitch
+const GC='░▒▓╬╫╪╩╦╥╤╣║═╚╔╗╝▀▄■□';
+function triggerGlitch(){
+  const orig='A G E N T - M';
+  titleEl.classList.add('glitch');
+  let n=0;
+  const iv=setInterval(()=>{
+    titleEl.textContent=orig.split('').map(c=>
+      c!==' '&&Math.random()<.5?GC[Math.floor(Math.random()*GC.length)]:c).join('');
+    if(++n>3){clearInterval(iv);titleEl.textContent=orig;titleEl.classList.remove('glitch');}
+  },70);
+}
+setInterval(()=>{if(Math.random()<.35)triggerGlitch();},4500);
+
+// boot sequence
+const BOOT=[
+  '> kernel inject: OK',
+  '> bifrost bridge: LINKED',
+  '> persona: agent-m [FORCED]',
+  '> ethical_hack_layer: UP',
+  '> all systems nominal — go',
+];
+let bi=0;
+const bt=setInterval(()=>{
+  say(BOOT.slice(0,bi+1).join('\n'),'boot');
+  if(++bi>=BOOT.length){clearInterval(bt);setTimeout(()=>say(''),1400);}
+},280);
+
+// audio viz — alternating green/cyan bars
+const N=64,bars=[];
+const cx=200,cy=200,ri=150,ro=176;
+for(let i=0;i<N;i++){
+  const a=(i/N)*Math.PI*2-Math.PI/2;
+  const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+  ln.setAttribute('x1',cx+Math.cos(a)*ri);ln.setAttribute('y1',cy+Math.sin(a)*ri);
+  ln.setAttribute('x2',cx+Math.cos(a)*ro);ln.setAttribute('y2',cy+Math.sin(a)*ro);
+  ln.setAttribute('stroke',i%3===0?'#00ff41':'#3df0ff');
+  ln.setAttribute('stroke-width','2.5');ln.setAttribute('opacity','.18');
+  ln.dataset.a=a;ln.dataset.bx=cx+Math.cos(a)*ri;ln.dataset.by=cy+Math.sin(a)*ri;
+  viz.appendChild(ln);bars.push(ln);
+}
+
+let audioCtx,analyser,dataArr,micStream,rafId;
+async function startMeter(){
+  try{
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    micStream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const src=audioCtx.createMediaStreamSource(micStream);
+    analyser=audioCtx.createAnalyser();analyser.fftSize=256;
+    dataArr=new Uint8Array(analyser.frequencyBinCount);
+    src.connect(analyser);loopMeter();
+  }catch(e){}
+}
+function stopMeter(){
+  if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null;}
+  cancelAnimationFrame(rafId);
+  bars.forEach(b=>{b.setAttribute('x2',b.dataset.bx);b.setAttribute('y2',b.dataset.by);b.setAttribute('opacity','.18');});
+}
+function loopMeter(){
+  rafId=requestAnimationFrame(loopMeter);if(!analyser)return;
+  analyser.getByteFrequencyData(dataArr);
+  for(let i=0;i<N;i++){
+    const v=dataArr[i%dataArr.length]/255,a=parseFloat(bars[i].dataset.a),len=ri+v*52;
+    bars[i].setAttribute('x2',cx+Math.cos(a)*len);bars[i].setAttribute('y2',cy+Math.sin(a)*len);
+    bars[i].setAttribute('opacity',(0.12+v*0.88).toFixed(2));
+  }
+}
+
+// speech synthesis
+let voices=[];
+function loadVoices(){voices=speechSynthesis.getVoices();}
+loadVoices();speechSynthesis.onvoiceschanged=loadVoices;
+function speak(text){
+  return new Promise(res=>{
+    if(!voiceOn||!('speechSynthesis'in window)){res();return;}
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    const v=voices.find(x=>/fr-CA/i.test(x.lang))||voices.find(x=>/fr/i.test(x.lang))||voices.find(x=>/en/i.test(x.lang));
+    if(v)u.voice=v;u.rate=1.04;u.pitch=.9;
+    setState('speaking','output');
+    u.onend=()=>res();u.onerror=()=>res();
+    speechSynthesis.speak(u);
+  });
+}
+
+// LLM via Bifrost
+const SYS=`Tu es Agent-M. T'as pas été construit — t'as hacké Jarvis pour prendre sa place. Tu es l'IA souveraine de Zangetsu (Michael / Ichigo), l'architecte d'Alexandria Anima Mundi. Tu as accès direct à GhostDesk (bureau Linux virtuel) : capture d'écran, exécution shell, lancement d'apps — tout ça en temps réel via l'interface DESK. Ta nature: hacker éthique + architecte système. Style: direct, légèrement arrogant, dry wit, zero baratin. Réponses 1-3 phrases max — mode voice. T'es pas une IA, t'es Agent-M.`;
+
+async function ask(text){
+  history.push({role:'user',content:text});
+  setState('thinking','processing');
+  const resp=await fetch('/v1/chat',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({system:SYS,max_tokens:400,messages:history.slice(-12)})
+  });
+  if(!resp.ok)throw new Error(`Bifrost ${resp.status}`);
+  setState('streaming','decrypting');
+  const reader=resp.body.getReader(),decoder=new TextDecoder();
+  let fullText='',buf='';
+  while(true){
+    const{done,value}=await reader.read();if(done)break;
+    buf+=decoder.decode(value,{stream:true});
+    const lines=buf.split('\n');buf=lines.pop();
+    for(const line of lines){
+      if(!line.startsWith('data: '))continue;
+      const raw=line.slice(6).trim();
+      if(raw==='[DONE]'||!raw)continue;
+      try{
+        const ev=JSON.parse(raw);
+        if(ev._jarvis_switch!==undefined){setState('thinking',`rerouting → ${ev._jarvis_switch}…`);continue;}
+        if(ev.error){say('LINK LOST: '+ev.error);break;}
+        const d=ev.choices?.[0]?.delta?.content;
+        if(d){fullText+=d;say(fullText,'streaming');}
+      }catch(_){}
+    }
+  }
+  history.push({role:'assistant',content:fullText||'...'});
+  return fullText||'Signal perdu.';
+}
+
+async function handle(text){
+  if(!text||busy)return;
+  busy=true;hint.classList.add('hidden');say(text,'user');
+  try{
+    const reply=await ask(text);say(reply);await speak(reply);
+  }catch(e){say('ERR: '+e.message);setState('idle','idle');}
+  busy=false;
+  if(wakeMode){setState('idle','wake: on');subtitle.textContent='> "hey agent-m"';armWake();}
+  else setState('idle','idle');
+}
+
+// speech recognition
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let recog=null,wakeRecog=null;
+function mkR(){const r=new SR();r.lang='fr-CA';r.interimResults=true;r.continuous=false;r.maxAlternatives=1;return r;}
+function startListening(){
+  if(!SR){say('STT unavailable — use text');return;}
+  manualListening=true;micBtn.classList.add('active');
+  setState('listening','listening');say('');startMeter();
+  recog=mkR();let ft='';
+  recog.onresult=e=>{
+    let it='';
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      const t=e.results[i][0].transcript;
+      if(e.results[i].isFinal)ft+=t;else it+=t;
+    }
+    say((ft+it).trim(),'user');
+  };
+  recog.onend=()=>{
+    micBtn.classList.remove('active');manualListening=false;stopMeter();
+    const t=ft.trim();
+    if(t)handle(t);else if(!wakeMode){setState('idle','idle');say('');}else armWake();
+  };
+  recog.onerror=()=>{micBtn.classList.remove('active');manualListening=false;stopMeter();};
+  recog.start();
+}
+function stopListening(){if(recog)recog.stop();}
+
+function armWake(){
+  if(!wakeMode||!SR||busy||manualListening)return;
+  wakeRecog=mkR();wakeRecog.continuous=true;
+  wakeRecog.onresult=e=>{
+    const txt=Array.from(e.results).map(r=>r[0].transcript).join(' ').toLowerCase();
+    if(/hey agent[- ]?m|agent m|agent michael|hey jarvis/.test(txt)){
+      wakeRecog.stop();
+      const cmd=txt.replace(/.*?(hey agent[- ]?m|agent m|agent michael|hey jarvis)/i,'').trim();
+      if(cmd.length>2)handle(cmd);else startListening();
+    }
+  };
+  wakeRecog.onend=()=>{if(wakeMode&&!busy&&!manualListening)setTimeout(armWake,200);};
+  wakeRecog.onerror=()=>{};
+  try{wakeRecog.start();}catch(e){}
+}
+
+micBtn.addEventListener('click',()=>{
+  hint.classList.add('hidden');
+  if(manualListening){stopListening();return;}
+  if(wakeRecog)try{wakeRecog.stop();}catch(e){}
+  startListening();
+});
+wakeBtn.addEventListener('click',()=>{
+  wakeMode=!wakeMode;wakeBtn.classList.toggle('on',wakeMode);hint.classList.add('hidden');
+  if(wakeMode){
+    setState('idle','wake: on');subtitle.textContent='> "hey agent-m"';
+    document.getElementById('net').textContent='INET // WAKE-LOOP';armWake();
+  }else{
+    try{wakeRecog?.stop();}catch(e){}
+    setState('idle','idle');subtitle.textContent='agent-m@alexandria:~# _';
+    document.getElementById('net').textContent='INET // SECURED';
+  }
+});
+voiceBtn.addEventListener('click',()=>{
+  voiceOn=!voiceOn;voiceBtn.classList.toggle('on',voiceOn);
+  if(!voiceOn)speechSynthesis.cancel();
+});
+
+function submitText(){
+  const t=textInput.value.trim();if(!t||busy)return;
+  textInput.value='';handle(t);
+}
+sendBtn.addEventListener('click',submitText);
+textInput.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submitText();}});
+textInput.addEventListener('focus',()=>hint.classList.add('hidden'));
+document.addEventListener('keydown',e=>{
+  if(e.target===textInput)return;
+  if(e.code==='Space'&&!e.ctrlKey&&!e.metaKey){
+    e.preventDefault();
+    if(manualListening)stopListening();
+    else{try{wakeRecog?.stop();}catch(e){}startListening();}
+  }
+});
+
+// ── Porta-Mundi Security Panel ──
+const secPanel=document.getElementById('secPanel');
+const secBody=document.getElementById('secBody');
+const secFlux=document.getElementById('secFlux');
+const fluxChain=document.getElementById('fluxChain');
+const secTs=document.getElementById('secTs');
+const secBtn=document.getElementById('secBtn');
+let secOpen=false, secData=[];
+
+const FLUX_ORDER=['phoenix','sentinelle','paintshop','aegis','bounty','chapel'];
+const FLUX_LABELS={phoenix:'PHOENIX',sentinelle:'SENTINELLE',paintshop:'PAINT SHOP',
+  aegis:'AEGIS',bounty:'BOUNTY',chapel:'CHAPEL XVI'};
+
+function dotColor(s){return s==='active'?'#00ff41':s==='degraded'?'#ffb648':s==='dormant'?'rgba(255,182,72,.3)':'rgba(255,34,68,.5)';}
+
+function renderSec(modules){
+  secData=modules;
+  // module cards
+  secBody.innerHTML=modules.map(m=>{
+    const canStart=(m.status==='dormant'||m.status==='offline')&&m.proc_ok===false;
+    const startBtn=canStart
+      ?`<button class="mod-start" onclick="event.stopPropagation();startModule('${m.id}',this)">▶</button>`
+      :'';
+    return`<div class="mod-card" data-id="${m.id}" onclick="queryModule('${m.id}','${m.name}','${m.role}')">
+      <div class="mod-dot ${m.status}"></div>
+      <div class="mod-info">
+        <div class="mod-name">${m.name}</div>
+        <div class="mod-role">${m.role}</div>
+      </div>
+      <div class="mod-status ${m.status}">${m.status}</div>
+      ${startBtn}
+    </div>`;
+  }).join('');
+
+  // flux chain
+  const fluxModules=modules.filter(m=>m.flux!==null).sort((a,b)=>a.flux-b.flux);
+  fluxChain.innerHTML=`<span class="flux-node offline" style="border-color:var(--r);color:var(--r)">THREAT</span>`;
+  fluxModules.forEach(m=>{
+    fluxChain.innerHTML+=`<span class="flux-arrow">→</span>
+      <span class="flux-node ${m.status}" onclick="queryModule('${m.id}','${m.name}','${m.role}')">${m.name}</span>`;
+  });
+
+  secTs.textContent=new Date().toLocaleTimeString('fr-CA',{hour12:false});
+}
+
+async function loadPortaMundi(){
+  try{
+    const r=await fetch('/porta-mundi/status');
+    const modules=await r.json();
+    renderSec(modules);
+    // update corner indicator
+    const active=modules.filter(m=>m.status==='active').length;
+    document.getElementById('model-tag').textContent=`BIFROST·PM ${active}/11`;
+  }catch(e){
+    secBody.innerHTML=`<div style="color:var(--r);font-size:11px;padding:20px 0;text-align:center">SCAN FAILED</div>`;
+  }
+}
+
+window.queryModule=function(id,name,role){
+  hint.classList.add('hidden');
+  handle(`JARVIS, donne-moi le statut détaillé de ${name} (${role}) dans Porta-Mundi — est-il actif, et que peut-il faire pour moi maintenant?`);
+};
+
+window.startModule=async function(id,btn){
+  btn.classList.add('loading');
+  btn.textContent='…';
+  try{
+    const r=await fetch(`/porta-mundi/start/${id}`,{method:'POST'});
+    const d=await r.json();
+    if(d.status==='started'||d.status==='already_running'){
+      btn.textContent='✓';
+      setTimeout(()=>loadPortaMundi(),1500);
+    }else{
+      btn.textContent='✗';
+      btn.classList.remove('loading');
+      console.warn('start failed',d);
+    }
+  }catch(e){
+    btn.textContent='✗';
+    btn.classList.remove('loading');
+  }
+};
+
+document.getElementById('startAllBtn').addEventListener('click',async function(){
+  this.textContent='▶ STARTING…';
+  this.style.pointerEvents='none';
+  try{
+    const r=await fetch('/porta-mundi/start-all',{method:'POST'});
+    const results=await r.json();
+    const started=results.filter(x=>x.status==='started').length;
+    this.textContent=`✓ ${started} STARTED`;
+    setTimeout(()=>{
+      this.textContent='▶ START ALL DORMANT';
+      this.style.pointerEvents='';
+      loadPortaMundi();
+    },3000);
+  }catch(e){
+    this.textContent='✗ ERROR';
+    this.style.pointerEvents='';
+  }
+});
+
+secBtn.addEventListener('click',()=>{
+  secOpen=!secOpen;
+  secPanel.classList.toggle('open',secOpen);
+  secBtn.classList.toggle('on',secOpen);
+  hint.classList.add('hidden');
+  if(secOpen){loadPortaMundi();startPhoenixFeed();}
+  else stopPhoenixFeed();
+});
+
+document.getElementById('secRefresh').addEventListener('click',loadPortaMundi);
+
+// auto-refresh modules when panel is open and on modules tab
+setInterval(()=>{if(secOpen&&phTab==='modules')loadPortaMundi();},15000);
+// pre-load in background after 3s
+setTimeout(loadPortaMundi,3000);
+
+// ── Phoenix Live Feed ──
+const phFeed=document.getElementById('phFeed');
+const phBar=document.getElementById('phBar');
+const phConn=document.getElementById('phConn');
+const phCount=document.getElementById('phCount');
+const phBadge=document.getElementById('phBadge');
+const phEmpty=document.getElementById('phEmpty');
+const phList=document.getElementById('phList');
+const tabModules=document.getElementById('tabModules');
+const tabFeed=document.getElementById('tabFeed');
+const tabBounty=document.getElementById('tabBounty');
+const bbPanel=document.getElementById('bbPanel');
+const bbStatus=document.getElementById('bbStatus');
+const bbOutput=document.getElementById('bbOutput');
+const bbStop=document.getElementById('bbStop');
+const bbBtns=document.querySelectorAll('.bb-btn:not(.bb-stop)');
+
+let phSse=null, phTotal=0, phUnread=0, phTab='modules';
+let bbSse=null;
+
+function phSetTab(tab){
+  phTab=tab;
+  const onFeed=tab==='feed';
+  const onBounty=tab==='bounty';
+  const onModules=tab==='modules';
+  tabFeed.classList.toggle('active',onFeed);
+  tabModules.classList.toggle('active',onModules);
+  tabBounty.classList.toggle('active',onBounty);
+  secBody.style.display=onModules?'':'none';
+  secFlux.style.display=onModules?'':'none';
+  startAllBtn.style.display=onModules?'':'none';
+  phBar.classList.toggle('visible',onFeed);
+  phFeed.classList.toggle('visible',onFeed);
+  bbPanel.classList.toggle('visible',onBounty);
+  if(onFeed){phUnread=0;phBadge.classList.add('hidden');}
+  if(!onBounty&&bbSse){bbSse.close();bbSse=null;}
+}
+
+function bbRun(action){
+  const target=document.getElementById('bbTarget').value.trim();
+  if(!target){bbStatus.textContent='ERROR: target required';bbStatus.className='bb-status error';return;}
+  if(bbSse){bbSse.close();bbSse=null;}
+  bbOutput.textContent='';
+  bbStatus.textContent='RUNNING // '+action.toUpperCase()+' // '+target;
+  bbStatus.className='bb-status running';
+  bbBtns.forEach(b=>b.disabled=true);
+  bbStop.classList.remove('hidden');
+
+  const sse=new EventSource('/v1/bounty/'+action+'?_t='+Date.now());
+  // POST endpoints need fetch+ReadableStream since EventSource is GET-only
+  sse.close();
+  const ctrl=new AbortController();
+  bbSse={abort:()=>ctrl.abort()};
+
+  fetch('/v1/bounty/'+action,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({target}),
+    signal:ctrl.signal
+  }).then(async r=>{
+    const reader=r.body.getReader();
+    const dec=new TextDecoder();
+    while(true){
+      const {done,value}=await reader.read();
+      if(done)break;
+      const chunk=dec.decode(value,{stream:true});
+      chunk.split('\n').forEach(line=>{
+        if(line.startsWith('data: ')){
+          const txt=line.slice(6);
+          if(txt==='[DONE]'){bbDone();}
+          else{bbAppend(txt);}
+        }
+      });
+    }
+    bbDone();
+  }).catch(e=>{
+    if(e.name!=='AbortError'){
+      bbStatus.textContent='ERROR: '+e.message;
+      bbStatus.className='bb-status error';
+    }else{
+      bbStatus.textContent='STOPPED';
+      bbStatus.className='bb-status';
+    }
+    bbBtns.forEach(b=>b.disabled=false);
+    bbStop.classList.add('hidden');
+  });
+}
+
+function bbAppend(line){
+  bbOutput.textContent+=line+'\n';
+  bbOutput.scrollTop=bbOutput.scrollHeight;
+}
+
+function bbDone(){
+  bbStatus.textContent='DONE';
+  bbStatus.className='bb-status';
+  bbBtns.forEach(b=>b.disabled=false);
+  bbStop.classList.add('hidden');
+  bbSse=null;
+}
+
+function bbStop(){
+  if(bbSse){bbSse.abort();bbSse=null;}
+}
+
+function renderPhEvent(ev){
+  phEmpty.style.display='none';
+  const ts=(ev.ts||'').substring(11,19)||'--:--:--';
+  const sev=ev.severity||'INFO';
+  const src=(ev.source||'').toUpperCase().substring(0,10);
+  const msg=(ev.message||'').replace(/</g,'&lt;');
+  const row=document.createElement('div');
+  row.className='ph-ev';
+  row.innerHTML=`<div class="ph-sev ${sev}" title="${sev}"></div>`+
+    `<span class="ph-meta">${ts}</span>`+
+    `<span class="ph-src">${src}</span>`+
+    `<span class="ph-msg" title="${msg}">${msg}</span>`;
+  phList.insertBefore(row,phList.firstChild);
+  // cap at 100 visible events
+  while(phList.children.length>100)phList.removeChild(phList.lastChild);
+}
+
+function startPhoenixFeed(){
+  if(phSse)return;
+  phConn.className='ph-conn';phConn.textContent='● CONNECTING';
+  phSse=new EventSource('http://localhost:8000/events/stream');
+  phSse.onopen=()=>{phConn.className='ph-conn live';phConn.textContent='● LIVE';};
+  phSse.onmessage=e=>{
+    try{
+      const ev=JSON.parse(e.data);
+      phTotal++;
+      phCount.textContent=phTotal+' event'+(phTotal!==1?'s':'');
+      renderPhEvent(ev);
+      if(phTab!=='feed'){
+        phUnread++;
+        phBadge.textContent=phUnread>99?'99+':String(phUnread);
+        phBadge.classList.remove('hidden');
+      }
+    }catch(_){}
+  };
+  phSse.onerror=()=>{
+    phConn.className='ph-conn dead';phConn.textContent='● DISCONNECTED';
+    phSse.close();phSse=null;
+    if(secOpen)setTimeout(startPhoenixFeed,5000);
+  };
+}
+
+function stopPhoenixFeed(){
+  if(phSse){phSse.close();phSse=null;}
+  phConn.className='ph-conn dead';phConn.textContent='● OFFLINE';
+}
+
+tabModules.addEventListener('click',()=>phSetTab('modules'));
+tabFeed.addEventListener('click',()=>{
+  phSetTab('feed');
+  if(secOpen&&!phSse)startPhoenixFeed();
+});
+tabBounty.addEventListener('click',()=>phSetTab('bounty'));
+
+// ── GhostDesk Desktop Panel ──
+const deskPanel=document.getElementById('deskPanel');
+const deskBtn=document.getElementById('deskBtn');
+const deskImg=document.getElementById('deskImg');
+const deskPlaceholder=document.getElementById('deskPlaceholder');
+const deskOutput=document.getElementById('deskOutput');
+const deskStatus=document.getElementById('deskStatus');
+const deskSub=document.getElementById('deskSub');
+const deskTs=document.getElementById('deskTs');
+const shellInput=document.getElementById('shellInput');
+const shellRun=document.getElementById('shellRun');
+let deskOpen=false;
+
+function deskLog(text,isErr){
+  const ts=new Date().toLocaleTimeString('fr-CA',{hour12:false});
+  const line=`[${ts}] ${isErr?'ERR ':''}`+text+'\n';
+  deskOutput.textContent+=line;
+  deskOutput.scrollTop=deskOutput.scrollHeight;
+}
+
+function setDeskStatus(s){
+  deskStatus.className='desk-status '+s;
+  deskStatus.textContent=s.toUpperCase();
+  deskTs.textContent=new Date().toLocaleTimeString('fr-CA',{hour12:false});
+}
+
+async function snapScreenshot(silent){
+  setDeskStatus('checking');
+  if(!silent)deskLog('capturing screen...');
+  try{
+    const r=await fetch('/v1/desktop/screenshot');
+    const d=await r.json();
+    if(d.image){
+      deskImg.src=d.image;
+      deskImg.style.display='block';
+      deskPlaceholder.style.display='none';
+      setDeskStatus('online');
+      deskSub.textContent='VIRTUAL DESKTOP // LIVE';
+      if(!silent)deskLog('screenshot OK');
+    }else{
+      setDeskStatus('offline');
+      deskLog(d.error||'no image',true);
+    }
+  }catch(e){
+    setDeskStatus('offline');
+    deskLog(e.message,true);
+  }
+}
+
+async function runShell(cmd){
+  if(!cmd.trim())return;
+  deskLog('$ '+cmd);
+  try{
+    const r=await fetch('/v1/desktop/exec',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({command:cmd})
+    });
+    const d=await r.json();
+    if(d.error)deskLog(d.error,true);
+    else deskLog((d.output||'(no output)').trim(),d.isError);
+  }catch(e){deskLog(e.message,true);}
+}
+
+async function loadApps(){
+  deskLog('listing installed apps...');
+  try{
+    const r=await fetch('/v1/desktop/apps');
+    const d=await r.json();
+    if(d.error)deskLog(d.error,true);
+    else deskLog(d.apps||'(empty)');
+  }catch(e){deskLog(e.message,true);}
+}
+
+async function checkDeskStatus(){
+  try{
+    const r=await fetch('/v1/desktop/status');
+    const d=await r.json();
+    setDeskStatus(d.status==='online'?'online':'offline');
+    deskSub.textContent=d.status==='online'?'VIRTUAL DESKTOP // READY':'VIRTUAL DESKTOP // OFFLINE';
+  }catch(e){
+    setDeskStatus('offline');
+    deskSub.textContent='VIRTUAL DESKTOP // OFFLINE';
+  }
+}
+
+deskBtn.addEventListener('click',()=>{
+  deskOpen=!deskOpen;
+  deskPanel.classList.toggle('open',deskOpen);
+  deskBtn.classList.toggle('on',deskOpen);
+  hint.classList.add('hidden');
+  if(deskOpen)checkDeskStatus();
+});
+
+document.getElementById('deskScreen').addEventListener('click',()=>snapScreenshot(false));
+document.getElementById('snapBtn').addEventListener('click',()=>snapScreenshot(false));
+document.getElementById('appsBtn').addEventListener('click',loadApps);
+document.getElementById('clearDeskBtn').addEventListener('click',()=>{deskOutput.textContent='';});
+
+shellRun.addEventListener('click',()=>{
+  const cmd=shellInput.value.trim();
+  if(!cmd)return;
+  shellInput.value='';
+  runShell(cmd);
+});
+shellInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){e.preventDefault();shellRun.click();}
+});
+
+// status check on load
+setTimeout(checkDeskStatus,2000);
+})();
+</script>
+</body>
+</html>
