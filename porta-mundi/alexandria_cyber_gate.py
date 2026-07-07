@@ -168,6 +168,50 @@ class AlexandriaCyberGate:
                 self.logger.warning(f"Port {port} is in use, trying next...")
         raise RuntimeError(f"Could not find an available port after {max_retries} retries.")
 
+    def process_threat(self, event: dict) -> dict:
+        """Flux orchestré couche 2 (un seul appel) :
+        Phoenix -> Sentinelle -> Paint Shop -> AEGIS -> Bounty Hunters -> Chapel XVI.
+        Défensif : détecte, forensique, signe, traque, scelle. Aucune action offensive.
+        """
+        pipeline = {"event": event, "stages": {}}
+        _notify_phoenix("cyber-gate", "INFO", "threat_flow",
+                        "menace reçue -> pipeline défensif", {"event": event})
+
+        # 1. Sentinelle — analyse/classification
+        assessment = self.modules["Sentinelle"].analyze_threat(event)
+        pipeline["stages"]["sentinelle"] = assessment
+
+        if not assessment["threat"]:
+            pipeline["verdict"] = "clean"
+            pipeline["stages"]["chapel_xvi"] = self.modules["ChapelXVI"].seal_record(pipeline)
+            return pipeline
+
+        # 2. Paint Shop — génération forensique (HTTP, service 4141)
+        try:
+            payload = json.dumps({"attack": assessment["categories"],
+                                  "severity": assessment["severity"], "event": event}).encode()
+            req = urllib.request.Request("http://localhost:4141/render", data=payload,
+                                         headers={"Content-Type": "application/json"}, method="POST")
+            forensic = json.loads(urllib.request.urlopen(req, timeout=3).read())
+        except Exception as e:
+            forensic = {"error": str(e)}
+        pipeline["stages"]["paint_shop"] = forensic
+
+        # 3. AEGIS — co-signe la preuve (Ed25519)
+        signed = self.modules["Aegis"].sign({"assessment": assessment, "forensic": forensic})
+        pipeline["stages"]["aegis"] = {"signature": signed["signature"][:32] + "...",
+                                       "pubkey": signed["pubkey"][:16] + "..."}
+
+        # 4. Bounty Hunters — traque l'IOC source
+        ioc = event.get("source_ip") or event.get("source") or "unknown"
+        pipeline["stages"]["bounty_hunters"] = self.modules["BountyHunters"].track_ioc(
+            ioc, assessment["severity"], {"categories": assessment["categories"]})
+
+        # 5. Chapel XVI — scelle le record complet (log immuable chaîné)
+        pipeline["verdict"] = assessment["recommended_action"]
+        pipeline["stages"]["chapel_xvi"] = self.modules["ChapelXVI"].seal_record(pipeline)
+        return pipeline
+
     def launch_ti_interface(self, port=8085):
         """Launch the TI Level 5 Web Interface with API support"""
         import http.server
@@ -228,6 +272,14 @@ class AlexandriaCyberGate:
                     self.wfile.write(json.dumps({"status": "DEACTIVATING"}).encode())
                     # Shutdown the server and exit
                     threading.Thread(target=lambda: (time.sleep(1), os._exit(0))).start()
+                elif self.path == '/api/threat':
+                    content_length = int(self.headers['Content-Length'])
+                    data = json.loads(self.rfile.read(content_length))
+                    result = gate_instance.process_threat(data)
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps(result, default=str).encode())
                 else:
                     self.send_error(404)
 
