@@ -55,6 +55,10 @@ try:
     from iothackbot_agent import IOTHackBot
     from minotaure_gatekeeper import MinotaureGatekeeper
     from chapel_xvi_vault import ChapelXVIVault
+    from sentinelle import Sentinelle
+    from aegis import Aegis
+    from bounty_hunters import BountyHunters
+    from nmap_scanner import NmapScanner
     # Import Consciousness Core from parent directory
     sys.path.append(str(Path(__file__).parent.parent))
     from consciousness_generator import ConsciousnessCore
@@ -65,6 +69,10 @@ except ImportError:
     from iothackbot_agent import IOTHackBot
     from minotaure_gatekeeper import MinotaureGatekeeper
     from chapel_xvi_vault import ChapelXVIVault
+    from sentinelle import Sentinelle
+    from aegis import Aegis
+    from bounty_hunters import BountyHunters
+    from nmap_scanner import NmapScanner
     sys.path.append(str(Path(__file__).parent.parent))
     from consciousness_generator import ConsciousnessCore
 
@@ -93,7 +101,11 @@ class AlexandriaCyberGate:
             "Labyrinthe": LabyrintheNavigator(self.workspace_root),
             "IOTHackBot": IOTHackBot(),
             "Minotaure": MinotaureGatekeeper(),
-            "ChapelXVI": ChapelXVIVault()
+            "ChapelXVI": ChapelXVIVault(),
+            "Sentinelle": Sentinelle(),
+            "Aegis": Aegis(),
+            "BountyHunters": BountyHunters(),
+            "NmapScanner": NmapScanner()
         }
 
     def _setup_logging(self):
@@ -150,7 +162,7 @@ class AlexandriaCyberGate:
                 continue
             try:
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                    s.bind(("", port))
+                    s.bind(("127.0.0.1", port))
                     return port
             except OSError:
                 self.logger.warning(f"Port {port} is in use, trying next...")
@@ -227,7 +239,7 @@ class AlexandriaCyberGate:
         def run_server():
             # Allow port reuse
             socketserver.TCPServer.allow_reuse_address = True
-            with socketserver.TCPServer(("", available_port), TIHandler) as httpd:
+            with socketserver.TCPServer(("127.0.0.1", available_port), TIHandler) as httpd:
                 gate_instance.logger.info(f"TI Level 5 Interface active at http://localhost:{available_port}")
                 httpd.serve_forever()
 

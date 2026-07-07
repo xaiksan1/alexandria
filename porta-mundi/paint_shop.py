@@ -253,4 +253,4 @@ if __name__ == "__main__":
         data={"port": PORT, "flux_position": 3},
     )
     logger.info("PAINT SHOP online — port %d — flux position 3", PORT)
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    app.run(host="127.0.0.1", port=PORT, debug=False)

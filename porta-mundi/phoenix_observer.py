@@ -221,4 +221,4 @@ def get_module_status() -> dict:
 if __name__ == "__main__":
     logger.info("PHOENIX igniting on port %d", PORT)
     observer.ingest("phoenix", "INFO", "system", "Phoenix Observer online — threat surveillance active")
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    app.run(host="127.0.0.1", port=PORT, debug=False)

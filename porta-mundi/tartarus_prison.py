@@ -196,4 +196,4 @@ if __name__ == "__main__":
         data={"port": PORT},
     )
     logger.info("TARTARUS online — port %d — polling Phoenix every 10s", PORT)
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    app.run(host="127.0.0.1", port=PORT, debug=False)
