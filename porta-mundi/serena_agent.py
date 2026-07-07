@@ -226,4 +226,4 @@ if __name__ == "__main__":
     logger.info("SERENA activating on port %d", PORT)
     logger.info("Semantic Scalpel UI: %s", "available" if (UI_DIR / "semantic_scalpel.html").exists() else "not found")
     logger.info("Bifrost LLM: %s", BIFROST_URL)
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    app.run(host="127.0.0.1", port=PORT, debug=False)

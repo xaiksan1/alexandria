@@ -303,4 +303,4 @@ def get_module_status() -> dict:
 if __name__ == "__main__":
     logger.info("MULTILSPY starting on port %d", PORT)
     logger.info("Workspace: %s", WORKSPACE)
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    app.run(host="127.0.0.1", port=PORT, debug=False)
