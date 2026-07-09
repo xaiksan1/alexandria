@@ -1,5 +1,13 @@
 import hashlib
 
+# INTERNAL USE ONLY. These addresses have no real private key (sha256-derived,
+# not secp256k1) and can never be spent from on a real chain. Use them for
+# Alexandria's internal agent-to-agent Energon ledger accounting only — NEVER
+# as the recipient_wallet passed to ADAM/dwallstreet/x402_handler.py, which
+# verifies real on-chain USDC transfers. Real external settlement uses a real
+# wallet (see ALEXANDRIA_WALLET / sponsors_registry.json), never a derive_wallet()
+# address. See ADAM/dwallstreet/x402_handler.py's matching note.
+
 # Versioned salt — change this to rotate all wallets (sponsors must be re-funded)
 _SALT = "tim-burner:agentic-ads:sponsors:v1"
 
