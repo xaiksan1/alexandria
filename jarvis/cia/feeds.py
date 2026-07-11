@@ -4,6 +4,7 @@ Sources: NVD/NIST, CISA KEV, SANS ISC, Exploit-DB, HackerNews Security
 """
 import asyncio
 import json
+import os
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -17,7 +18,24 @@ SANS_RSS = "https://isc.sans.edu/rssfeed.xml"
 EXPLOIT_DB_RSS = "https://www.exploit-db.com/rss.xml"
 HN_SECURITY = "https://hn.algolia.com/api/v1/search?tags=story&query=cybersecurity+vulnerability&hitsPerPage=15"
 
+NVD_API_KEY = os.environ.get("NVD_API_KEY")
+
 TIMEOUT = httpx.Timeout(15.0)
+RETRY_ATTEMPTS = 3
+RETRY_BASE_DELAY = 2.0
+
+
+async def _with_retry(fn, *args, attempts: int = RETRY_ATTEMPTS, **kwargs):
+    """Retry a coroutine-returning call with exponential backoff on transient HTTP errors."""
+    last_exc: Exception | None = None
+    for attempt in range(attempts):
+        try:
+            return await fn(*args, **kwargs)
+        except (httpx.HTTPStatusError, httpx.TransportError) as exc:
+            last_exc = exc
+            if attempt < attempts - 1:
+                await asyncio.sleep(RETRY_BASE_DELAY * (2 ** attempt))
+    raise last_exc
 
 
 async def fetch_nvd_cves(limit: int = 20) -> list[dict[str, Any]]:
@@ -28,8 +46,9 @@ async def fetch_nvd_cves(limit: int = 20) -> list[dict[str, Any]]:
         "cvssV3Severity": "HIGH",
         "noRejected": "",
     }
+    headers = {"apiKey": NVD_API_KEY} if NVD_API_KEY else {}
     async with httpx.AsyncClient(timeout=TIMEOUT) as client:
-        r = await client.get(NVD_URL, params=params)
+        r = await client.get(NVD_URL, params=params, headers=headers)
         r.raise_for_status()
         data = r.json()
 
@@ -144,11 +163,11 @@ async def fetch_hackernews_security() -> list[dict[str, Any]]:
 async def collect_all() -> dict[str, Any]:
     """Gather all CIA feeds concurrently."""
     results = await asyncio.gather(
-        fetch_nvd_cves(),
-        fetch_cisa_kev(),
-        fetch_sans_isc(),
-        fetch_exploit_db(),
-        fetch_hackernews_security(),
+        _with_retry(fetch_nvd_cves),
+        _with_retry(fetch_cisa_kev),
+        _with_retry(fetch_sans_isc),
+        _with_retry(fetch_exploit_db),
+        _with_retry(fetch_hackernews_security),
         return_exceptions=True,
     )
     keys = ("nvd_cves", "cisa_kev", "sans_isc", "exploit_db", "hackernews")
