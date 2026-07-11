@@ -7,7 +7,7 @@ import json
 import os
 import re
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import httpx
@@ -38,13 +38,18 @@ async def _with_retry(fn, *args, attempts: int = RETRY_ATTEMPTS, **kwargs):
     raise last_exc
 
 
-async def fetch_nvd_cves(limit: int = 20) -> list[dict[str, Any]]:
-    """Top recent CVEs from NVD with CVSS >= 7.0."""
+async def fetch_nvd_cves(limit: int = 20, window_days: int = 30) -> list[dict[str, Any]]:
+    """Top recent CVEs from NVD with CVSS >= 7.0, published in the last `window_days` days."""
+    now = datetime.now(timezone.utc)
+    start = now - timedelta(days=window_days)
+    fmt = "%Y-%m-%dT%H:%M:%S.000"
     params = {
         "resultsPerPage": limit,
         "startIndex": 0,
         "cvssV3Severity": "HIGH",
         "noRejected": "",
+        "pubStartDate": start.strftime(fmt),
+        "pubEndDate": now.strftime(fmt),
     }
     headers = {"apiKey": NVD_API_KEY} if NVD_API_KEY else {}
     async with httpx.AsyncClient(timeout=TIMEOUT) as client:
