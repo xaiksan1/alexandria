@@ -1,0 +1,39 @@
+[submodule "ADAM"]
+	path = ADAM
+	url = https://github.com/xaiksan1/ADAM.git
+[submodule "GhostDesk"]
+	path = GhostDesk
+	url = https://github.com/xaiksan1/GhostDesk.git
+[submodule "bigset"]
+	path = bigset
+	url = https://github.com/xaiksan1/bigset.git
+[submodule "chrome-devtools-mcp"]
+	path = chrome-devtools-mcp
+	url = https://github.com/xaiksan1/chrome-devtools-mcp.git
+[submodule "envii"]
+	path = envii
+	url = https://github.com/xaiksan1/envii.git
+[submodule "floatcast"]
+	path = floatcast
+	url = https://github.com/xaiksan1/floatcast.git
+[submodule "guacamole-bare-metal-proxy"]
+	path = guacamole-bare-metal-proxy
+	url = https://github.com/xaiksan1/guacamole-bare-metal-proxy.git
+[submodule "guacamole-complete-installation"]
+	path = guacamole-complete-installation
+	url = https://github.com/xaiksan1/guacamole-complete-installation.git
+[submodule "guacamole-server"]
+	path = guacamole-server
+	url = https://github.com/xaiksan1/guacamole-server.git
+[submodule "mcp-alexandria-fullstack"]
+	path = mcp-alexandria-fullstack
+	url = https://github.com/xaiksan1/mcp-alexandria-fullstack.git
+[submodule "pagecast"]
+	path = pagecast
+	url = https://github.com/xaiksan1/pagecast.git
+[submodule "paperclip"]
+	path = paperclip
+	url = https://github.com/xaiksan1/paperclip.git
+[submodule "webmcp"]
+	path = webmcp
+	url = https://github.com/xaiksan1/webmcp.git
