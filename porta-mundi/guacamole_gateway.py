@@ -27,7 +27,7 @@ class GuacamoleGateway:
     Enforces security policies on all Guacamole connections
     """
 
-    def __init__(self, listen_port=8822, guacd_host='::1', guacd_port=4822):
+    def __init__(self, listen_port=8823, guacd_host='127.0.0.1', guacd_port=4822):
         self.listen_port = listen_port
         self.guacd_host = guacd_host
         self.guacd_port = guacd_port
