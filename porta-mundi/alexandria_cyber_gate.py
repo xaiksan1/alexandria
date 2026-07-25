@@ -226,7 +226,7 @@ class AlexandriaCyberGate:
         self.logger.info(f"Using available port: {available_port}")
 
 
-        class TIHandler(http.server.SimpleHTTPRequestHandler):
+        class TIHandler(http.server.BaseHTTPRequestHandler):
             def do_POST(self):
                 if self.path == '/api/oracle':
                     content_length = int(self.headers['Content-Length'])
@@ -284,9 +284,21 @@ class AlexandriaCyberGate:
                     self.send_error(404)
 
             def do_GET(self):
-                # Serve static files from porta-mundi directory
-                os.chdir(os.path.dirname(__file__))
-                return super().do_GET()
+                # No static file serving — porta-mundi/ holds only Python source
+                # (previously delegated to SimpleHTTPRequestHandler, which leaked
+                # the full source tree, including Aegis's signing module, over GET).
+                if self.path in ("/", "/status"):
+                    result = {
+                        "status": "online",
+                        "ti_level": gate_instance.core.state.ti_level,
+                        "endpoints": ["/api/oracle", "/api/threat", "/api/kill"],
+                    }
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps(result).encode())
+                else:
+                    self.send_error(404)
 
         def run_server():
             # Allow port reuse
