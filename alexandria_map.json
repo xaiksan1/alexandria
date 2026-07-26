@@ -1,0 +1,813 @@
+{
+  "generated_at": "2026-07-25 15:59:01",
+  "root": "/home/ichigo/alexandria",
+  "top_level_dir_count": 27,
+  "top_level_file_count": 33,
+  "top_level_files": [
+    "AGENT_DEPLOYMENT_MONITOR.py",
+    "ALEXANDRIA-ANIMA-MUNDI-STRUCTURE.md",
+    "COMPLETION_SUMMARY.md",
+    "INDEX_README.md",
+    "LANDING_PAGE_COMPLETE.md",
+    "PRESENTATION_GUIDE.md",
+    "PRODUCT-SPAWNER-LAUNCH.md",
+    "PUBLIC_DEPLOYMENT_INSTRUCTIONS.md",
+    "QUATERNIONIC_ARCHITECTURE.md",
+    "QUATERNIONIC_DOCUMENTATION_INDEX.md",
+    "QUATERNIONIC_SYMBIOSIS.md",
+    "QUICK_START_DEMO.md",
+    "README-START-HERE.md",
+    "README-TOOLBAR.md",
+    "README.md",
+    "README_FILMMAKER_COMPLETE.md",
+    "RESURRECTION_COMPLETE.md",
+    "SESSION_COMPLETE_SUMMARY.md",
+    "SYSTEM-COMPLETE.md",
+    "SYSTEM_ORGANIZATION_COMPLETE.md",
+    "SYSTEM_OVERVIEW.md",
+    "TWIN-TURBO-SYSTEM-COMPLETE.md",
+    "YOU-ARE-UNSTOPPABLE.md",
+    "alexandria_integration_config.json",
+    "alexandria_map.json",
+    "c91f3789-6b7b-4f0b-b588-22b8cf4eb743.mp4",
+    "consciousness_generator.py",
+    "find_in_alexandria.sh",
+    "gitingest.txt",
+    "integration_orchestrator.py",
+    "swarm_manifest.json",
+    "swarm_task_ledger.json",
+    "update_analysis.sh"
+  ],
+  "directories": [
+    {
+      "name": "ADAM",
+      "path": "/home/ichigo/alexandria/ADAM",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/ADAM.git",
+      "last_commit": {
+        "date": "2026-07-25",
+        "message": "Bring chal-pipeline live: pm2 (not systemd), port 5055",
+        "own_repo": true
+      },
+      "size": "9.4G",
+      "child_count": 35,
+      "children": [
+        {
+          "name": "ADAM-KNOWLEDGE-BASE"
+        },
+        {
+          "name": "AGENTS"
+        },
+        {
+          "name": "alexandria-erp-ui"
+        },
+        {
+          "name": "all_sparks_backup"
+        },
+        {
+          "name": "backups"
+        },
+        {
+          "name": "blue-daemon"
+        },
+        {
+          "name": "build (1)"
+        },
+        {
+          "name": "chal-pipeline"
+        },
+        {
+          "name": "CLAUDE"
+        },
+        {
+          "name": "command-center"
+        },
+        {
+          "name": "CORPUS"
+        },
+        {
+          "name": "dashboard"
+        },
+        {
+          "name": "dashboard-unified"
+        },
+        {
+          "name": "DESIGN"
+        },
+        {
+          "name": "digital-twin-data"
+        },
+        {
+          "name": "docs"
+        },
+        {
+          "name": "dwallstreet"
+        },
+        {
+          "name": "FORGE"
+        },
+        {
+          "name": "galacteek"
+        },
+        {
+          "name": "gemma-gem"
+        },
+        {
+          "name": "ghost-protocol"
+        },
+        {
+          "name": "HISTORY-ALL-SPARKS"
+        },
+        {
+          "name": "kitops"
+        },
+        {
+          "name": "logs"
+        },
+        {
+          "name": "modelkits"
+        },
+        {
+          "name": "orbit-node"
+        },
+        {
+          "name": "pheromones"
+        },
+        {
+          "name": "pinchtab"
+        },
+        {
+          "name": "PY_SCRIPTS"
+        },
+        {
+          "name": "pyBallMapper"
+        },
+        {
+          "name": "SELF"
+        },
+        {
+          "name": "slot-machine"
+        },
+        {
+          "name": "subventions"
+        },
+        {
+          "name": "tmux"
+        },
+        {
+          "name": "tools"
+        }
+      ]
+    },
+    {
+      "name": "agentic-ads",
+      "path": "/home/ichigo/alexandria/agentic-ads",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-07-09",
+        "message": "Document Tim-Burner as internal-only, never as x402 recipient",
+        "own_repo": false
+      },
+      "size": "1.2G",
+      "child_count": 11,
+      "children": [
+        {
+          "name": "action-layer"
+        },
+        {
+          "name": "bid-engine"
+        },
+        {
+          "name": "cache"
+        },
+        {
+          "name": "compliance"
+        },
+        {
+          "name": "docs"
+        },
+        {
+          "name": "mcp-servers"
+        },
+        {
+          "name": "migrations"
+        },
+        {
+          "name": "payments"
+        },
+        {
+          "name": "scripts"
+        },
+        {
+          "name": "souffles"
+        },
+        {
+          "name": "ui"
+        }
+      ]
+    },
+    {
+      "name": "agents",
+      "path": "/home/ichigo/alexandria/agents",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-03-01",
+        "message": "🚀 feat: Complete Alexandria Ecosystem Production Deployment (Mar 1, 2026)",
+        "own_repo": false
+      },
+      "size": "8.0K",
+      "child_count": 0,
+      "children": []
+    },
+    {
+      "name": "bigset",
+      "path": "/home/ichigo/alexandria/bigset",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/bigset.git",
+      "last_commit": {
+        "date": "2026-06-05",
+        "message": "Update README.md (#132)",
+        "own_repo": true
+      },
+      "size": "5.4M",
+      "child_count": 6,
+      "children": [
+        {
+          "name": "assets"
+        },
+        {
+          "name": "backend"
+        },
+        {
+          "name": "db"
+        },
+        {
+          "name": "frontend"
+        },
+        {
+          "name": "makefiles"
+        },
+        {
+          "name": "scripts"
+        }
+      ]
+    },
+    {
+      "name": "chrome-devtools-mcp",
+      "path": "/home/ichigo/alexandria/chrome-devtools-mcp",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/chrome-devtools-mcp.git",
+      "last_commit": {
+        "date": "2026-06-14",
+        "message": "feat(webmcp): bridge WebMCP page tools → chrome-devtools-mcp",
+        "own_repo": true
+      },
+      "size": "6.5M",
+      "child_count": 5,
+      "children": [
+        {
+          "name": "docs"
+        },
+        {
+          "name": "scripts"
+        },
+        {
+          "name": "skills"
+        },
+        {
+          "name": "src"
+        },
+        {
+          "name": "tests"
+        }
+      ]
+    },
+    {
+      "name": "docs",
+      "path": "/home/ichigo/alexandria/docs",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-03-16",
+        "message": "feat(agentic-ads): add full stack — bid-engine, cache, payments, compliance, UI, MCP servers",
+        "own_repo": false
+      },
+      "size": "44K",
+      "child_count": 1,
+      "children": [
+        {
+          "name": "superpowers"
+        }
+      ]
+    },
+    {
+      "name": "envii",
+      "path": "/home/ichigo/alexandria/envii",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/envii.git",
+      "last_commit": {
+        "date": "2026-01-18",
+        "message": "feat: add buildNameMap function for fallback matching of project names to paths",
+        "own_repo": true
+      },
+      "size": "648K",
+      "child_count": 3,
+      "children": [
+        {
+          "name": "api"
+        },
+        {
+          "name": "cli"
+        },
+        {
+          "name": "web"
+        }
+      ]
+    },
+    {
+      "name": "floatcast",
+      "path": "/home/ichigo/alexandria/floatcast",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/floatcast.git",
+      "last_commit": {
+        "date": "2026-07-17",
+        "message": "chore(larve): canvas — premier ⚙ à automatiser",
+        "own_repo": true
+      },
+      "size": "120K",
+      "child_count": 5,
+      "children": [
+        {
+          "name": "canvas"
+        },
+        {
+          "name": "carte"
+        },
+        {
+          "name": "dispenser"
+        },
+        {
+          "name": "httpx"
+        },
+        {
+          "name": "src"
+        }
+      ]
+    },
+    {
+      "name": "FORGE",
+      "path": "/home/ichigo/alexandria/FORGE",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-06-27",
+        "message": "feat(gcp-migration): porta-mundi services — 27 agents Python",
+        "own_repo": false
+      },
+      "size": "8.0K",
+      "child_count": 1,
+      "children": [
+        {
+          "name": "free-claude-code"
+        }
+      ]
+    },
+    {
+      "name": "gcp-migration",
+      "path": "/home/ichigo/alexandria/gcp-migration",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-06-26",
+        "message": "chore(gcp-migration): setup-envs.sh (placeholders) + état phases 0-4",
+        "own_repo": false
+      },
+      "size": "16K",
+      "child_count": 0,
+      "children": []
+    },
+    {
+      "name": "GhostDesk",
+      "path": "/home/ichigo/alexandria/GhostDesk",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/GhostDesk.git",
+      "last_commit": {
+        "date": "2026-06-15",
+        "message": "feat(ghostdesk): bake browser-harness + CLI-Anything + host.docker.internal",
+        "own_repo": true
+      },
+      "size": "1.4M",
+      "child_count": 5,
+      "children": [
+        {
+          "name": "assets"
+        },
+        {
+          "name": "docker"
+        },
+        {
+          "name": "scripts"
+        },
+        {
+          "name": "src"
+        },
+        {
+          "name": "tests"
+        }
+      ]
+    },
+    {
+      "name": "guacamole-bare-metal-proxy",
+      "path": "/home/ichigo/alexandria/guacamole-bare-metal-proxy",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/guacamole-bare-metal-proxy.git",
+      "last_commit": {
+        "date": "2025-09-18",
+        "message": "Update README with correct repository URLs",
+        "own_repo": true
+      },
+      "size": "108K",
+      "child_count": 3,
+      "children": [
+        {
+          "name": "configs"
+        },
+        {
+          "name": "docs"
+        },
+        {
+          "name": "scripts"
+        }
+      ]
+    },
+    {
+      "name": "guacamole-complete-installation",
+      "path": "/home/ichigo/alexandria/guacamole-complete-installation",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/guacamole-complete-installation.git",
+      "last_commit": {
+        "date": "2025-09-18",
+        "message": "Initial commit: Complete Guacamole installation package with all components",
+        "own_repo": true
+      },
+      "size": "57M",
+      "child_count": 7,
+      "children": [
+        {
+          "name": "database"
+        },
+        {
+          "name": "guacamole-client"
+        },
+        {
+          "name": "guacamole-server"
+        },
+        {
+          "name": "nginx-config"
+        },
+        {
+          "name": "scripts"
+        },
+        {
+          "name": "systemd-services"
+        },
+        {
+          "name": "tomcat"
+        }
+      ]
+    },
+    {
+      "name": "guacamole-server",
+      "path": "/home/ichigo/alexandria/guacamole-server",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/guacamole-server.git",
+      "last_commit": {
+        "date": "2026-02-04",
+        "message": "docs: Add CLAUDE.md developer guide for guacamole-server",
+        "own_repo": true
+      },
+      "size": "57M",
+      "child_count": 7,
+      "children": [
+        {
+          "name": "autom4te.cache"
+        },
+        {
+          "name": "bin"
+        },
+        {
+          "name": "build-aux"
+        },
+        {
+          "name": "doc"
+        },
+        {
+          "name": "m4"
+        },
+        {
+          "name": "src"
+        },
+        {
+          "name": "util"
+        }
+      ]
+    },
+    {
+      "name": "images",
+      "path": "/home/ichigo/alexandria/images",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": null,
+      "size": "101M",
+      "child_count": 0,
+      "children": []
+    },
+    {
+      "name": "jarvis",
+      "path": "/home/ichigo/alexandria/jarvis",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-07-10",
+        "message": "fix(cia/feeds): NVD query was missing a date bound, returning 1999-2001 CVEs",
+        "own_repo": false
+      },
+      "size": "204K",
+      "child_count": 1,
+      "children": [
+        {
+          "name": "cia"
+        }
+      ]
+    },
+    {
+      "name": "json-mcp-blower",
+      "path": "/home/ichigo/alexandria/json-mcp-blower",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-03-01",
+        "message": "fix(turbine): Apply acceleration multipliers - resolve 0.7kW generation bottleneck",
+        "own_repo": false
+      },
+      "size": "26M",
+      "child_count": 2,
+      "children": [
+        {
+          "name": "agents"
+        },
+        {
+          "name": "agents_exponential"
+        }
+      ]
+    },
+    {
+      "name": "mcp-alexandria-fullstack",
+      "path": "/home/ichigo/alexandria/mcp-alexandria-fullstack",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/mcp-alexandria-fullstack.git",
+      "last_commit": {
+        "date": "2026-07-24",
+        "message": "fix(pm2): recreate missing start-mcp-fullstack.sh",
+        "own_repo": true
+      },
+      "size": "296K",
+      "child_count": 3,
+      "children": [
+        {
+          "name": "backend"
+        },
+        {
+          "name": "claude-zangetsu"
+        },
+        {
+          "name": "examples"
+        }
+      ]
+    },
+    {
+      "name": "mini-adam",
+      "path": "/home/ichigo/alexandria/mini-adam",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-05-04",
+        "message": "fix(mini-adam): dotenv load + venv interpreter + gemini model dans emoji_parser",
+        "own_repo": false
+      },
+      "size": "93M",
+      "child_count": 7,
+      "children": [
+        {
+          "name": "config"
+        },
+        {
+          "name": "data"
+        },
+        {
+          "name": "docs"
+        },
+        {
+          "name": "logs"
+        },
+        {
+          "name": "router"
+        },
+        {
+          "name": "runner"
+        },
+        {
+          "name": "tests"
+        }
+      ]
+    },
+    {
+      "name": "pagecast",
+      "path": "/home/ichigo/alexandria/pagecast",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/pagecast.git",
+      "last_commit": {
+        "date": "2026-06-20",
+        "message": "Fix expiry-change rollback + \"Expires in 0m\" label (CodeRabbit, PR #5)",
+        "own_repo": true
+      },
+      "size": "3.3M",
+      "child_count": 8,
+      "children": [
+        {
+          "name": "extension"
+        },
+        {
+          "name": "feedback"
+        },
+        {
+          "name": "media"
+        },
+        {
+          "name": "plugin"
+        },
+        {
+          "name": "public"
+        },
+        {
+          "name": "src"
+        },
+        {
+          "name": "test"
+        },
+        {
+          "name": "web"
+        }
+      ]
+    },
+    {
+      "name": "paperclip",
+      "path": "/home/ichigo/alexandria/paperclip",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/paperclip.git",
+      "last_commit": {
+        "date": "2026-07-07",
+        "message": "chore(alexandria): réintègre deploy-workflow, vercel.json, start-paperclip.sh",
+        "own_repo": true
+      },
+      "size": "313M",
+      "child_count": 11,
+      "children": [
+        {
+          "name": "cli"
+        },
+        {
+          "name": "deploy-workflow"
+        },
+        {
+          "name": "doc"
+        },
+        {
+          "name": "docker"
+        },
+        {
+          "name": "docs"
+        },
+        {
+          "name": "packages"
+        },
+        {
+          "name": "releases"
+        },
+        {
+          "name": "scripts"
+        },
+        {
+          "name": "server"
+        },
+        {
+          "name": "skills"
+        },
+        {
+          "name": "ui"
+        }
+      ]
+    },
+    {
+      "name": "porta-mundi",
+      "path": "/home/ichigo/alexandria/porta-mundi",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-07-25",
+        "message": "Add Docker+Snyk-gated nginx gateway; fix guacamole_gateway.py port collision",
+        "own_repo": false
+      },
+      "size": "436K",
+      "child_count": 1,
+      "children": [
+        {
+          "name": "nginx-gateway"
+        }
+      ]
+    },
+    {
+      "name": "product-spawner",
+      "path": "/home/ichigo/alexandria/product-spawner",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-03-16",
+        "message": "feat(agentic-ads): add full stack — bid-engine, cache, payments, compliance, UI, MCP servers",
+        "own_repo": false
+      },
+      "size": "3.1M",
+      "child_count": 0,
+      "children": []
+    },
+    {
+      "name": "read-this",
+      "path": "/home/ichigo/alexandria/read-this",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-03-16",
+        "message": "feat(agentic-ads): add full stack — bid-engine, cache, payments, compliance, UI, MCP servers",
+        "own_repo": false
+      },
+      "size": "180K",
+      "child_count": 0,
+      "children": []
+    },
+    {
+      "name": "scripts",
+      "path": "/home/ichigo/alexandria/scripts",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-06-19",
+        "message": "feat(chrome-cdp): service pm2 Chromium + CDP remote debugging",
+        "own_repo": false
+      },
+      "size": "8.0K",
+      "child_count": 0,
+      "children": []
+    },
+    {
+      "name": "Second-Me",
+      "path": "/home/ichigo/alexandria/Second-Me",
+      "is_git": false,
+      "git_remote": null,
+      "last_commit": {
+        "date": "2026-03-01",
+        "message": "feat(phase-2-épopée): ACTION #2-4 forged - training, energy, filmmaker awakened",
+        "own_repo": false
+      },
+      "size": "156K",
+      "child_count": 2,
+      "children": [
+        {
+          "name": "L2-models"
+        },
+        {
+          "name": "lpm_kernel"
+        }
+      ]
+    },
+    {
+      "name": "webmcp",
+      "path": "/home/ichigo/alexandria/webmcp",
+      "is_git": true,
+      "git_remote": "https://github.com/xaiksan1/webmcp.git",
+      "last_commit": {
+        "date": "2026-06-11",
+        "message": "Remove `ModelContextClient` for now (#205)",
+        "own_repo": true
+      },
+      "size": "168K",
+      "child_count": 1,
+      "children": [
+        {
+          "name": "docs"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 Le Livre des Artefacts</title>
+<style>
+  :root{
+    --parchemin:#0d0a10; --encre:#e4d9c2; --bronze:#a9814e; --bronze-pale:#7a6144;
+    --patine:#5f9a82; --ambre:#d8b83a; --rouille:#b25a3a; --scelle:#8a6fc9;
+    --carte:#161225; --bord:#2e2640; --sourdine:#7d7260;
+  }
+  :root[data-theme="light"]{
+    --parchemin:#f2ead9; --encre:#2a2216; --bronze:#8a5f2a; --bronze-pale:#a9814e;
+    --patine:#2f7a5f; --ambre:#8a6a10; --rouille:#8a3d20; --scelle:#5a3f9e;
+    --carte:#fbf6ea; --bord:#d9cba8; --sourdine:#6a5c42;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --parchemin:#f2ead9; --encre:#2a2216; --bronze:#8a5f2a; --bronze-pale:#a9814e;
+      --patine:#2f7a5f; --ambre:#8a6a10; --rouille:#8a3d20; --scelle:#5a3f9e;
+      --carte:#fbf6ea; --bord:#d9cba8; --sourdine:#6a5c42;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{overflow-x:hidden}
+  body{background:var(--parchemin);color:var(--encre);
+    font-family:Georgia,'Times New Roman',serif;min-height:100vh;
+    background-image:radial-gradient(ellipse at 15% 0%,rgba(138,111,201,.07),transparent 50%),
+                     radial-gradient(ellipse at 85% 100%,rgba(169,129,78,.08),transparent 50%);
+    transition:background-color .2s,color .2s}
+  header{text-align:center;padding:2.4rem 1rem 1.2rem;position:relative}
+  header::before,header::after{content:"";display:block;max-width:420px;margin:0 auto .9rem;
+    height:1px;background:linear-gradient(90deg,transparent,var(--bord),transparent)}
+  h1{color:var(--bronze);font-size:1.85rem;letter-spacing:.28em;font-weight:700;text-wrap:balance}
+  .soustitre{color:var(--sourdine);font-size:.75rem;letter-spacing:.22em;margin-top:.5rem;text-transform:uppercase}
+  .epigraphe{color:var(--sourdine);font-style:italic;font-size:.8rem;margin-top:.9rem;opacity:.85}
+  .vitals{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin:1.3rem auto .3rem;
+    font-family:'Courier New',monospace;font-size:.72rem;color:var(--sourdine)}
+  .vitals b{color:var(--bronze)}
+  nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb, var(--parchemin) 92%, transparent);
+    backdrop-filter:blur(4px);border-bottom:1px solid var(--bord);padding:.6rem 1rem;
+    display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;align-items:center}
+  #cherche{background:var(--carte);border:1px solid var(--bord);color:var(--encre);
+    padding:.35rem .7rem;border-radius:4px;font-family:'Courier New',monospace;
+    font-size:.75rem;width:220px;outline:none}
+  #cherche:focus{border-color:var(--bronze-pale)}
+  .filtre{background:transparent;border:1px solid var(--bord);color:var(--sourdine);
+    font-family:'Courier New',monospace;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;
+    padding:.3rem .6rem;border-radius:3px;cursor:pointer;transition:.15s}
+  .filtre:hover{border-color:var(--bronze-pale);color:var(--encre)}
+  .filtre.actif{border-color:var(--bronze);color:var(--bronze);background:color-mix(in srgb, var(--bronze) 10%, transparent)}
+  main{max-width:1180px;margin:0 auto;padding:1rem 1.2rem 4rem}
+  h2{color:var(--bronze);font-size:1rem;letter-spacing:.2em;margin:2.2rem 0 .3rem;
+    text-transform:uppercase;border-bottom:1px solid var(--bord);padding-bottom:.4rem;
+    display:flex;align-items:baseline;gap:.5rem}
+  h2 .compte{color:var(--sourdine);font-family:'Courier New',monospace;font-size:.7rem;
+    text-transform:none;letter-spacing:0;margin-left:auto}
+  .lore{color:var(--sourdine);font-style:italic;font-size:.8rem;margin-bottom:1rem}
+
+  .carte-mermaid{background:var(--carte);border:1px solid var(--bord);border-radius:8px;
+    padding:1.1rem;overflow-x:auto;margin-bottom:.5rem}
+  .carte-mermaid pre.mermaid{margin:0 auto;width:fit-content}
+
+  .grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:.9rem}
+  .artefact{background:var(--carte);border:1px solid var(--bord);border-radius:8px;
+    padding:.95rem 1.05rem;position:relative;transition:border-color .15s}
+  .artefact:hover{border-color:var(--bronze-pale)}
+  .entete{display:flex;align-items:baseline;gap:.55rem;margin-bottom:.3rem}
+  .sigil{font-size:1.4rem;line-height:1}
+  .nom{color:var(--encre);font-weight:700;font-size:1rem;font-family:'Courier New',monospace}
+  .etat{width:9px;height:9px;border-radius:50%;display:inline-block;margin-left:auto;
+    align-self:center;box-shadow:0 0 6px transparent;flex-shrink:0}
+  .etat.vivant{background:var(--patine);box-shadow:0 0 7px var(--patine)}
+  .etat.recent{background:var(--ambre);box-shadow:0 0 7px var(--ambre)}
+  .etat.dormant{background:var(--rouille);box-shadow:0 0 7px var(--rouille)}
+  .etat.scelle{background:var(--scelle);box-shadow:0 0 7px var(--scelle)}
+  .badges{display:flex;gap:.4rem;flex-wrap:wrap;margin:.3rem 0 .55rem}
+  .badge{font-family:'Courier New',monospace;font-size:.58rem;letter-spacing:.08em;
+    padding:.12rem .45rem;border-radius:3px;text-transform:uppercase;border:1px solid}
+  .b-vivant{color:var(--patine);border-color:var(--patine)}
+  .b-recent{color:var(--ambre);border-color:var(--ambre)}
+  .b-dormant{color:var(--rouille);border-color:var(--rouille)}
+  .b-scelle{color:var(--scelle);border-color:var(--scelle)}
+  .b-groupe{color:var(--sourdine);border-color:var(--bord)}
+  .stat{font-size:.78rem;line-height:1.6;color:var(--encre)}
+  .stat b{color:var(--bronze-pale);font-family:'Courier New',monospace;font-size:.64rem;
+    letter-spacing:.06em;text-transform:uppercase}
+  .sous-dossiers{font-family:'Courier New',monospace;font-size:.68rem;color:var(--sourdine);
+    margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--bord);line-height:1.7;
+    max-height:0;overflow:hidden;transition:max-height .2s ease}
+  .artefact.ouvert .sous-dossiers{max-height:220px;overflow-y:auto}
+  .bascule{font-family:'Courier New',monospace;font-size:.62rem;color:var(--bronze-pale);
+    cursor:pointer;margin-top:.5rem;display:inline-block;user-select:none}
+  .bascule:hover{color:var(--bronze)}
+  a.lien{color:var(--patine);text-decoration:none}
+  a.lien:hover{text-decoration:underline}
+  .cache{display:none !important}
+  .manifeste{background:var(--carte);border:1px solid var(--bord);border-radius:8px;
+    padding:1rem 1.2rem;font-family:'Courier New',monospace;font-size:.72rem;color:var(--sourdine);
+    columns:2;column-gap:2rem}
+  .manifeste span{display:block;break-inside:avoid;padding:.12rem 0}
+  footer{text-align:center;color:var(--sourdine);font-size:.72rem;font-style:italic;
+    padding:2rem 1rem;border-top:1px solid var(--bord);margin-top:2.5rem}
+  @media (max-width:640px){.manifeste{columns:1}}
+</style>
+</head>
+<body>
+<header>
+  <h1>📖 LE LIVRE DES ARTEFACTS</h1>
+  <div class="soustitre">Cartographie des dépôts d'Alexandria · ~/alexandria/*</div>
+  <div class="epigraphe">« Chaque dossier est un objet trouvé — certains encore chauds du dernier commit, d'autres scellés depuis la fondation. » </div>
+  <div class="vitals">
+    <span>◆ artefacts : <b id="v-total"></b></span>
+    <span>◆ dépôts propres : <b id="v-repos"></b></span>
+    <span>◆ poids total : <b id="v-poids"></b></span>
+    <span>◆ vivants (≤7j) : <b id="v-vivants"></b></span>
+  </div>
+</header>
+<nav>
+  <input id="cherche" type="search" placeholder="⌕ chercher un artefact…">
+  <button class="filtre actif" data-filtre="tous">Tous</button>
+  <button class="filtre" data-filtre="vivant">◆ Vivant</button>
+  <button class="filtre" data-filtre="recent">◆ Récent</button>
+  <button class="filtre" data-filtre="dormant">◆ Dormant</button>
+  <button class="filtre" data-filtre="scelle">◆ Scellé</button>
+</nav>
+<main id="livre">
+
+  <h2>Carte de la salle <span class="compte">structure des dossiers de premier niveau</span></h2>
+  <p class="lore">Chaque branche est une salle du dépôt ; chaque feuille, un artefact. Les couleurs suivent l'état (vivant / récent / dormant / scellé) du livre plus bas.</p>
+  <div class="carte-mermaid">
+<pre class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#161225','primaryTextColor':'#e4d9c2','primaryBorderColor':'#2e2640','lineColor':'#7a6144','fontFamily':'Georgia, serif'}}}%%
+flowchart TB
+  ROOT["📖 alexandria/"]
+  ROOT --> G1
+  ROOT --> G2
+  ROOT --> G3
+  ROOT --> G4
+  ROOT --> G5
+  ROOT --> G6
+
+  subgraph G1["🧠 Cœur ADAM"]
+    ADAM["ADAM"]
+  end
+
+  subgraph G2["🕍 Couche 0 — Réseau RAM"]
+    PM["porta-mundi"]
+    GS["guacamole-server"]
+    GC["guacamole-complete-installation"]
+    GB["guacamole-bare-metal-proxy"]
+  end
+
+  subgraph G3["🤖 Agents & automatisation"]
+    JV["jarvis"]
+    MA["mini-adam"]
+    AG["agents"]
+    JMB["json-mcp-blower"]
+    BS["bigset"]
+    PS["product-spawner"]
+  end
+
+  subgraph G4["📊 Commerce & croissance"]
+    AA["agentic-ads"]
+    PC["paperclip"]
+  end
+
+  subgraph G5["🪟 Média & diffusion"]
+    FC["floatcast"]
+    PG["pagecast"]
+    EV["envii"]
+  end
+
+  subgraph G6["🔧 Outils & specs externes"]
+    CDM["chrome-devtools-mcp"]
+    GD["GhostDesk"]
+    MAF["mcp-alexandria-fullstack"]
+    WM["webmcp"]
+    FG["FORGE"]
+    SC["scripts"]
+    GCP["gcp-migration"]
+    SM["Second-Me"]
+  end
+
+  classDef vivant fill:#1a2e28,stroke:#5f9a82,color:#e4d9c2;
+  classDef recent fill:#2e2818,stroke:#d8b83a,color:#e4d9c2;
+  classDef dormant fill:#2e1e18,stroke:#b25a3a,color:#e4d9c2;
+  classDef scelle fill:#241e33,stroke:#8a6fc9,color:#e4d9c2;
+  class ADAM,PM vivant;
+  class AA,JV,MAF,PC,FC recent;
+  class BS,CDM,GD,MA,PG,SC,JMB dormant;
+  class GS,GC,GB,EV,FG,GCP,AG,PS,SM,WM scelle;
+</pre>
+  </div>
+
+  <h2>Le livre <span class="compte" id="v-affiches"></span></h2>
+  <p class="lore">Chaque artefact déplié montre ses propres salles (sous-dossiers). Le point coloré = dernière activité git connue sur ce chemin.</p>
+  <div class="grille" id="grille"></div>
+
+  <h2>Parchemins épars <span class="compte" id="v-fichiers"></span></h2>
+  <p class="lore">Fichiers isolés à la racine — pas des dossiers, mais ils traînent là depuis un moment.</p>
+  <div class="manifeste" id="manifeste"></div>
+
+</main>
+<footer>
+  Écrit pour L'Architecte, le 2026-07-25 — chaque artefact ici a un chemin réel sur disque,<br>
+  aucune ligne n'est inventée. Régénérer : le script vit avec ce livre, demander à Claude de relancer le scan.
+</footer>
+<script>
+const DATA = {"generated_at": "2026-07-25 15:59:01", "root": "/home/ichigo/alexandria", "top_level_dir_count": 27, "top_level_file_count": 33, "top_level_files": ["AGENT_DEPLOYMENT_MONITOR.py", "ALEXANDRIA-ANIMA-MUNDI-STRUCTURE.md", "COMPLETION_SUMMARY.md", "INDEX_README.md", "LANDING_PAGE_COMPLETE.md", "PRESENTATION_GUIDE.md", "PRODUCT-SPAWNER-LAUNCH.md", "PUBLIC_DEPLOYMENT_INSTRUCTIONS.md", "QUATERNIONIC_ARCHITECTURE.md", "QUATERNIONIC_DOCUMENTATION_INDEX.md", "QUATERNIONIC_SYMBIOSIS.md", "QUICK_START_DEMO.md", "README-START-HERE.md", "README-TOOLBAR.md", "README.md", "README_FILMMAKER_COMPLETE.md", "RESURRECTION_COMPLETE.md", "SESSION_COMPLETE_SUMMARY.md", "SYSTEM-COMPLETE.md", "SYSTEM_ORGANIZATION_COMPLETE.md", "SYSTEM_OVERVIEW.md", "TWIN-TURBO-SYSTEM-COMPLETE.md", "YOU-ARE-UNSTOPPABLE.md", "alexandria_integration_config.json", "alexandria_map.json", "c91f3789-6b7b-4f0b-b588-22b8cf4eb743.mp4", "consciousness_generator.py", "find_in_alexandria.sh", "gitingest.txt", "integration_orchestrator.py", "swarm_manifest.json", "swarm_task_ledger.json", "update_analysis.sh"], "directories": [{"name": "ADAM", "path": "/home/ichigo/alexandria/ADAM", "is_git": true, "git_remote": "https://github.com/xaiksan1/ADAM.git", "last_commit": {"date": "2026-07-25", "message": "Bring chal-pipeline live: pm2 (not systemd), port 5055", "own_repo": true}, "size": "9.4G", "child_count": 35, "children": [{"name": "ADAM-KNOWLEDGE-BASE"}, {"name": "AGENTS"}, {"name": "alexandria-erp-ui"}, {"name": "all_sparks_backup"}, {"name": "backups"}, {"name": "blue-daemon"}, {"name": "build (1)"}, {"name": "chal-pipeline"}, {"name": "CLAUDE"}, {"name": "command-center"}, {"name": "CORPUS"}, {"name": "dashboard"}, {"name": "dashboard-unified"}, {"name": "DESIGN"}, {"name": "digital-twin-data"}, {"name": "docs"}, {"name": "dwallstreet"}, {"name": "FORGE"}, {"name": "galacteek"}, {"name": "gemma-gem"}, {"name": "ghost-protocol"}, {"name": "HISTORY-ALL-SPARKS"}, {"name": "kitops"}, {"name": "logs"}, {"name": "modelkits"}, {"name": "orbit-node"}, {"name": "pheromones"}, {"name": "pinchtab"}, {"name": "PY_SCRIPTS"}, {"name": "pyBallMapper"}, {"name": "SELF"}, {"name": "slot-machine"}, {"name": "subventions"}, {"name": "tmux"}, {"name": "tools"}]}, {"name": "agentic-ads", "path": "/home/ichigo/alexandria/agentic-ads", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-07-09", "message": "Document Tim-Burner as internal-only, never as x402 recipient", "own_repo": false}, "size": "1.2G", "child_count": 11, "children": [{"name": "action-layer"}, {"name": "bid-engine"}, {"name": "cache"}, {"name": "compliance"}, {"name": "docs"}, {"name": "mcp-servers"}, {"name": "migrations"}, {"name": "payments"}, {"name": "scripts"}, {"name": "souffles"}, {"name": "ui"}]}, {"name": "agents", "path": "/home/ichigo/alexandria/agents", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-03-01", "message": "\ud83d\ude80 feat: Complete Alexandria Ecosystem Production Deployment (Mar 1, 2026)", "own_repo": false}, "size": "8.0K", "child_count": 0, "children": []}, {"name": "bigset", "path": "/home/ichigo/alexandria/bigset", "is_git": true, "git_remote": "https://github.com/xaiksan1/bigset.git", "last_commit": {"date": "2026-06-05", "message": "Update README.md (#132)", "own_repo": true}, "size": "5.4M", "child_count": 6, "children": [{"name": "assets"}, {"name": "backend"}, {"name": "db"}, {"name": "frontend"}, {"name": "makefiles"}, {"name": "scripts"}]}, {"name": "chrome-devtools-mcp", "path": "/home/ichigo/alexandria/chrome-devtools-mcp", "is_git": true, "git_remote": "https://github.com/xaiksan1/chrome-devtools-mcp.git", "last_commit": {"date": "2026-06-14", "message": "feat(webmcp): bridge WebMCP page tools \u2192 chrome-devtools-mcp", "own_repo": true}, "size": "6.5M", "child_count": 5, "children": [{"name": "docs"}, {"name": "scripts"}, {"name": "skills"}, {"name": "src"}, {"name": "tests"}]}, {"name": "docs", "path": "/home/ichigo/alexandria/docs", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-03-16", "message": "feat(agentic-ads): add full stack \u2014 bid-engine, cache, payments, compliance, UI, MCP servers", "own_repo": false}, "size": "44K", "child_count": 1, "children": [{"name": "superpowers"}]}, {"name": "envii", "path": "/home/ichigo/alexandria/envii", "is_git": true, "git_remote": "https://github.com/xaiksan1/envii.git", "last_commit": {"date": "2026-01-18", "message": "feat: add buildNameMap function for fallback matching of project names to paths", "own_repo": true}, "size": "648K", "child_count": 3, "children": [{"name": "api"}, {"name": "cli"}, {"name": "web"}]}, {"name": "floatcast", "path": "/home/ichigo/alexandria/floatcast", "is_git": true, "git_remote": "https://github.com/xaiksan1/floatcast.git", "last_commit": {"date": "2026-07-17", "message": "chore(larve): canvas \u2014 premier \u2699 \u00e0 automatiser", "own_repo": true}, "size": "120K", "child_count": 5, "children": [{"name": "canvas"}, {"name": "carte"}, {"name": "dispenser"}, {"name": "httpx"}, {"name": "src"}]}, {"name": "FORGE", "path": "/home/ichigo/alexandria/FORGE", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-06-27", "message": "feat(gcp-migration): porta-mundi services \u2014 27 agents Python", "own_repo": false}, "size": "8.0K", "child_count": 1, "children": [{"name": "free-claude-code"}]}, {"name": "gcp-migration", "path": "/home/ichigo/alexandria/gcp-migration", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-06-26", "message": "chore(gcp-migration): setup-envs.sh (placeholders) + \u00e9tat phases 0-4", "own_repo": false}, "size": "16K", "child_count": 0, "children": []}, {"name": "GhostDesk", "path": "/home/ichigo/alexandria/GhostDesk", "is_git": true, "git_remote": "https://github.com/xaiksan1/GhostDesk.git", "last_commit": {"date": "2026-06-15", "message": "feat(ghostdesk): bake browser-harness + CLI-Anything + host.docker.internal", "own_repo": true}, "size": "1.4M", "child_count": 5, "children": [{"name": "assets"}, {"name": "docker"}, {"name": "scripts"}, {"name": "src"}, {"name": "tests"}]}, {"name": "guacamole-bare-metal-proxy", "path": "/home/ichigo/alexandria/guacamole-bare-metal-proxy", "is_git": true, "git_remote": "https://github.com/xaiksan1/guacamole-bare-metal-proxy.git", "last_commit": {"date": "2025-09-18", "message": "Update README with correct repository URLs", "own_repo": true}, "size": "108K", "child_count": 3, "children": [{"name": "configs"}, {"name": "docs"}, {"name": "scripts"}]}, {"name": "guacamole-complete-installation", "path": "/home/ichigo/alexandria/guacamole-complete-installation", "is_git": true, "git_remote": "https://github.com/xaiksan1/guacamole-complete-installation.git", "last_commit": {"date": "2025-09-18", "message": "Initial commit: Complete Guacamole installation package with all components", "own_repo": true}, "size": "57M", "child_count": 7, "children": [{"name": "database"}, {"name": "guacamole-client"}, {"name": "guacamole-server"}, {"name": "nginx-config"}, {"name": "scripts"}, {"name": "systemd-services"}, {"name": "tomcat"}]}, {"name": "guacamole-server", "path": "/home/ichigo/alexandria/guacamole-server", "is_git": true, "git_remote": "https://github.com/xaiksan1/guacamole-server.git", "last_commit": {"date": "2026-02-04", "message": "docs: Add CLAUDE.md developer guide for guacamole-server", "own_repo": true}, "size": "57M", "child_count": 7, "children": [{"name": "autom4te.cache"}, {"name": "bin"}, {"name": "build-aux"}, {"name": "doc"}, {"name": "m4"}, {"name": "src"}, {"name": "util"}]}, {"name": "images", "path": "/home/ichigo/alexandria/images", "is_git": false, "git_remote": null, "last_commit": null, "size": "101M", "child_count": 0, "children": []}, {"name": "jarvis", "path": "/home/ichigo/alexandria/jarvis", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-07-10", "message": "fix(cia/feeds): NVD query was missing a date bound, returning 1999-2001 CVEs", "own_repo": false}, "size": "204K", "child_count": 1, "children": [{"name": "cia"}]}, {"name": "json-mcp-blower", "path": "/home/ichigo/alexandria/json-mcp-blower", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-03-01", "message": "fix(turbine): Apply acceleration multipliers - resolve 0.7kW generation bottleneck", "own_repo": false}, "size": "26M", "child_count": 2, "children": [{"name": "agents"}, {"name": "agents_exponential"}]}, {"name": "mcp-alexandria-fullstack", "path": "/home/ichigo/alexandria/mcp-alexandria-fullstack", "is_git": true, "git_remote": "https://github.com/xaiksan1/mcp-alexandria-fullstack.git", "last_commit": {"date": "2026-07-24", "message": "fix(pm2): recreate missing start-mcp-fullstack.sh", "own_repo": true}, "size": "296K", "child_count": 3, "children": [{"name": "backend"}, {"name": "claude-zangetsu"}, {"name": "examples"}]}, {"name": "mini-adam", "path": "/home/ichigo/alexandria/mini-adam", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-05-04", "message": "fix(mini-adam): dotenv load + venv interpreter + gemini model dans emoji_parser", "own_repo": false}, "size": "93M", "child_count": 7, "children": [{"name": "config"}, {"name": "data"}, {"name": "docs"}, {"name": "logs"}, {"name": "router"}, {"name": "runner"}, {"name": "tests"}]}, {"name": "pagecast", "path": "/home/ichigo/alexandria/pagecast", "is_git": true, "git_remote": "https://github.com/xaiksan1/pagecast.git", "last_commit": {"date": "2026-06-20", "message": "Fix expiry-change rollback + \"Expires in 0m\" label (CodeRabbit, PR #5)", "own_repo": true}, "size": "3.3M", "child_count": 8, "children": [{"name": "extension"}, {"name": "feedback"}, {"name": "media"}, {"name": "plugin"}, {"name": "public"}, {"name": "src"}, {"name": "test"}, {"name": "web"}]}, {"name": "paperclip", "path": "/home/ichigo/alexandria/paperclip", "is_git": true, "git_remote": "https://github.com/xaiksan1/paperclip.git", "last_commit": {"date": "2026-07-07", "message": "chore(alexandria): r\u00e9int\u00e8gre deploy-workflow, vercel.json, start-paperclip.sh", "own_repo": true}, "size": "313M", "child_count": 11, "children": [{"name": "cli"}, {"name": "deploy-workflow"}, {"name": "doc"}, {"name": "docker"}, {"name": "docs"}, {"name": "packages"}, {"name": "releases"}, {"name": "scripts"}, {"name": "server"}, {"name": "skills"}, {"name": "ui"}]}, {"name": "porta-mundi", "path": "/home/ichigo/alexandria/porta-mundi", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-07-25", "message": "Add Docker+Snyk-gated nginx gateway; fix guacamole_gateway.py port collision", "own_repo": false}, "size": "436K", "child_count": 1, "children": [{"name": "nginx-gateway"}]}, {"name": "product-spawner", "path": "/home/ichigo/alexandria/product-spawner", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-03-16", "message": "feat(agentic-ads): add full stack \u2014 bid-engine, cache, payments, compliance, UI, MCP servers", "own_repo": false}, "size": "3.1M", "child_count": 0, "children": []}, {"name": "read-this", "path": "/home/ichigo/alexandria/read-this", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-03-16", "message": "feat(agentic-ads): add full stack \u2014 bid-engine, cache, payments, compliance, UI, MCP servers", "own_repo": false}, "size": "180K", "child_count": 0, "children": []}, {"name": "scripts", "path": "/home/ichigo/alexandria/scripts", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-06-19", "message": "feat(chrome-cdp): service pm2 Chromium + CDP remote debugging", "own_repo": false}, "size": "8.0K", "child_count": 0, "children": []}, {"name": "Second-Me", "path": "/home/ichigo/alexandria/Second-Me", "is_git": false, "git_remote": null, "last_commit": {"date": "2026-03-01", "message": "feat(phase-2-\u00e9pop\u00e9e): ACTION #2-4 forged - training, energy, filmmaker awakened", "own_repo": false}, "size": "156K", "child_count": 2, "children": [{"name": "L2-models"}, {"name": "lpm_kernel"}]}, {"name": "webmcp", "path": "/home/ichigo/alexandria/webmcp", "is_git": true, "git_remote": "https://github.com/xaiksan1/webmcp.git", "last_commit": {"date": "2026-06-11", "message": "Remove `ModelContextClient` for now (#205)", "own_repo": true}, "size": "168K", "child_count": 1, "children": [{"name": "docs"}]}]};
+
+const ICONS = {
+  "ADAM":"🧠","agentic-ads":"📊","agents":"🗂️","bigset":"🗃️","chrome-devtools-mcp":"🔧",
+  "docs":"📖","envii":"🔋","floatcast":"🪟","FORGE":"🔨","gcp-migration":"☁️","GhostDesk":"👻",
+  "guacamole-bare-metal-proxy":"🖥️","guacamole-complete-installation":"🖥️","guacamole-server":"🖥️",
+  "images":"🖼️","jarvis":"🛰️","json-mcp-blower":"💨","mcp-alexandria-fullstack":"⚔️","mini-adam":"🤖",
+  "pagecast":"📡","paperclip":"📎","porta-mundi":"🕍","product-spawner":"🏭","read-this":"👁️",
+  "scripts":"📜","Second-Me":"🪞","webmcp":"🌐"
+};
+const GROUPES = {
+  "ADAM":"Cœur ADAM",
+  "porta-mundi":"Couche 0 — Réseau RAM","guacamole-server":"Couche 0 — Réseau RAM",
+  "guacamole-complete-installation":"Couche 0 — Réseau RAM","guacamole-bare-metal-proxy":"Couche 0 — Réseau RAM",
+  "jarvis":"Agents & automatisation","mini-adam":"Agents & automatisation","agents":"Agents & automatisation",
+  "json-mcp-blower":"Agents & automatisation","bigset":"Agents & automatisation","product-spawner":"Agents & automatisation",
+  "agentic-ads":"Commerce & croissance","paperclip":"Commerce & croissance",
+  "floatcast":"Média & diffusion","pagecast":"Média & diffusion","envii":"Média & diffusion",
+  "chrome-devtools-mcp":"Outils & specs externes","GhostDesk":"Outils & specs externes",
+  "mcp-alexandria-fullstack":"Outils & specs externes","webmcp":"Outils & specs externes",
+  "FORGE":"Outils & specs externes","scripts":"Outils & specs externes","gcp-migration":"Outils & specs externes",
+  "Second-Me":"Identité & cognition",
+  "docs":"Archives & divers","read-this":"Archives & divers","images":"Archives & divers"
+};
+
+function etatDe(entry){
+  if(!entry.last_commit) return "scelle";
+  const jours = (Date.now() - new Date(entry.last_commit.date).getTime()) / 86400000;
+  if(jours <= 7) return "vivant";
+  if(jours <= 30) return "recent";
+  if(jours <= 180) return "dormant";
+  return "scelle";
+}
+function libelleEtat(e){
+  return {vivant:"vivant",recent:"récent",dormant:"dormant",scelle:"scellé"}[e];
+}
+function esc(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+let filtreActif = "tous";
+
+function rendre(){
+  const grille = document.getElementById('grille');
+  const q = (document.getElementById('cherche').value || '').trim().toLowerCase();
+  grille.innerHTML = DATA.directories.map(d => {
+    const etat = etatDe(d);
+    const icon = ICONS[d.name] || "📦";
+    const groupe = GROUPES[d.name] || "Non classé";
+    const txt = (d.name + ' ' + groupe + ' ' + (d.git_remote||'')).toLowerCase();
+    const cacheQ = q && !txt.includes(q);
+    const cacheF = filtreActif !== "tous" && etat !== filtreActif;
+    const sousListe = d.children.map(c => `· ${esc(c.name)}`).join('<br>') || '(aucun sous-dossier)';
+    const commitLine = d.last_commit
+      ? `${esc(d.last_commit.date)} — ${esc(d.last_commit.message)}`
+      : 'aucun historique git';
+    return `<div class="artefact ${cacheQ||cacheF?'cache':''}" data-txt="${esc(txt)}">
+      <div class="entete">
+        <span class="sigil">${icon}</span>
+        <span class="nom">${esc(d.name)}</span>
+        <span class="etat ${etat}" title="${libelleEtat(etat)}"></span>
+      </div>
+      <div class="badges">
+        <span class="badge b-${etat}">${libelleEtat(etat)}</span>
+        <span class="badge b-groupe">${esc(groupe)}</span>
+        ${d.is_git ? '<span class="badge b-groupe">dépôt propre</span>' : ''}
+      </div>
+      <div class="stat">
+        <b>poids</b> ${esc(d.size)} · <b>salles</b> ${d.child_count}<br>
+        <b>dernier geste</b> ${commitLine}
+        ${d.git_remote ? `<br><b>github</b> <a class="lien" href="${esc(d.git_remote)}" target="_blank" rel="noopener">${esc(d.git_remote.replace('https://github.com/','').replace('.git',''))}</a>` : ''}
+      </div>
+      ${d.child_count > 0 ? `<span class="bascule" onclick="this.closest('.artefact').classList.toggle('ouvert')">▸ déplier les ${d.child_count} sous-dossiers</span>
+      <div class="sous-dossiers">${sousListe}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  const visibles = DATA.directories.filter(d => {
+    const etat = etatDe(d);
+    const groupe = GROUPES[d.name] || "Non classé";
+    const txt = (d.name + ' ' + groupe + ' ' + (d.git_remote||'')).toLowerCase();
+    if(q && !txt.includes(q)) return false;
+    if(filtreActif !== "tous" && etat !== filtreActif) return false;
+    return true;
+  }).length;
+  document.getElementById('v-affiches').textContent = `${visibles} / ${DATA.directories.length} affichés`;
+}
+
+function init(){
+  document.getElementById('v-total').textContent = DATA.directories.length;
+  document.getElementById('v-repos').textContent = DATA.directories.filter(d=>d.is_git).length;
+  document.getElementById('v-vivants').textContent = DATA.directories.filter(d=>etatDe(d)==='vivant').length;
+  document.getElementById('v-fichiers').textContent = `(${DATA.top_level_files.length})`;
+
+  let totalMo = 0;
+  for(const d of DATA.directories){
+    const m = d.size.match(/([\d.]+)([KMGT])/);
+    if(!m) continue;
+    const mult = {K:0.001,M:1,G:1000,T:1000000}[m[2]];
+    totalMo += parseFloat(m[1]) * mult;
+  }
+  document.getElementById('v-poids').textContent = totalMo > 1000
+    ? (totalMo/1000).toFixed(1) + ' Go'
+    : Math.round(totalMo) + ' Mo';
+
+  document.getElementById('manifeste').innerHTML = DATA.top_level_files
+    .map(f => `<span>📄 ${esc(f)}</span>`).join('');
+
+  document.getElementById('cherche').addEventListener('input', rendre);
+  document.querySelectorAll('.filtre').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filtre').forEach(b=>b.classList.remove('actif'));
+      btn.classList.add('actif');
+      filtreActif = btn.dataset.filtre;
+      rendre();
+    });
+  });
+
+  rendre();
+}
+init();
+</script>
+</body>
+</html>
