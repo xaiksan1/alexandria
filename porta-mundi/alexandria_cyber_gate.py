@@ -15,6 +15,11 @@ Modules:
 9. Zangetsu (Security)
 10. Minotaure (Gatekeeper)
 11. Labyrinthe (Navigation)
+12. Paint Shop (Threat Enrichment & Response Renderer) — tags every rendered event
+    with a watermark (residual-pixel tracer); without it Bounty Hunters has no IOC
+    to pick up once a Minotaure honeypot is triggered/destroyed.
+13. Bounty Hunters (Counter-Intelligence)
+14. NMAP Scanner (Defensive Recon)
 """
 
 import json
@@ -95,6 +100,10 @@ class AlexandriaCyberGate:
             "Phoenix": {"type": "Observability", "source": "Arize/Phoenix", "status": "MONITORING"},
             "Aegis": {"type": "Defense", "source": "AlexandriaVerse", "status": "ARMED"},
             "Sentinelle": {"type": "Guardian", "source": "AlexandriaVerse", "status": "WATCHING"},
+            # Threat Flux position 3 (Sentinelle -> Paint Shop -> Aegis): watermarks
+            # every rendered event as a residual-pixel tracer. Bounty Hunters has no
+            # IOC to chase on a destroyed Minotaure honeypot without this step.
+            "Paint Shop": {"type": "Threat Enrichment & Response Renderer", "source": "paint_shop.py (Flask, port 4141)", "status": "RENDERING"},
             "Serena": {"type": "Agent", "source": "Anima Mundi UI", "status": "ONLINE"},
             "Alexa": {"type": "Agent", "source": "Anima Mundi UI", "status": "ONLINE"},
             "multilspy": {"type": "LSP Engine", "source": "Microsoft/multilspy", "status": "READY"},
