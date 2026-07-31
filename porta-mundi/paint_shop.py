@@ -168,11 +168,18 @@ def _poll_and_render() -> None:
                 events = json.loads(resp.read())
             if events:
                 new_max = max(e["id"] for e in events)
+                # Found by cyber_gate_smoke_test.py (2026-07-31): a Minotaure honeypot
+                # trigger is severity=MEDIUM/INFO, which never cleared the >=75 (HIGH/
+                # CRITICAL) bar below — meaning the honeypot's residual-pixel tracer
+                # never got generated, leaving Bounty Hunters nothing to track. The
+                # tracer is the whole point of a honeypot/deception event, so those
+                # categories always render regardless of severity score.
                 to_render = [
                     e for e in events
                     if e["id"] > _last_phoenix_id
                     and e.get("source") not in ("paint-shop", "tartarus")
-                    and _score(e.get("severity", "INFO")) >= 75
+                    and (_score(e.get("severity", "INFO")) >= 75
+                         or e.get("category") in ("honeypot", "deception"))
                 ]
                 _last_phoenix_id = new_max
                 for ev in to_render:

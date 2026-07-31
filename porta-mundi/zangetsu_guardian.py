@@ -230,7 +230,23 @@ class ZangetsuSecurityLayer:
             "guest": AccessLevel.PUBLIC
         }
         required_level = role_access_map.get(role, AccessLevel.PUBLIC)
-        return access_level.value >= required_level.value
+        # Found by cyber_gate_smoke_test.py (2026-07-31): this used to compare
+        # access_level.value >= required_level.value as raw STRINGS, i.e.
+        # alphabetically ("authenticated" < "public" < "restricted") instead of
+        # by intended privilege rank — a guest granted the objectively-higher
+        # AUTHENTICATED tier was incorrectly denied while PUBLIC passed.
+        # RESTRICTED is never assigned to any role in role_access_map above, so
+        # its intended rank is genuinely undefined by this code; ranked highest
+        # here as the fail-closed choice (harder to satisfy, not easier) rather
+        # than guessed — flag to a human before relying on RESTRICTED for real.
+        rank = {
+            AccessLevel.PUBLIC: 0,
+            AccessLevel.AUTHENTICATED: 1,
+            AccessLevel.AUTHORIZED: 2,
+            AccessLevel.PRIVILEGED: 3,
+            AccessLevel.RESTRICTED: 4,
+        }
+        return rank[access_level] >= rank[required_level]
 
     def check_operation(
         self,
