@@ -57,12 +57,16 @@ def test_verify_wallet_mismatch():
     assert not verify_wallet("ledger", "0x0000000000000000000000000000000000000000")
 
 
-# derive_agent_wallet() — separate from the sponsor derive_wallet() above,
-# added 2026-07-31 to fix paper_spawner.py's larva-birth collision bug: the
-# old agent_id was keyed by len(name), so two same-length names collided on
-# the same slot AND the same wallet. Keyed by the name's actual content now.
+# derive_agent_wallet() — separate from the sponsor derive_wallet() above.
+# 2026-07-31: first pass fixed paper_spawner.py's larva-birth collision bug
+# (old agent_id was keyed by len(name)) with a sha256+Base58Check pseudo-
+# address. Corrected same day: real BIP44 secp256k1 HD derivation from one
+# securely-held master mnemonic (~/.tim_burner/master_mnemonic.txt, 0600) —
+# this is a real, spendable address, not a placeholder, because energon is a
+# continuously-tested real system, not a disposable prototype waiting on a
+# "final" version.
 
-_BASE58_ALPHABET = set("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
+from eth_utils import is_checksum_address
 
 
 def test_derive_agent_wallet_deterministic():
@@ -77,19 +81,14 @@ def test_derive_agent_wallet_no_collision_on_same_length_names():
     assert w1 != w2
 
 
-def test_derive_agent_wallet_is_base58_not_base64():
+def test_derive_agent_wallet_is_a_real_checksum_address():
     w = derive_agent_wallet("test-agent")
-    assert all(c in _BASE58_ALPHABET for c in w)
-    assert not any(c in "0OIl" for c in w)  # the chars Base58 exists to exclude
-
-
-def test_derive_agent_wallet_distinct_format_from_sponsor_wallet():
-    # Never mistakable for a sponsor wallet (0x-prefixed hex) — a different
-    # function for a different purpose should not look interchangeable.
-    assert not derive_agent_wallet("test-agent").startswith("0x")
+    assert w.startswith("0x") and len(w) == 42
+    assert is_checksum_address(w), "must be a real EIP-55 checksummed address, not a hex blob"
 
 
 def test_derive_agent_wallet_does_not_alter_sponsor_wallets():
     # The whole reason this is a separate function: sponsors_registry.json
     # has real, already-communicated wallet addresses pinned to derive_wallet().
+    # Changing agent-wallet derivation must never move a sponsor's address.
     assert derive_wallet("ledger") == "0xfad4b71b9d92cb0e9c7a586c01af10bddfb699e2"
