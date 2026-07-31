@@ -1,9 +1,9 @@
 import pytest
 
 try:
-    from payments.tim_burner import derive_wallet, verify_wallet
+    from payments.tim_burner import derive_wallet, verify_wallet, derive_agent_wallet
 except ModuleNotFoundError:
-    from tim_burner import derive_wallet, verify_wallet
+    from tim_burner import derive_wallet, verify_wallet, derive_agent_wallet
 
 
 # Ground truth — generated in session 2026-04-25, verified against sponsors_registry.json
@@ -55,3 +55,41 @@ def test_verify_wallet_case_insensitive():
 
 def test_verify_wallet_mismatch():
     assert not verify_wallet("ledger", "0x0000000000000000000000000000000000000000")
+
+
+# derive_agent_wallet() — separate from the sponsor derive_wallet() above,
+# added 2026-07-31 to fix paper_spawner.py's larva-birth collision bug: the
+# old agent_id was keyed by len(name), so two same-length names collided on
+# the same slot AND the same wallet. Keyed by the name's actual content now.
+
+_BASE58_ALPHABET = set("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
+
+
+def test_derive_agent_wallet_deterministic():
+    assert derive_agent_wallet("AlexandriaVerse") == derive_agent_wallet("AlexandriaVerse")
+
+
+def test_derive_agent_wallet_no_collision_on_same_length_names():
+    # The exact real-world collision case: two different 15-character names.
+    assert len("AlexandriaVerse") == len("Another Agent!!") == 15
+    w1 = derive_agent_wallet("AlexandriaVerse")
+    w2 = derive_agent_wallet("Another Agent!!")
+    assert w1 != w2
+
+
+def test_derive_agent_wallet_is_base58_not_base64():
+    w = derive_agent_wallet("test-agent")
+    assert all(c in _BASE58_ALPHABET for c in w)
+    assert not any(c in "0OIl" for c in w)  # the chars Base58 exists to exclude
+
+
+def test_derive_agent_wallet_distinct_format_from_sponsor_wallet():
+    # Never mistakable for a sponsor wallet (0x-prefixed hex) — a different
+    # function for a different purpose should not look interchangeable.
+    assert not derive_agent_wallet("test-agent").startswith("0x")
+
+
+def test_derive_agent_wallet_does_not_alter_sponsor_wallets():
+    # The whole reason this is a separate function: sponsors_registry.json
+    # has real, already-communicated wallet addresses pinned to derive_wallet().
+    assert derive_wallet("ledger") == "0xfad4b71b9d92cb0e9c7a586c01af10bddfb699e2"
