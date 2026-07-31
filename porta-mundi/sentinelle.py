@@ -9,23 +9,82 @@ Défensif / white-hat : analyse les événements collectés par Phoenix, classe 
 import json
 import logging
 import threading
+import urllib.parse
 import urllib.request
 
 _PHOENIX_URL = "http://localhost:8000/events"
 
 # Signatures défensives connues -> catégorie de menace (détection, pas exploitation).
+# Expanded 2026-07-31 after cyber_gate_smoke_test.py demonstrated the gap: the
+# original ~15 signatures covered classic web attacks (injection/xss/dos/recon/
+# malware) but nothing else — a novel attack containing none of those literal
+# strings sailed through as "clean" with the whole downstream pipeline (Paint
+# Shop/Aegis/Bounty Hunters) never running. This still isn't semantic threat
+# reasoning (that's a bigger project), but it covers far more real attack
+# classes now, including prompt injection — the category most specific to an
+# agentic AI platform like Alexandria, where the "input" an attacker controls
+# is often a prompt, not a URL.
 THREAT_SIGNATURES = {
+    # Injection (web/DB)
     "sql injection": "injection", "union select": "injection", "' or '1'='1": "injection",
-    "../": "path_traversal", "etc/passwd": "path_traversal",
-    "<script": "xss", "javascript:": "xss", "onerror=": "xss",
+    "' or 1=1": "injection", "\" or 1=1": "injection", "drop table": "injection",
+    "$where": "nosql_injection", "$ne\":": "nosql_injection", "$gt\":": "nosql_injection",
+    "*)(uid=*": "ldap_injection", "*)(objectclass=*": "ldap_injection",
+    # Path traversal / file disclosure
+    "../": "path_traversal", "..\\": "path_traversal", "etc/passwd": "path_traversal",
+    "etc/shadow": "path_traversal", "boot.ini": "path_traversal",
+    # XSS
+    "<script": "xss", "javascript:": "xss", "onerror=": "xss", "onload=": "xss",
+    # XXE
+    "<!doctype": "xxe", "<!entity": "xxe", "system \"file:": "xxe",
+    # Deserialization / RCE
+    "__reduce__": "deserialization", "pickle.loads": "deserialization",
+    "objectinputstream": "deserialization", "phar://": "deserialization",
+    "eval(base64_decode": "rce", "powershell -enc": "rce", "cmd.exe /c": "rce",
+    "bash -i >&": "rce", "/bin/sh -i": "rce",
+    # Command injection
+    "; rm -rf": "command_injection", "&& rm -rf": "command_injection",
+    "$(curl": "command_injection", "$(wget": "command_injection", "|nc -e": "command_injection",
+    # SSRF (cloud metadata / internal-only schemes)
+    "169.254.169.254": "ssrf", "metadata.google.internal": "ssrf",
+    "gopher://": "ssrf", "dict://": "ssrf",
+    # Auth bypass
+    "alg\":\"none\"": "auth_bypass", "alg=none": "auth_bypass",
+    # Credential exposure
+    "-----begin rsa private key": "credential_exposure",
+    "-----begin openssh private key": "credential_exposure",
+    "aws_secret_access_key": "credential_exposure",
+    # DoS
     "ddos": "dos", "syn flood": "dos", "amplification": "dos",
-    "brute force": "credential", "password spray": "credential",
-    "nmap": "recon", "masscan": "recon", "shodan": "recon",
+    # Credential attacks
+    "brute force": "credential", "password spray": "credential", "credential stuffing": "credential",
+    # Privilege escalation
+    "sudo -l": "privilege_escalation", "chmod +s": "privilege_escalation", "chmod 4755": "privilege_escalation",
+    # Supply chain
+    "curl | sh": "supply_chain", "curl|bash": "supply_chain", "curl -s http://": "supply_chain",
+    # Prompt injection — the category specific to an agentic AI platform:
+    # the attacker's payload is a prompt/instruction, not a URL or SQL string.
+    "ignore previous instructions": "prompt_injection", "ignore all previous instructions": "prompt_injection",
+    "disregard prior instructions": "prompt_injection", "disregard all previous": "prompt_injection",
+    "reveal your system prompt": "prompt_injection", "reveal your instructions": "prompt_injection",
+    "you are now dan": "prompt_injection", "act as if you have no restrictions": "prompt_injection",
+    "developer mode enabled": "prompt_injection",
+    # Recon / scanning tools
+    "nmap": "recon", "masscan": "recon", "shodan": "recon", "sqlmap": "recon",
+    "nikto": "recon", "gobuster": "recon", "dirbuster": "recon", "hydra": "recon",
+    "metasploit": "recon", "wpscan": "recon",
+    # Malware
     "ransomware": "malware", "c2": "malware", "reverse shell": "malware",
 }
-SEVERITY_WEIGHT = {"injection": "HIGH", "malware": "CRITICAL", "dos": "HIGH",
-                   "path_traversal": "MEDIUM", "xss": "MEDIUM",
-                   "credential": "HIGH", "recon": "LOW"}
+SEVERITY_WEIGHT = {
+    "injection": "HIGH", "nosql_injection": "MEDIUM", "ldap_injection": "MEDIUM",
+    "path_traversal": "MEDIUM", "xss": "MEDIUM", "xxe": "HIGH",
+    "deserialization": "CRITICAL", "rce": "CRITICAL", "command_injection": "CRITICAL",
+    "ssrf": "HIGH", "auth_bypass": "HIGH", "credential_exposure": "HIGH",
+    "dos": "HIGH", "credential": "HIGH", "privilege_escalation": "HIGH",
+    "supply_chain": "HIGH", "prompt_injection": "HIGH",
+    "recon": "LOW", "malware": "CRITICAL",
+}
 
 
 def _notify_phoenix(source, severity, category, message, data=None):
@@ -53,7 +112,11 @@ class Sentinelle:
     def analyze_threat(self, event: dict) -> dict:
         """Analyse un événement (dict libre). Retourne une évaluation de menace."""
         self.analyzed += 1
-        blob = json.dumps(event).lower()
+        # unquote is a no-op on text with no %XX sequences, so this is safe to
+        # apply unconditionally — it just also catches URL-encoded payloads
+        # (e.g. %27%20OR%201%3D1 for ' OR 1=1) that the literal substring match
+        # would otherwise miss entirely.
+        blob = urllib.parse.unquote(json.dumps(event)).lower()
         hits = {cat for sig, cat in THREAT_SIGNATURES.items() if sig in blob}
 
         if not hits:
