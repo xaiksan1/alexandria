@@ -37,3 +37,6 @@
 [submodule "webmcp"]
 	path = webmcp
 	url = https://github.com/xaiksan1/webmcp.git
+[submodule "images/hydration-error-resolution"]
+	path = images/hydration-error-resolution
+	url = https://github.com/xaiksan1/alexandria-anima-mundi-website.git
