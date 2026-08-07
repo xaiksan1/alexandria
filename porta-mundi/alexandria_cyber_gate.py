@@ -230,7 +230,7 @@ class AlexandriaCyberGate:
         gate_instance = self
         
         # Dynamically find an available port, excluding Energon and UI ports
-        reserved_ports = [8083, 3003]
+        reserved_ports = [8083, 3001]  # corrigé 2026-08-06 : cortex-v3 est réellement sur 3001, pas 3003
         available_port = self._find_available_port(port, reserved_ports=reserved_ports)
         self.logger.info(f"Using available port: {available_port}")
 

@@ -1,7 +1,7 @@
 """CortexSyncService — push confirmed ad revenue to cortex-v3.
 
 cortex-v3 API contract:
-  POST http://localhost:3003/api/energon/collect
+  POST http://localhost:3001/api/energon/collect
   {"worker_id": "agentic-ads:{vertical}", "egn_generated": float,
    "hashrate": null, "status": "confirmed"}
 
@@ -14,7 +14,7 @@ import os
 
 import httpx
 
-CORTEX_URL = os.environ.get("CORTEX_URL", "http://localhost:3003")
+CORTEX_URL = os.environ.get("CORTEX_URL", "http://localhost:3001")  # corrigé 2026-08-06 : 3003 était mort
 PENDING_REVENUE_PATH = os.environ.get(
     "PENDING_REVENUE_PATH",
     os.path.join(os.path.dirname(__file__), "..", "pending_revenue.json"),

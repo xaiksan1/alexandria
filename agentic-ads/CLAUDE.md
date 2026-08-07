@@ -10,7 +10,7 @@
 | cortex-ws (read-only subscribe) | 8083 |
 
 ## Critical Rules
-1. NEVER write directly to `energon_ledger.json` — use cortex-v3 API port 3003
+1. NEVER write directly to `energon_ledger.json` — use cortex-v3 API port 3001
 2. NEVER kill or modify any running ADAM service
 3. `pending_revenue.json` writes: write to `.tmp` then `os.replace()` — atomic only
 4. Souffle `agentic_ads_campaign.json` uses timer:3600s only — no file_trigger
