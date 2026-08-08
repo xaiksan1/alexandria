@@ -40,3 +40,12 @@
 [submodule "images/hydration-error-resolution"]
 	path = images/hydration-error-resolution
 	url = https://github.com/xaiksan1/alexandria-anima-mundi-website.git
+[submodule "nosferatu-nexus-arena"]
+	path = nosferatu-nexus-arena
+	url = https://github.com/xaiksan1/nosferatu-nexus-arena.git
+[submodule "third-brain-v5-skills"]
+	path = third-brain-v5-skills
+	url = https://github.com/xaiksan1/third-brain-v5-skills.git
+[submodule "ai-rules-sync"]
+	path = ai-rules-sync
+	url = https://github.com/xaiksan1/ai-rules-sync.git
