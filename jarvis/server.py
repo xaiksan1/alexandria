@@ -3,6 +3,7 @@ JARVIS local proxy server — Security Master Chief of Alexandria.
 Serves index.html, proxies /v1/chat to Bifrost, and exposes Porta-Mundi status.
 """
 import json
+import os
 import asyncio
 import subprocess
 import shutil
@@ -38,6 +39,17 @@ PROVIDERS = [
     },
 ]
 _ROTATE_CODES = {429, 529}
+
+# La clé virtuelle du Bifrost ne part QUE vers le Bifrost local — jamais vers
+# un fournisseur externe de la même chaîne (opencode.ai).
+BIFROST_API_KEY = os.environ.get("BIFROST_API_KEY", "")
+
+
+def _headers_for(url: str) -> dict:
+    headers = {"Content-Type": "application/json"}
+    if BIFROST_API_KEY and url.startswith("http://localhost:8090/"):
+        headers["Authorization"] = f"Bearer {BIFROST_API_KEY}"
+    return headers
 
 # Porta-Mundi — 11 defense modules
 MODULES = [
@@ -197,8 +209,6 @@ async def proxy_chat(request: Request):
         openai_messages.append({"role": "system", "content": system})
     openai_messages.extend(messages)
 
-    headers = {"Content-Type": "application/json"}
-
     async def stream_bifrost():
         for i, provider in enumerate(PROVIDERS):
             is_last = i == len(PROVIDERS) - 1
@@ -213,7 +223,7 @@ async def proxy_chat(request: Request):
                 async with httpx.AsyncClient(timeout=120) as client:
                     async with client.stream(
                         "POST", provider["url"],
-                        content=payload, headers=headers
+                        content=payload, headers=_headers_for(provider["url"])
                     ) as resp:
                         if resp.status_code in _ROTATE_CODES:
                             if not is_last:

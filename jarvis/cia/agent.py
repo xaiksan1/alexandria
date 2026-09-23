@@ -11,6 +11,8 @@ import httpx
 INSTANT_LEE_URL = os.getenv("INSTANT_LEE_URL", "http://localhost:4112")
 BIFROST_URL = os.getenv("BIFROST_URL", "http://localhost:8090")
 BIFROST_MODEL = os.getenv("BIFROST_MODEL", "openrouter/anthropic/claude-sonnet-4.6")
+BIFROST_API_KEY = os.getenv("BIFROST_API_KEY", "")
+_BIFROST_HEADERS = {"Authorization": f"Bearer {BIFROST_API_KEY}"} if BIFROST_API_KEY else {}
 
 TIMEOUT = httpx.Timeout(60.0)
 
@@ -62,7 +64,7 @@ Return ONLY valid JSON, no markdown."""
     }
 
     async with httpx.AsyncClient(timeout=TIMEOUT) as client:
-        r = await client.post(f"{BIFROST_URL}/v1/chat/completions", json=payload)
+        r = await client.post(f"{BIFROST_URL}/v1/chat/completions", json=payload, headers=_BIFROST_HEADERS)
         r.raise_for_status()
         content = r.json()["choices"][0]["message"]["content"].strip()
 
@@ -100,6 +102,6 @@ Keep it under 300 words."""
     }
 
     async with httpx.AsyncClient(timeout=TIMEOUT) as client:
-        r = await client.post(f"{BIFROST_URL}/v1/chat/completions", json=payload)
+        r = await client.post(f"{BIFROST_URL}/v1/chat/completions", json=payload, headers=_BIFROST_HEADERS)
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"]
