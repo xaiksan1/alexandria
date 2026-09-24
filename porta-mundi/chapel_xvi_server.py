@@ -8,7 +8,7 @@ cherche ses morceaux ; dès qu'il en réunit 2 sur 3, il s'ouvre, sans personne.
 
 - Un service présente son jeton (Authorization: Bearer) et ne reçoit que ses secrets.
 - Chaque accès, réussi ou refusé, est scellé dans le journal Chapel XVI (sans valeur).
-- Un jeton refusé prévient Phoenix ; 5 refus en 60 s = CRITICAL, que Tartarus met
+- Un jeton refusé prévient Phoenix (MEDIUM) ; 5 refus en 60 s = CRITICAL, que Tartarus met
   en quarantaine. Un morceau manquant prévient aussi Phoenix.
 - Jamais exposé au réseau, jamais appelé par un navigateur : pas de CORS.
 """
@@ -74,7 +74,7 @@ class SanctuaryService:
             sanctuary = Sanctuary(self.store_path, combine_shares(shares))
         except SanctuaryError as e:
             logger.warning("reste scellé : %s", e)
-            _notify_phoenix("WARNING", "sanctuary", f"Sanctuaire scellé : {e}",
+            _notify_phoenix("MEDIUM", "sanctuary", f"Sanctuaire scellé : {e}",
                             {"shares_found": len(shares)})
             return False
         with self._lock:
@@ -82,7 +82,7 @@ class SanctuaryService:
             self._mtime = self.store_path.stat().st_mtime
         self.journal.seal_record({"event": "sanctuary.unsealed", "shares_found": len(shares)})
         if len(shares) < len(self.share_paths):
-            _notify_phoenix("WARNING", "sanctuary",
+            _notify_phoenix("MEDIUM", "sanctuary",
                             f"Sanctuaire ouvert avec {len(shares)} morceaux sur {len(self.share_paths)}",
                             {"shares_found": len(shares)})
         logger.info("Sanctuaire OUVERT (%d morceaux trouvés)", len(shares))
@@ -122,7 +122,7 @@ class SanctuaryService:
                             {"user": "chapel-xvi:jeton-inconnu", "reason": reason})
             self._failures.clear()
         else:
-            _notify_phoenix("WARNING", "access_denied", f"Sanctuaire : accès refusé ({reason})")
+            _notify_phoenix("MEDIUM", "access_denied", f"Sanctuaire : accès refusé ({reason})")
 
     def authorize(self):
         sanctuary = self._fresh()
@@ -170,7 +170,7 @@ def create_app(service: SanctuaryService) -> Flask:
         sanctuary, svc = ok
         if name not in sanctuary.services().get(svc, []):
             service.journal.seal_record({"event": "sanctuary.forbidden", "service": svc, "name": name})
-            _notify_phoenix("WARNING", "access_denied", f"{svc} a demandé {name} sans y avoir droit",
+            _notify_phoenix("MEDIUM", "access_denied", f"{svc} a demandé {name} sans y avoir droit",
                             {"user": svc})
             return jsonify({"error": "secret non accordé à ce service"}), 403
         service.journal.seal_record({"event": "sanctuary.read", "service": svc, "names": [name]})

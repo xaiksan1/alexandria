@@ -54,7 +54,7 @@ def test_stays_sealed_with_one_share(world, no_phoenix):
     assert client.get("/health").json["sanctuary"] == "SCELLÉ"
     r = client.get("/v1/secrets", headers={"Authorization": f"Bearer {world['token']}"})
     assert r.status_code == 503
-    assert any(a[0] == "WARNING" for a in no_phoenix)
+    assert any(a[0] == "MEDIUM" for a in no_phoenix)
 
 
 def test_service_gets_only_its_secrets(world):
