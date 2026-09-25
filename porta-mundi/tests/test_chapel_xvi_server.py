@@ -2,6 +2,7 @@
 
 Run:  ADAM/.venv/bin/python3 -m pytest porta-mundi/tests/test_chapel_xvi_server.py -q
 """
+import json
 import sys
 from pathlib import Path
 
@@ -113,3 +114,38 @@ def test_parse_env_file_handles_quotes_and_comments():
         "X": "y",
         "VIDE": "",
     }
+
+
+def _journal(tmp_path):
+    j = ChapelXVIVault(seal_log=tmp_path / "j.jsonl")
+    j.seal_record({"event": "un"})
+    j.seal_record({"event": "deux"})
+    return j
+
+
+def test_journal_se_repare_apres_coupure_octets_nuls(tmp_path):
+    # Cas réel du 2026-09-25 : 284 octets nuls en fin de journal après une coupure.
+    j = _journal(tmp_path)
+    with open(j._seal_log, "ab") as f:
+        f.write(b"\x00" * 284)
+    j.seal_record({"event": "trois"})
+    lignes = j._seal_log.read_text().splitlines()
+    assert json.loads(lignes[-2])["record"]["event"] == "journal.reparation"
+    assert json.loads(lignes[-1])["record"]["event"] == "trois"
+    assert j.verify_chain() == {"intact": True, "entries": 4}
+    assert b"\x00" * 284 in j._seal_log.with_suffix(".residus").read_bytes()
+
+
+def test_journal_se_repare_apres_ligne_coupee(tmp_path):
+    j = _journal(tmp_path)
+    with open(j._seal_log, "a") as f:
+        f.write('{"ts": 1, "prev_hash": "abc", "rec')
+    j.seal_record({"event": "trois"})
+    assert j.verify_chain()["intact"] is True
+
+
+def test_journal_sain_nest_pas_touche(tmp_path):
+    j = _journal(tmp_path)
+    j.seal_record({"event": "trois"})
+    assert not j._seal_log.with_suffix(".residus").exists()
+    assert j.verify_chain() == {"intact": True, "entries": 3}
