@@ -11,8 +11,11 @@ Chapel XVI — gestion du Sanctuaire des clés en ligne de commande (sur la mach
   revoke SERVICE [NOM]      retire un secret à un service, ou tout le service
   delete NOM                détruit un secret
   verify-journal            recalcule la chaîne du journal scellé
+  reveler NOM               affiche UNE valeur, seulement dans un vrai terminal (jamais
+                            dans un outil, un journal ou une conversation) ; scellé
 
-Les valeurs ne sont jamais affichées ni passées en argument de commande.
+Les valeurs ne sont jamais affichées ni passées en argument de commande, sauf par
+« reveler », réservé au propriétaire devant son propre terminal.
 """
 
 from __future__ import annotations
@@ -58,6 +61,7 @@ def main(argv: list[str] | None = None) -> int:
     sp = sub.add_parser("revoke"); sp.add_argument("service"); sp.add_argument("name", nargs="?")
     sp = sub.add_parser("delete"); sp.add_argument("name")
     sub.add_parser("verify-journal")
+    sp = sub.add_parser("reveler"); sp.add_argument("name")
     args = p.parse_args(argv)
     journal = ChapelXVIVault()
 
@@ -121,6 +125,15 @@ def main(argv: list[str] | None = None) -> int:
             _open().delete(args.name)
             journal.seal_record({"event": "sanctuary.delete", "name": args.name})
             print(f"détruit : {args.name}")
+
+        elif args.cmd == "reveler":
+            # Seulement vers un vrai terminal : si la sortie est capturée (outil, pipe,
+            # fichier, conversation), on refuse avant même d'ouvrir le coffre.
+            if not (sys.stdout.isatty() and sys.stdin.isatty()):
+                raise SanctuaryError("reveler ne fonctionne que dans un vrai terminal")
+            value = _open().get(args.name)
+            journal.seal_record({"event": "sanctuary.reveal", "name": args.name})
+            print(value)
 
         elif args.cmd == "verify-journal":
             print(journal.verify_chain())
